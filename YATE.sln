@@ -8,8 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YATE.Win", "YATE.Win\YATE.Win.csproj", "{EB54E840-B8AF-46A0-8BF7-F7843F4D7FA9}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
