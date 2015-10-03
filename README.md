@@ -3,6 +3,12 @@ YATE (Yet anoter Text Editor) - WPF RichTextBox Extension
 
 YATE is short project to extend RichTextBox with some features from WebBrowser control. WebBrowser control is very good for editing and parse HTML input from clipboard but it is not compatibile with WPF Layout.
 
+## Current Downloads:
+
+[0.01 Alpha: Source Code (zip)](https://github.com/alexiej/YATE/archive/v0.01.zip)
+
+[0.01 Alpha: Source Code (tar.gz)](https://github.com/alexiej/YATE/archive/v0.01.tar.gz)
+
 ![MainWindow](https://raw.githubusercontent.com/alexiej/YATE/master/YATE.Win/docs/MainWindow.png)
 
 In this situation I would like to present you YATE. 
