@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YATE", "YATE\YATE.csproj", "{99C8D39C-F199-48B3-B975-82A6B7ED8618}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YATE.Win", "YATE.Win\YATE.Win.csproj", "{EB54E840-B8AF-46A0-8BF7-F7843F4D7FA9}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99C8D39C-F199-48B3-B975-82A6B7ED8618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C8D39C-F199-48B3-B975-82A6B7ED8618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C8D39C-F199-48B3-B975-82A6B7ED8618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C8D39C-F199-48B3-B975-82A6B7ED8618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB54E840-B8AF-46A0-8BF7-F7843F4D7FA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB54E840-B8AF-46A0-8BF7-F7843F4D7FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB54E840-B8AF-46A0-8BF7-F7843F4D7FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB54E840-B8AF-46A0-8BF7-F7843F4D7FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

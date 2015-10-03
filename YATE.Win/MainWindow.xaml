@@ -1,0 +1,36 @@
+﻿<Window x:Class="YATE.Win.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:YATE="clr-namespace:YATE;assembly=YATE"
+        xmlns:cc="clr-namespace:YATE"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:YATE.Win"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="MainWindow"
+        Width="525"
+        Height="350"
+        mc:Ignorable="d">
+    <TabControl>
+        <TabItem Header="YATE">
+            <DockPanel LastChildFill="True">
+                <Grid>
+                    <cc:YATEExEditor x:Name="Yate" />
+                </Grid>
+            </DockPanel>
+        </TabItem>
+        <TabItem Header="RichTextBox">
+            <DockPanel LastChildFill="True">
+                <Grid>
+                    <RichTextBox x:Name="rb_Source" Grid.Column="0" />
+                </Grid>
+            </DockPanel>
+        </TabItem>
+        <TabItem Header="WebBrowser">
+            <DockPanel LastChildFill="True">
+                <Grid>
+                    <WebBrowser x:Name="wb_Source" Grid.Column="0" />
+                </Grid>
+            </DockPanel>
+        </TabItem>
+    </TabControl>
+</Window>
