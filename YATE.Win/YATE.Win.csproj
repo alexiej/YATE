@@ -191,6 +191,13 @@
   <ItemGroup>
     <Resource Include="docs\MainWindow.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="docs\INSERT.gif" />
+    <Resource Include="docs\RESIZE.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="docs\4.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
