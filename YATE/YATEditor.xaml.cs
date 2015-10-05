@@ -31,7 +31,7 @@ namespace YATE
             PreviewMouseUp += YATE_PreviewMouseUp;
             rtb_Main.PreviewKeyDown += Rtb_Main_PreviewKeyDown;
 
-            
+
             this.SizeChanged += YATEditor_SizeChanged;
 
             Style style = new Style(typeof(Paragraph));
@@ -44,12 +44,12 @@ namespace YATE
         }
 
         public RichTextBox rtb
-            {
+        {
             get
             {
                 return rtb_Main;
             }
-            }
+        }
 
 
         public static T TryFindParent<T>(DependencyObject child)
@@ -94,11 +94,11 @@ namespace YATE
         //    e.Handled = true;
         //}
 
-      
+
         private void YATEditor_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double nw = e.NewSize.Width - 10;
-            this.PageWidth = (nw< this.MinWidth ? MinWidth : nw);
+            this.PageWidth = (nw < this.MinWidth ? MinWidth : nw);
         }
 
         private void DetectURL()
@@ -185,10 +185,26 @@ namespace YATE
             }
         }
 
+
+        public void LoadHTML(string html)
+        {
+
+            Load();
+            Section s = HTMLConverter.HTMLToFlowConverter.ConvertHtmlToSection(html, rtb_Main.Document.PageWidth);
+            this.cmdInsertBlock(s);
+            Semagsoft.HyperlinkHelper.SubscribeToAllHyperlinks(rtb_Main.Document);
+        }
+
+        /**/
+        public void Load()
+        {
+            rtb.Document.Blocks.Clear();
+        }
+
         public void Load(Stream stream)
         {
             var content = new TextRange(rtb.Document.ContentStart, rtb_Main.Document.ContentEnd);
-             content.Load(stream, System.Windows.DataFormats.XamlPackage);
+            content.Load(stream, System.Windows.DataFormats.XamlPackage);
         }
 
         public void Save(Stream stream)
@@ -198,7 +214,7 @@ namespace YATE
 
             stream.Flush();
             stream.Close();
-            
+
         }
 
         public void Load(string XAML)
@@ -364,14 +380,14 @@ namespace YATE
             {
 
                 int v = (int)Math.Round(PointsToPixels(Convert.ToDouble(value)));
-                rtb_Main.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, 
-                    
+                rtb_Main.Selection.ApplyPropertyValue(TextElement.FontSizeProperty,
+
                     Convert.ToString(v)
                     );
             }
         }
 
-            public string SelectionFontSize
+        public string SelectionFontSize
         {
             get
             {
@@ -388,7 +404,7 @@ namespace YATE
             }
         }
 
-            public  FontFamily SelectionFontFamily
+        public FontFamily SelectionFontFamily
         {
             get
             {
@@ -401,7 +417,7 @@ namespace YATE
 
                 //string[] fn = ff.FamilyNames;
                 return ff;
-              
+
             }
             set
             {
@@ -410,7 +426,7 @@ namespace YATE
             }
         }
 
-        public  FontWeight SelectionFontWeight
+        public FontWeight SelectionFontWeight
         {
             get
             {
@@ -515,7 +531,7 @@ namespace YATE
                 //}
                 //else
                 //{
-                   
+
                 //}
 
                 rtb_Main.Selection.ApplyPropertyValue(TextElement.ForegroundProperty, value);
@@ -523,7 +539,7 @@ namespace YATE
         }
 
 
-       
+
 
         public TextMarkerStyle SelectionMarkerStyle
         {
@@ -538,10 +554,10 @@ namespace YATE
                 }
                 return TextMarkerStyle.None;
             }
-          
+
         }
 
-            public FontStyle SelectionFontStyle
+        public FontStyle SelectionFontStyle
         {
             get
             {
@@ -588,7 +604,7 @@ namespace YATE
             }
             set
             {
-                switch(value)
+                switch (value)
                 {
                     case TextAlignment.Left:
                         cmdExecute(EditingCommands.AlignLeft);
@@ -661,7 +677,7 @@ namespace YATE
 
         public void cmdPasteText()
         {
-            if(Clipboard.ContainsText())
+            if (Clipboard.ContainsText())
             {
                 this.cmdInsertText((string)Clipboard.GetData(DataFormats.Text));
             }
@@ -688,10 +704,10 @@ namespace YATE
         }
 
 
-       public void cmdExecute(RoutedUICommand command,  object par = null)
+        public void cmdExecute(RoutedUICommand command, object par = null)
         {
             _cmdIsRun = true;
-                 command.Execute(par, rtb_Main);
+            command.Execute(par, rtb_Main);
             _cmdIsRun = false;
 
         }
@@ -904,13 +920,13 @@ namespace YATE
         /*Paste data like HTML*/
         private void OnPaste(object sender, DataObjectPastingEventArgs e)
         {
-          string[] formats = e.DataObject.GetFormats();
+            string[] formats = e.DataObject.GetFormats();
 
-           
-          for(int i = formats.Length-1;i>=0;i--)
+
+            for (int i = formats.Length - 1; i >= 0; i--)
             {
                 string str = formats[i];
-                switch(str)
+                switch (str)
                 {
                     case "HTML Format":
                         if (e.DataObject.GetDataPresent(DataFormats.Html))
@@ -946,8 +962,8 @@ namespace YATE
                     case "Bitmap":
                         if (e.DataObject.GetDataPresent(DataFormats.Bitmap))
                         {
-                            BitmapSource image  = Clipboard.GetImage();
-                           // = (BitmapSource)e.DataObject.GetData(DataFormats.Bitmap);
+                            BitmapSource image = Clipboard.GetImage();
+                            // = (BitmapSource)e.DataObject.GetData(DataFormats.Bitmap);
                             cmdInsertImage(image, ImageContentType.ImagePngContentType);
                             e.CancelCommand();
                             e.Handled = true;
@@ -968,7 +984,7 @@ namespace YATE
                                 h.NavigateUri = uriResult;
                                 h.Inlines.Add(new Run(original));
                                 h.FontSize = 16;
-                               // this.cmdInsertInline(h);
+                                // this.cmdInsertInline(h);
 
                             }
                             else

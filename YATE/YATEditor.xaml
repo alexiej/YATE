@@ -12,6 +12,7 @@
                  VerticalAlignment="Stretch"
                  AcceptsReturn="True"
                  AcceptsTab="True"
+                 BorderThickness="0"
                  CommandManager.PreviewExecuted="rtb_Main_PreviewExecuted"
                  FontFamily="Calibri"
                  FontSize="12"
