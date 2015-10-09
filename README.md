@@ -5,9 +5,9 @@ YATE is short project to extend RichTextBox with some features from WebBrowser c
 
 ## Current Downloads:
 
-[0.01 Alpha: Source Code (zip)](https://github.com/alexiej/YATE/archive/v1.00.zip)
+[YATE 1.0 Release: Source Code (zip)](https://github.com/alexiej/YATE/archive/v1.00.zip)
 
-[0.01 Alpha: Source Code (tar.gz)](https://github.com/alexiej/YATE/archive/v1.00.tar.gz)
+[YATE 1.0 Release: Source Code (tar.gz)](https://github.com/alexiej/YATE/archive/v1.00.tar.gz)
 
 ![MainWindow](https://raw.githubusercontent.com/alexiej/YATE/master/YATE.Win/docs/MainWindow.png)
 
