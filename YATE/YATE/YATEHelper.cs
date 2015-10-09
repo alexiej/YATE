@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -15,7 +17,58 @@ namespace YATE
 {
     class YATEHelper
     {
-        public static void AdjustWidth(Image i, double maxw)
+        public static readonly Thickness Thickness0 = new Thickness(0.0);
+        public static readonly Thickness Thickness1 = new Thickness(1.0);
+        public static readonly SolidColorBrush BlackBrush = new SolidColorBrush(Colors.Black);
+        public static readonly SolidColorBrush WhiteBrush = new SolidColorBrush(Colors.White);
+        public static readonly SolidColorBrush SilverBrush = new SolidColorBrush(Colors.Silver);
+
+
+        [Flags]
+        public enum FindFlags
+        {
+            FindInReverse = 2,
+            FindWholeWordsOnly = 4,
+            MatchAlefHamza = 0x20,
+            MatchCase = 1,
+            MatchDiacritics = 8,
+            MatchKashida = 0x10,
+            None = 0
+        }
+
+        private static MethodInfo findMethod = null;
+
+
+        public static TextRange FindText(TextPointer findContainerStartPosition, TextPointer findContainerEndPosition, String input, FindFlags flags, CultureInfo cultureInfo)
+        {
+            TextRange textRange = null;
+            if (findContainerStartPosition.CompareTo(findContainerEndPosition) < 0)
+            {
+                try
+                {
+                    if (findMethod == null)
+                    {
+                        findMethod = typeof(FrameworkElement).Assembly.GetType("System.Windows.Documents.TextFindEngine").
+                               GetMethod("Find", BindingFlags.Static | BindingFlags.Public);
+                    }
+                    Object result = findMethod.Invoke(null, new Object[] { findContainerStartPosition,
+                    findContainerEndPosition,
+                    input, flags, CultureInfo.CurrentCulture });
+                    textRange = result as TextRange;
+                }
+                catch (ApplicationException)
+                {
+                    textRange = null;
+                }
+            }
+
+            return textRange;
+        }
+    
+
+
+
+    public static void AdjustWidth(Image i, double maxw)
         {
             if (i.Width < maxw) return;
             i.Height = (maxw / i.Width) * i.Height;

@@ -66,48 +66,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\ButtonToggle.xaml.cs">
-      <DependentUpon>ButtonToggle.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FontPicker.xaml.cs">
-      <DependentUpon>FontPicker.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SeparatorH.xaml.cs">
-      <DependentUpon>SeparatorH.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SeparatorV.xaml.cs">
-      <DependentUpon>SeparatorV.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SizePicker.xaml.cs">
-      <DependentUpon>SizePicker.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="YATEExEditor.xaml.cs">
-      <DependentUpon>YATEExEditor.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Controls\ButtonImg.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\ButtonImg48.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\ButtonToggle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\ColorPickerImage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\FontPicker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\SizePicker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -116,43 +74,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\ButtonImg.xaml.cs">
-      <DependentUpon>ButtonImg.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ButtonImg48.xaml.cs">
-      <DependentUpon>ButtonImg48.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ColorPickerImage.xaml.cs">
-      <DependentUpon>ColorPickerImage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controls\SeparatorH.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\SeparatorV.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Style\Colors.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Style\Icons.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Style\MainSkin.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="YATEExEditor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

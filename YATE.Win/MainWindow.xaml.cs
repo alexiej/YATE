@@ -25,13 +25,10 @@ namespace YATE.Win
         public MainWindow()
         {
             InitializeComponent();
+
             wb_Source.NavigateToString(@"about:blank");
-
-
             (wb_Source.Document as HTMLDocument).designMode = "On";
             Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline), new FrameworkPropertyMetadata { DefaultValue = 5 });
-
-
         }
 
       

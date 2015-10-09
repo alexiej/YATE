@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
+using System.IO.Packaging;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,12 +13,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Xps;
+using System.Windows.Xps.Packaging;
+using System.Windows.Xps.Serialization;
 using System.Xml;
 
 namespace YATE
 {
-
-
     /// <summary>
     /// Interaction logic for YATEditor.xaml
     /// </summary>
@@ -39,9 +42,80 @@ namespace YATE
             rtb_Main.Document.Resources.Add(typeof(Paragraph), style);
 
 
-            //System.Windows.Forms.SendKeys.SendWait("{DEL}");
+            rtb.Document.PagePadding = PAGE_PADDING;
+            rtb.Document.ColumnWidth = rtb.Document.PageWidth;
+
+            search_helper = new SearchHelper(rtb);
 
         }
+
+       
+        public void ClearAdorners()
+        {
+            search_helper.ClearSearchHelper();
+            image_helper.ClearImageResizers(rtb);
+        }
+
+
+        #region Search Highligh
+
+        private void UpdateAdorners()
+        {
+            search_helper.UpdateSearchHelper();
+        }
+
+
+        public void SearchClear()
+        {
+            search_helper.ClearSearchHelper();
+        }
+
+        public void Search(string text)
+        {
+            search_helper.InitSearchHelper();
+            string t = this.PlainText;
+            TextRange tr =   YATEHelper.FindText(Document.ContentStart, Document.ContentEnd, text,YATEHelper.FindFlags.None,System.Globalization.CultureInfo.CurrentCulture);
+
+
+            if (tr != null)
+                cmdScroll(tr.Start);
+            while (tr!=null)
+            {
+               
+                search_helper.AddSearchHelper(tr);
+                 tr =  YATEHelper.FindText(tr.End, Document.ContentEnd, text, YATEHelper.FindFlags.None, System.Globalization.CultureInfo.CurrentCulture);
+            }
+
+        //for (TextPointer position = this.Document.ContentStart;
+        //position != null && position.CompareTo(Document.ContentEnd) <= 0;
+        //position = position.GetNextContextPosition(LogicalDirection.Forward))
+        //    {
+        //        if (position.CompareTo(Document.ContentEnd) == 0)
+        //        {
+        //            return;
+        //        }
+        //        String textRun = position.GetTextInRun(LogicalDirection.Forward);
+        //        StringComparison stringComparison = StringComparison.CurrentCulture;
+        //        Int32 indexInRun = textRun.IndexOf(text, stringComparison);
+        //        if (indexInRun >= 0)
+        //        {
+        //            position = position.GetPositionAtOffset(indexInRun);
+        //            if (position != null)
+        //            {
+        //                TextPointer nextPointer = position.GetPositionAtOffset(text.Length);
+        //                TextRange textRange = new TextRange(position, nextPointer);
+        //                textRange.ApplyPropertyValue(TextElement.BackgroundProperty,
+        //                              new SolidColorBrush(Colors.Yellow));
+        //            }
+        //        }
+        //    }
+        }
+
+
+        #endregion
+
+        public static readonly Thickness PAGE_PADDING = new Thickness(5);
+
 
         public RichTextBox rtb
         {
@@ -49,6 +123,40 @@ namespace YATE
             {
                 return rtb_Main;
             }
+        }
+
+        private ImageHelper image_helper = new ImageHelper();
+        private SearchHelper search_helper;
+
+
+
+        FixedDocument _current = null;
+        public FixedDocument DocumentFixedGet()
+        {
+                FlowDocument fd = rtb.Document;
+                double pw = rtb.Document.PageWidth;
+
+                fd.PageWidth = PrintLayout.A4Narrow.Size.Width;
+                fd.ColumnWidth = PrintLayout.A4Narrow.ColumnWidth;
+                fd.PageHeight = PrintLayout.A4Narrow.Size.Height;
+                fd.PagePadding = PrintLayout.A4Narrow.Margin;
+
+
+                var paginator = ((IDocumentPaginatorSource)rtb.Document).DocumentPaginator;
+
+                    var package = System.IO.Packaging.Package.Open(new MemoryStream(), FileMode.Create, FileAccess.ReadWrite);
+                    var packUri = new Uri("pack://temporary.xps");
+                    System.IO.Packaging.PackageStore.RemovePackage(packUri);
+                    System.IO.Packaging.PackageStore.AddPackage(packUri, package);
+                    var xps = new System.Windows.Xps.Packaging.XpsDocument(package, System.IO.Packaging.CompressionOption.NotCompressed, packUri.ToString());
+                    System.Windows.Xps.Packaging.XpsDocument.CreateXpsDocumentWriter(xps).Write(paginator);
+                    _current = xps.GetFixedDocumentSequence().References[0].GetDocument(true);
+
+                    fd.PageWidth = pw;
+                    fd.PagePadding = PAGE_PADDING;
+
+              return _current;
+      
         }
 
 
@@ -85,20 +193,11 @@ namespace YATE
         }
 
 
-
-        private ImageHelper image_helper = new ImageHelper();
-
-        //static void link_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
-        //{
-        //    System.Diagnostics.Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-        //    e.Handled = true;
-        //}
-
-
         private void YATEditor_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double nw = e.NewSize.Width - 10;
             this.PageWidth = (nw < this.MinWidth ? MinWidth : nw);
+            UpdateAdorners();
         }
 
         private void DetectURL()
@@ -186,6 +285,57 @@ namespace YATE
         }
 
 
+        public void LoadFile( string filename)
+        {
+            try {
+                string ext = Path.GetExtension(filename).ToUpper();
+                switch (ext)
+                {
+                    case ".DOCX":
+                        LoadFileDocX(filename);
+                        break;
+                    case ".XPS":
+                        LoadFileXPS(filename);
+                        break;
+                    case ".XAML":
+                    default:
+                        LoadFileXAML(filename);
+                        break;
+                }
+            }catch(Exception)
+            {
+
+            }
+
+        }
+
+        public void LoadFileDocX(string filename)
+        {
+            using (FileStream stream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+
+                var flowDocumentConverter = new DocxReaderApplication.DocxToFlowDocumentConverter(stream);
+                flowDocumentConverter.Read();
+                this.Document = flowDocumentConverter.Document;
+            }
+        }
+
+        public void LoadFileXPS(string filename)
+        {
+            FlowDocument doc = DocEdLib.XPS.XPStoFlowDocument.Convert(filename);
+            if (doc != null)
+            {
+                rtb_Main.Document = doc;
+            }
+        }
+
+        public void LoadFileXAML(string filename)
+        {
+            FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            this.Load(fs);
+        }
+
+
         public void LoadHTML(string html)
         {
 
@@ -214,8 +364,96 @@ namespace YATE
 
             stream.Flush();
             stream.Close();
-
         }
+        
+
+       
+        public string SaveFile(string filename)
+        {
+            string ext = Path.GetExtension(filename).ToUpper();
+            switch (ext)
+            {
+                case ".PDF":
+                    SaveFilePDF(filename);
+                    return ".PDF";
+                case ".XPS":
+                    SaveFileXPS(filename);
+                    return ".XPS";
+                case ".XAML":
+                default:
+                    SaveFileXAML(filename);
+                    break;
+            }
+            return ".XAML";
+        }
+
+        public void SaveFileXAML(string file)
+        {
+            using (FileStream fs = new FileStream(file, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                TextRange textRange = new TextRange(Document.ContentStart, Document.ContentEnd);
+                textRange.Save(fs, DataFormats.XamlPackage);
+            }
+        }
+
+
+        public void SaveFilePDF(string fileName)
+        {
+            FlowDocument fd = rtb.Document;
+            double pw = rtb.Document.PageWidth;
+
+            MemoryStream lMemoryStream = new MemoryStream();
+
+            fd.PageWidth = PrintLayout.A4Narrow.Size.Width;
+            fd.ColumnWidth = PrintLayout.A4Narrow.ColumnWidth;
+            fd.PageHeight = PrintLayout.A4Narrow.Size.Height;
+            fd.PagePadding = PrintLayout.A4Narrow.Margin;
+
+            using (Package container = Package.Open(lMemoryStream, FileMode.Create))
+            {
+                using (XpsDocument xpsDoc = new XpsDocument(container, CompressionOption.Maximum))
+                {
+                    XpsSerializationManager rsm = new XpsSerializationManager(new XpsPackagingPolicy(xpsDoc), false);
+                    var paginator = ((IDocumentPaginatorSource)rtb.Document).DocumentPaginator;
+                    rsm.SaveAsXaml(paginator);
+                }
+            }
+
+            fd.PageWidth = pw;
+            fd.PagePadding = PAGE_PADDING;
+
+            PdfSharp.Xps.XpsModel.XpsDocument pdfXpsDoc = PdfSharp.Xps.XpsModel.XpsDocument.Open(lMemoryStream);
+            PdfSharp.Xps.XpsConverter.Convert(pdfXpsDoc, fileName);
+        }
+
+        public void SaveFileXPS(string fileName)
+        {
+            FileInfo fileInfo = new FileInfo(fileName);
+
+
+            FlowDocument fd = rtb.Document;
+            double pw = rtb.Document.PageWidth;
+
+            fd.PageWidth = PrintLayout.A4Narrow.Size.Width;
+            fd.ColumnWidth = PrintLayout.A4Narrow.ColumnWidth;
+            fd.PageHeight = PrintLayout.A4Narrow.Size.Height;
+            fd.PagePadding = PrintLayout.A4Narrow.Margin;
+
+            using (Package container = Package.Open(fileName, FileMode.Create))
+            {
+                using (XpsDocument xpsDoc = new XpsDocument(container, CompressionOption.Maximum))
+                {
+                    XpsSerializationManager rsm = new XpsSerializationManager(new XpsPackagingPolicy(xpsDoc), false);
+                    var paginator = ((IDocumentPaginatorSource)rtb.Document).DocumentPaginator;
+                    rsm.SaveAsXaml(paginator);
+                }
+            }
+
+            fd.PageWidth = pw;
+            fd.PagePadding = PAGE_PADDING;
+        }
+
+
 
         public void Load(string XAML)
         {
@@ -315,6 +553,53 @@ namespace YATE
                 LoadAllContent(value, rtb_Main);
             }
         }
+
+        public bool isTable
+        {
+            get
+            {
+                return TryFindParent<Table>(rtb.CaretPosition.Parent as DependencyObject) != null;
+            }
+        }
+
+        public Thickness TableBorderTickness
+        {
+            get
+            {
+                Thickness tick = new Thickness(0);
+                Table t;
+                List<TableCell> ltc = GetSelectedCells(rtb.Selection, out t);
+                if (ltc.Count <= 0) return tick;
+
+                tick = ltc[0].BorderThickness;
+                foreach(TableCell tc in ltc)
+                {
+                    if(tc.BorderThickness.Left!= tick.Left)
+                    {
+                        tick.Left = 0;
+                    }
+                    if (tc.BorderThickness.Right != tick.Right)
+                    {
+                        tick.Right = 0;
+                    }
+
+                    if (tc.BorderThickness.Top != tick.Top)
+                    {
+                        tick.Top = 0;
+                    }
+                    if (tc.BorderThickness.Bottom != tick.Bottom)
+                    {
+                        tick.Bottom = 0;
+                    }
+                }
+
+                return tick;
+            }
+        }
+
+      
+
+
 
         public bool isBold
         {
@@ -623,169 +908,6 @@ namespace YATE
         }
 
 
-        private bool _cmdIsRun = false;
-        public bool cmdIsRun { get { return _cmdIsRun; } }
-
-        public void cmdUnderline()
-        {
-            cmdExecute(EditingCommands.ToggleUnderline);
-        }
-
-
-
-        public void cmdItalic()
-        {
-            cmdExecute(EditingCommands.ToggleItalic);
-        }
-
-        public void cmdBold()
-        {
-            cmdExecute(EditingCommands.ToggleBold);
-        }
-
-        public void cmdInsertParagraphBreak()
-        {
-            cmdExecute(EditingCommands.EnterParagraphBreak);
-
-        }
-
-        public void cmdInsertLine()
-        {
-            cmdExecute(EditingCommands.EnterLineBreak);
-
-        }
-
-        public void cmdDelete()
-        {
-            cmdExecute(EditingCommands.Delete);
-        }
-
-        public void cmdUndo()
-        {
-            this.rtb_Main.Undo();
-        }
-
-        public void cmdRedo()
-        {
-            this.rtb_Main.Redo();
-        }
-
-        public void cmdSelectAll()
-        {
-            this.rtb_Main.SelectAll();
-        }
-
-        public void cmdPasteText()
-        {
-            if (Clipboard.ContainsText())
-            {
-                this.cmdInsertText((string)Clipboard.GetData(DataFormats.Text));
-            }
-        }
-
-        public void cmdPaste()
-        {
-            this.rtb_Main.Paste();
-        }
-
-        public void cmdCut()
-        {
-            this.rtb_Main.Cut();
-        }
-
-        public void cmdCopy()
-        {
-            this.rtb_Main.Copy();
-        }
-
-        public void cmdInsertText(string text)
-        {
-            this.rtb_Main.CaretPosition.InsertTextInRun(text);
-        }
-
-
-        public void cmdExecute(RoutedUICommand command, object par = null)
-        {
-            _cmdIsRun = true;
-            command.Execute(par, rtb_Main);
-            _cmdIsRun = false;
-
-        }
-
-        //public void cmdInsertInline(UIElement inline)
-        //{
-        //    TextPointer tp = rtb_Main.CaretPosition.GetInsertionPosition(LogicalDirection.Forward);
-        //    Paragraph paragraph = tp.Paragraph;
-
-        //    if (paragraph == null)
-        //    {
-        //        paragraph = new Paragraph();
-        //        paragraph.Inlines.Add(inline);
-        //        this.rtb_Main.Document.Blocks.Add(paragraph);
-        //        rtb_Main.CaretPosition = paragraph.ContentEnd;
-        //    }
-        //    else
-        //    {
-        //        paragraph.Inlines.Add(inline);
-        //        rtb_Main.CaretPosition = paragraph.ContentEnd;
-        //    }
-        //}
-
-
-
-        public void cmdInsertInline(Inline inline)
-        {
-            this.cmdDelete();
-            //TextPointer tp = rtb_Main.CaretPosition.GetInsertionPosition(LogicalDirection.Forward);
-            //Paragraph paragraph = tp.Paragraph;
-            MemoryStream ms = new MemoryStream();
-            TextRange tr = new TextRange(inline.ContentStart, inline.ContentEnd);
-            tr.Save(ms, DataFormats.XamlPackage);
-            ms.Position = 0;
-
-            TextRange tr3 = new TextRange(rtb_Main.CaretPosition, rtb_Main.CaretPosition.GetInsertionPosition(LogicalDirection.Backward));
-
-            tr3.Load(ms, DataFormats.XamlPackage);
-            ms.Flush();
-            ms.Close();
-            ms.Dispose();
-
-        }
-
-        public void cmdSelect(TextElement block, bool DoubleSelect = false)
-        {
-            if (!DoubleSelect)
-            {
-                DependencyObject st = rtb_Main.Selection.Start.GetAdjacentElement(LogicalDirection.Forward);
-                DependencyObject end = rtb_Main.Selection.End.GetAdjacentElement(LogicalDirection.Backward);
-
-                if (st == end && st == block)
-                {
-                    return;
-                }
-            }
-            rtb_Main.Selection.Select(block.ContentStart, block.ContentEnd);
-        }
-
-        public void cmdInsertBlock(Block block)
-        {
-            this.cmdDelete();
-
-            MemoryStream ms = new MemoryStream();
-            TextRange tr = new TextRange(block.ContentStart, block.ContentEnd);
-            tr.Save(ms, DataFormats.XamlPackage);
-            ms.Position = 0;
-
-            TextRange tr3 = new TextRange(rtb_Main.CaretPosition, rtb_Main.CaretPosition.GetInsertionPosition(LogicalDirection.Backward));
-
-            tr3.Load(ms, DataFormats.XamlPackage);
-            ms.Flush();
-            ms.Close();
-            ms.Dispose();
-
-            TextPointer tp = tr3.End;
-            rtb_Main.Selection.Select(tp, tp);
-        }
 
         public double PageWidth
         {
@@ -793,67 +915,7 @@ namespace YATE
             set { rtb_Main.Document.PageWidth = value; }
         }
 
-        public bool cmdInsertXAML(string xaml)
-        {
-            try
-            {
-                var r = LoadXAMLElement(xaml);
-                if (r is FlowDocument)
-                {
-                    foreach (Block b in (r as FlowDocument).Blocks)
-                    {
-                        cmdInsertBlock(b);
-                    }
-                }
-                else if (r is Block)
-                {
-                    cmdInsertBlock(r as Block);
-                }
-                else if (r is Inline)
-                {
-                    cmdInsertInline(r as Inline);
-                }
-                return true;
-            }
-            catch (System.Windows.Markup.XamlParseException)
-            {
-                return false;
-            }
-        }
-
-        public void cmdInsertImageBlock(BitmapSource image,
-              ImageContentType contnt_type = ImageContentType.ImagePngContentType,
-            Stretch stretch = Stretch.Uniform)
-        {
-            Span element = YATEHelper.GetImage(image, contnt_type, stretch);
-            if (element == null) return;
-            Image i = YATEHelper.ImageFromSpan(element);
-
-            YATEHelper.AdjustWidth(i, this.PageWidth);
-            i.Stretch = stretch;
-            cmdInsertBlock(new Paragraph(element));
-        }
-
-        public void cmdInsertImage(
-            BitmapSource image,
-            ImageContentType contnt_type = ImageContentType.ImagePngContentType,
-            Stretch stretch = Stretch.Uniform)
-        {
-            Span element = YATEHelper.GetImage(image, contnt_type, stretch);
-            if (element == null) return;
-
-            Image i = YATEHelper.ImageFromSpan(element);
-            YATEHelper.AdjustWidth(i, this.PageWidth);
-            i.Stretch = stretch;
-
-            cmdInsertInline(element as Span);
-        }
-
-        public void cmdClearSelection()
-        {
-            rtb_Main.Selection.Select(rtb_Main.Selection.Start, rtb_Main.Selection.Start);
-        }
-
+     
         private void YATE_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             TextPointer tp = rtb_Main.GetPositionFromPoint(e.GetPosition(rtb_Main), false);
@@ -912,6 +974,28 @@ namespace YATE
 
         #region Paste
 
+        private bool _isBusy = false;
+        public bool isBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                if (value == _isBusy) return;
+                _isBusy = value;
+                if (_isBusy)
+                {
+                    progressGrid.Visibility = Visibility.Visible;
+                   // rtb.IsEnabled = false;
+                }
+                else
+                {
+
+                    progressGrid.Visibility = Visibility.Collapsed;
+                }
+
+            }
+        }
+
         public new bool Focus()
         {
             return rtb_Main.Focus();
@@ -931,28 +1015,48 @@ namespace YATE
                     case "HTML Format":
                         if (e.DataObject.GetDataPresent(DataFormats.Html))
                         {
-                            string html = (string)e.DataObject.GetData(DataFormats.Html);
-                            Section s = HTMLConverter.HTMLToFlowConverter.ConvertHtmlToSection(html, rtb_Main.Document.PageWidth);
-                            this.cmdInsertBlock(s);
 
-                            Semagsoft.HyperlinkHelper.SubscribeToAllHyperlinks(rtb_Main.Document);
-                            e.CancelCommand();
-                            e.Handled = true;
+                                string html = (string)e.DataObject.GetData(DataFormats.Html);
+                                Section s = HTMLConverter.HTMLToFlowConverter.ConvertHtmlToSection(html, rtb_Main.Document.PageWidth);
+                                this.cmdInsertBlock(s,true);
+
+                                Semagsoft.HyperlinkHelper.SubscribeToAllHyperlinks(rtb_Main.Document);
+                                e.CancelCommand();
+                                e.Handled = true;
+
+
                             return;
                         }
                         break;
                     case "Rich Text Format":
                         if (e.DataObject.GetDataPresent(DataFormats.Rtf))
                         {
+                           
                             object o = e.DataObject.GetData(DataFormats.Rtf);
                             MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(o as string));
-                            rtb_Main.Selection.Load(ms, DataFormats.Rtf);
+                            rtb.Selection.Load(ms, DataFormats.Rtf);
+                            Semagsoft.HyperlinkHelper.SubscribeToAllHyperlinks(rtb_Main.Document);
+
+
+                            Block b = null; Section s = null;
+                            TextPointer insert = rtb.Selection.Start;
+                            b = TryFindParent<Block>(insert.Parent as DependencyObject);
+                            s = TryFindParent<Section>(insert.Parent as DependencyObject);
+                            Paragraph newItem = new Paragraph(new Run(""));
+                            if (s == null)
+                            {
+                                if (b != null) this.Document.Blocks.InsertAfter(b, newItem);
+                                else this.Document.Blocks.Add(newItem);
+                            }
+                            else
+                            {
+                                if (b != null) s.Blocks.InsertAfter(b, newItem);
+                                else s.Blocks.Add(newItem);
+                            }
+                            rtb_Main.Selection.Select(newItem.ContentStart, newItem.ContentStart);
+
                             e.CancelCommand();
                             e.Handled = true;
-                            TextPointer tp = rtb_Main.Selection.End;
-                            rtb_Main.Selection.Select(tp, tp);
-
-                            Semagsoft.HyperlinkHelper.SubscribeToAllHyperlinks(rtb_Main.Document);
                             return;
                         }
                         break;
@@ -962,11 +1066,13 @@ namespace YATE
                     case "Bitmap":
                         if (e.DataObject.GetDataPresent(DataFormats.Bitmap))
                         {
-                            BitmapSource image = Clipboard.GetImage();
-                            // = (BitmapSource)e.DataObject.GetData(DataFormats.Bitmap);
-                            cmdInsertImage(image, ImageContentType.ImagePngContentType);
-                            e.CancelCommand();
-                            e.Handled = true;
+
+                                BitmapSource image = Clipboard.GetImage();
+                                // = (BitmapSource)e.DataObject.GetData(DataFormats.Bitmap);
+                                cmdInsertImage(image, ImageContentType.ImageJpegContentType);
+                                e.CancelCommand();
+                                e.Handled = true;
+
                             return;
                         }
                         break;
@@ -999,8 +1105,6 @@ namespace YATE
                         }
                         break;
                 }
-
-
             }
             #endregion Paste
         }
@@ -1014,6 +1118,11 @@ namespace YATE
             {
                 PreviewCommandExecuted.Invoke(sender, e);
             }
+        }
+
+        private void rtb_ScrollChanged(object sender, RoutedEventArgs e)
+        {
+            UpdateAdorners();
         }
     }
 }

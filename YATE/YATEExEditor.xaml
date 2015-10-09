@@ -1,0 +1,284 @@
+﻿<UserControl x:Class="YATE.YATEExEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=Mahapps.Metro"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:YATE"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="600"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="./Style/MainSkin.xaml" />
+    </UserControl.Resources>
+    <DockPanel Background="White" LastChildFill="True">
+        <StackPanel Margin="0,1"
+                    DockPanel.Dock="Top"
+                    Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <local:ButtonImg Click="bn_Open_Click"
+                                 Image="{StaticResource appbar_folder_open}"
+                                 ToolTip="Open" />
+                <local:ButtonImg Click="bn_Save_Click"
+                                 Image="{StaticResource appbar_disk}"
+                                 ToolTip="Save" />
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <local:ButtonImg Click="bn_PrintPreview_Click"
+                                 Image="{StaticResource appbar_page_search}"
+                                 ToolTip="PrintPreview" />
+                <local:ButtonImg Click="bn_PDF_Click"
+                                 Image="{StaticResource appbar_page_pdf}"
+                                 ToolTip="Export to PDF" />
+
+            </StackPanel>
+
+            <local:ButtonImg48 HorizontalAlignment="Center"
+                               Click="bn_Paste_Click"
+                               Image="{StaticResource appbar_clipboard_paste}"
+                               ToolTip="Paste" />
+            <StackPanel Orientation="Vertical">
+                <local:ButtonImg Click="bn_Cut_Click"
+                                 Image="{StaticResource appbar_scissor}"
+                                 ToolTip="Cut" />
+                <local:ButtonImg Click="bn_Copy_Click"
+                                 Image="{StaticResource appbar_page_copy}"
+                                 ToolTip="Copy" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+
+                <StackPanel Orientation="Horizontal">
+                    <local:FontPicker x:Name="cb_FontName"
+                                      Width="180"
+                                      SelectionChanged="cb_FontName_SelectionChanged" />
+                    <local:SizePicker x:Name="cb_FontSIze" SelectionChanged="cb_FontSIze_SelectionChanged" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <local:ButtonImg Click="bn_PasteText_Click"
+                                     Image="{StaticResource appbar_clipboard_edit}"
+                                     ToolTip="Paste Only Text" />
+
+                    <local:ButtonImg Click="bn_Undo_Click"
+                                     Image="{StaticResource appbar_undo}"
+                                     ToolTip="Undo" />
+                    <local:ButtonImg Click="bn_Redo_Click"
+                                     Image="{StaticResource appbar_redo}"
+                                     ToolTip="Redo" />
+
+                    <local:ButtonToggle x:Name="bn_Bold"
+                                        Click="bn_Bold_Click"
+                                        Image="{StaticResource appbar_text_bold}"
+                                        ToolTip="Bold" />
+
+
+                    <local:ButtonToggle x:Name="bn_Italic"
+                                        Click="bn_Italic_Click"
+                                        Image="{StaticResource appbar_text_italic}"
+                                        ToolTip="Italic" />
+                    <local:ButtonToggle x:Name="bn_Underline"
+                                        Click="bn_Underline_Click"
+                                        Image="{StaticResource appbar_text_underline}"
+                                        ToolTip="Underline" />
+
+                    <local:ColorPickerImage x:Name="bn_FontColorChange"
+                                            ColorChange="bn_FontColorChange_Click"
+                                            Image="{StaticResource appbar_color}"
+                                            ToolTip="Font Color" />
+                    <local:ColorPickerImage x:Name="bn_BackColorChange"
+                                            ColorChange="bn_BackColorChange_Click"
+                                            Image="{StaticResource appbar_color_can}"
+                                            ToolTip="Background Color" />
+
+                    <local:AddTable x:Name="bn_AddTable"
+                                    TableChange="bn_AddTable_TableChange"
+                                    ToolTip="Add Table" />
+
+                </StackPanel>
+
+            </StackPanel>
+
+
+
+
+            <local:SeparatorV Margin="1,0" />
+
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <local:ButtonToggle x:Name="bn_Numeric"
+                                        Click="bn_Numeric_Click"
+                                        Image="{StaticResource appbar_numbering}"
+                                        ToolTip="Numeric List" />
+                    <local:ButtonToggle x:Name="bn_Bullet"
+                                        Click="bn_Bullet_Click"
+                                        Image="{StaticResource appbar_list}"
+                                        ToolTip="Point List" />
+
+                    <local:ButtonImg Click="bn_DecIntend_Click"
+                                     Image="{StaticResource appbar_decrease_intend}"
+                                     ToolTip="Decrease Intend" />
+                    <local:ButtonImg Click="bn_IncIntend_Click"
+                                     Image="{StaticResource appbar_increase_intend}"
+                                     ToolTip="Increase Intend" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <local:ButtonToggle x:Name="bn_AlignLeft"
+                                        Click="bn_AlignLeft_Click"
+                                        Image="{StaticResource appbar_text_align_left}"
+                                        ToolTip="Align Left"
+                                        isChecked="True" />
+                    <local:ButtonToggle x:Name="bn_AlignCenter"
+                                        Click="bn_AlignCenter_Click"
+                                        Image="{StaticResource appbar_text_align_center}"
+                                        ToolTip="Align Center" />
+                    <local:ButtonToggle x:Name="bn_AlignRight"
+                                        Click="bn_AlignRight_Click"
+                                        Image="{StaticResource appbar_text_align_right}"
+                                        ToolTip="Align Right" />
+                    <local:ButtonToggle x:Name="bn_AlignJustify"
+                                        Click="bn_AlignJustify_Click"
+                                        Image="{StaticResource appbar_text_align_justify}"
+                                        ToolTip="Justify" />
+                </StackPanel>
+
+            </StackPanel>
+            <local:SeparatorV Margin="1,0" />
+            <StackPanel x:Name="sp_Table" Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <local:ButtonImg Click="bn_RowAbove_Click"
+                                         Image="{StaticResource appbar_cell_insert_above}"
+                                         ToolTip="Add Row Above" />
+                        <local:ButtonImg Click="bn_RowDel_Click"
+                                         Image="{StaticResource appbar_cell_row_delete}"
+                                         ToolTip="Remove Row" />
+                        <local:ButtonImg Click="bn_RowBelow_Click"
+                                         Image="{StaticResource appbar_cell_insert_below}"
+                                         ToolTip="Add Row Below" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <local:ButtonImg Click="bn_ColLeft_Click"
+                                         Image="{StaticResource appbar_cell_insert_below}"
+                                         RenderTransformOrigin="0.5,0.5"
+                                         ToolTip="Add Column Left">
+                            <local:ButtonImg.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform />
+                                    <SkewTransform />
+                                    <RotateTransform Angle="90" />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </local:ButtonImg.RenderTransform>
+                        </local:ButtonImg>
+                        <local:ButtonImg Click="bn_ColDel_Click"
+                                         Image="{StaticResource appbar_cell_row_delete}"
+                                         RenderTransformOrigin="0.5,0.5"
+                                         ToolTip="Remove Column">
+                            <local:ButtonImg.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform />
+                                    <SkewTransform />
+                                    <RotateTransform Angle="90" />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </local:ButtonImg.RenderTransform>
+                        </local:ButtonImg>
+                        <local:ButtonImg Click="bn_ColRight_Click"
+                                         Image="{StaticResource appbar_cell_insert_above}"
+                                         RenderTransformOrigin="0.5,0.5"
+                                         ToolTip="Add Column Right">
+                            <local:ButtonImg.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform />
+                                    <SkewTransform />
+                                    <RotateTransform Angle="90" />
+                                    <TranslateTransform />
+                                </TransformGroup>
+                            </local:ButtonImg.RenderTransform>
+                        </local:ButtonImg>
+                    </StackPanel>
+                </StackPanel>
+                <local:SeparatorV Margin="1,0" />
+                <StackPanel>
+
+                    <local:ColorPicker x:Name="bn_BorderColor"
+                                       VerticalAlignment="Bottom"
+                                       ColorChange="bn_BorderColor_Click"
+                                       CurrentColor="Black"
+                                       ToolTip="Border Color" />
+                    <local:ColorPickerImage x:Name="bn_BackCell"
+                                            ColorChange="bn_BackCellChange_Click"
+                                            Image="{StaticResource appbar_color_can}"
+                                            ToolTip="Background Cell" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <local:ButtonImg Click="bn_BorderAll"
+                                         Image="{StaticResource appbar_border_all}"
+                                         ToolTip="All border" />
+                        <local:ButtonToggle x:Name="bt_Left"
+                                            Click="bn_BorderLeft"
+                                            Image="{StaticResource appbar_border_left}"
+                                            ToolTip="Border Left" />
+                        <local:ButtonToggle x:Name="bt_Right"
+                                            Click="bn_BorderRight"
+                                            Image="{StaticResource appbar_border_right}"
+                                            ToolTip="Border Rigth" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <local:ButtonImg Click="bn_BorderClear"
+                                         Image="{StaticResource appbar_border_none}"
+                                         ToolTip="Clear Border" />
+                        <local:ButtonToggle x:Name="bt_Top"
+                                            Click="bn_BorderTop"
+                                            Image="{StaticResource appbar_border_top}"
+                                            ToolTip="Border Top" />
+                        <local:ButtonToggle x:Name="bt_Bottom"
+                                            Click="bn_BorderBottom"
+                                            Image="{StaticResource appbar_border_bottom}"
+                                            ToolTip="Border Bottom" />
+                    </StackPanel>
+                </StackPanel>
+
+
+                <local:SeparatorV Margin="1,0" />
+
+            </StackPanel>
+        </StackPanel>
+        <Border Height="24"
+                Margin="5,0,5,5"
+                BorderBrush="Silver"
+                BorderThickness="1"
+                DockPanel.Dock="Top">
+
+            <local:TextBoxWatermark x:Name="tx_Search"
+                                    Grid.Column="1"
+                                    Margin="0,0,0,0"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Top"
+                                    BorderThickness="0"
+                                    EnterCommand="tx_Search_EnterCommand"
+                                    FontSize="12"
+                                    Padding="0"
+                                    TextChanged="tx_Search_TextChanged"
+                                    Watermark="Search/Command [CTRL+Q]" />
+
+        </Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="31*" />
+            </Grid.ColumnDefinitions>
+            <local:YATEditor x:Name="yate"
+                             Grid.ColumnSpan="2"
+                             Margin="10,0,-10,0" />
+            <local:PrintPreview x:Name="yatepp"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Style="{DynamicResource DocumentViewerStyle}"
+                                Visibility="Collapsed" />
+        </Grid>
+    </DockPanel>
+</UserControl>

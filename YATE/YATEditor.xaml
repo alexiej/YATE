@@ -7,17 +7,25 @@
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
-    <RichTextBox x:Name="rtb_Main"
-                 HorizontalAlignment="Stretch"
-                 VerticalAlignment="Stretch"
-                 AcceptsReturn="True"
-                 AcceptsTab="True"
-                 BorderThickness="0"
-                 CommandManager.PreviewExecuted="rtb_Main_PreviewExecuted"
-                 FontFamily="Calibri"
-                 FontSize="12"
-                 HorizontalScrollBarVisibility="Auto"
-                 IsUndoEnabled="True"
-                 SpellCheck.IsEnabled="False"
-                 VerticalScrollBarVisibility="Auto" />
+    <Grid>
+        <RichTextBox x:Name="rtb_Main"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Stretch"
+                     AcceptsReturn="True"
+                     AcceptsTab="True"
+                     AllowDrop="False"
+                     BorderThickness="0"
+                     CommandManager.PreviewExecuted="rtb_Main_PreviewExecuted"
+                     FontFamily="Calibri"
+                     FontSize="12"
+                     HorizontalScrollBarVisibility="Auto"
+                     IsUndoEnabled="True"
+                     ScrollViewer.ScrollChanged="rtb_ScrollChanged"
+                     SpellCheck.IsEnabled="False"
+                     VerticalScrollBarVisibility="Auto" />
+        <ProgressBar x:Name="progressGrid"
+                     Panel.ZIndex="1"
+                     Visibility="Collapsed" />
+
+    </Grid>
 </UserControl>

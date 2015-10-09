@@ -30,17 +30,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MahApps.Metro, Version=1.1.2.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\PresentationUI\v4.0_4.0.0.0__31bf3856ad364e35\PresentationUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services" />
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,6 +65,46 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\AddTable.xaml.cs">
+      <DependentUpon>AddTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ButtonImg.xaml.cs">
+      <DependentUpon>ButtonImg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ButtonImg48.xaml.cs">
+      <DependentUpon>ButtonImg48.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ButtonToggle.xaml.cs">
+      <DependentUpon>ButtonToggle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColorPickerImage.xaml.cs">
+      <DependentUpon>ColorPickerImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FontPicker.xaml.cs">
+      <DependentUpon>FontPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PrintPreview.cs" />
+    <Compile Include="Controls\SeparatorH.xaml.cs">
+      <DependentUpon>SeparatorH.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SeparatorV.xaml.cs">
+      <DependentUpon>SeparatorV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SizePicker.xaml.cs">
+      <DependentUpon>SizePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextBoxWatermark.xaml.cs">
+      <DependentUpon>TextBoxWatermark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HTML\HTMLToFlowConverter.style.cs" />
+    <Compile Include="HTML\HTMLToFlowConverter.table.cs" />
+    <Compile Include="YATEditor.cmd.cs" />
+    <Compile Include="YATEExEditor.xaml.cs">
+      <DependentUpon>YATEExEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="YATE\Core.cs" />
     <Compile Include="DOCX\DocxReader.cs" />
     <Compile Include="DOCX\DocxToFlowDocumentConverter.cs" />
@@ -64,25 +118,99 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translator\TranslatorContainer.cs" />
     <Compile Include="Translator\TranslatorHelper.cs" />
+    <Compile Include="YATE\DocumentPaginator.cs" />
+    <Compile Include="YATE\HyperlinkHelper.cs" />
+    <Compile Include="YATE\SearchHelper.cs" />
+    <Compile Include="YATE\SelectionHighlightAdorner.cs" />
     <Compile Include="YATE\WpfPayload.cs" />
     <Compile Include="XPS\XPSHelper.cs" />
     <Compile Include="XPS\XPStoFlowDocument.cs" />
     <Compile Include="YATEditor.xaml.cs">
       <DependentUpon>YATEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YATE\BlockImage.cs" />
     <Compile Include="YATE\DocRuler.cs" />
     <Compile Include="YATE\YATEHelper.cs" />
-    <Compile Include="YATE\HyperlinkHelper.cs" />
     <Compile Include="YATE\ImageHelper.cs" />
-    <Compile Include="YATE\InlineImage.cs" />
     <Compile Include="YATE\resizingadorner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\AddTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ButtonImg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ButtonImg48.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ButtonToggle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ColorPickerImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FontPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SeparatorH.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SeparatorV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SizePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TextBoxWatermark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\Controls.DocumentViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\MainSkin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="YATEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="YATEExEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PdfSharp.Xps\PdfSharp.Xps.csproj">
+      <Project>{0bc3964b-a3bc-49d5-9b7c-463299b5a166}</Project>
+      <Name>PdfSharp.Xps</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

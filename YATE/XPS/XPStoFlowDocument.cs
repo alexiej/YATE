@@ -22,7 +22,7 @@ namespace DocEdLib.XPS
 {
     public partial class XPStoFlowDocument
     {
-        public FlowDocument Convert(string filename)
+        public static FlowDocument Convert(string filename)
         {
             FlowDocument fdoc = new FlowDocument();
 
