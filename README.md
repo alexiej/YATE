@@ -5,9 +5,9 @@ YATE is short project to extend RichTextBox with some features from WebBrowser c
 
 ## Current Downloads:
 
-[0.01 Alpha: Source Code (zip)](https://github.com/alexiej/YATE/archive/v0.01.zip)
+[0.01 Alpha: Source Code (zip)](https://github.com/alexiej/YATE/archive/v1.00.zip)
 
-[0.01 Alpha: Source Code (tar.gz)](https://github.com/alexiej/YATE/archive/v0.01.tar.gz)
+[0.01 Alpha: Source Code (tar.gz)](https://github.com/alexiej/YATE/archive/v1.00.tar.gz)
 
 ![MainWindow](https://raw.githubusercontent.com/alexiej/YATE/master/YATE.Win/docs/MainWindow.png)
 
@@ -32,6 +32,20 @@ In this control you can:
 
 * Many commands for edit RichTextBox.
 * Good looking Toolbar with MahApps.Metro style.
+* Export to (.XAML,.XPS,.PDF)
+* Table Operations
+
+![CREATE](https://raw.githubusercontent.com/alexiej/YATE/master/YATE.Win/docs/CREATE.png)
+
+![TABLE](https://raw.githubusercontent.com/alexiej/YATE/master/YATE.Win/docs/TABLE.png)
+
+* Print Preview
+
+![TABLE](https://raw.githubusercontent.com/alexiej/YATE/master/YATE.Win/docs/PRINT_PREVIEW.png)
+
+* Search TextBox
+
+![TABLE](https://raw.githubusercontent.com/alexiej/YATE/master/YATE.Win/docs/SEARCH.png)
 
 ## Icons/Style
 
