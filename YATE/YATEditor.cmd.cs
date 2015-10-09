@@ -223,18 +223,18 @@ namespace YATE
             cmdTableAdd(columns, rows, tn, BorderBrush, YATEHelper.WhiteBrush);
         }
 
-        public void cmdTableAdd(int columns,int rows, Thickness tn, SolidColorBrush BorderBrush, SolidColorBrush Background)
+        public void cmdTableAdd(int columns, int rows, Thickness tn, SolidColorBrush BorderBrush, SolidColorBrush Background)
         {
             this.cmdDelete();
 
             Table t = new Table();
             t.CellSpacing = 0.0;
             TableRowGroup trg = new TableRowGroup();
-            for (int i=0;i< rows;i++)
+            for (int i = 0; i < rows; i++)
             {
                 TableRow tr = new TableRow();
 
-                for(int j=0;j<columns;j++)
+                for (int j = 0; j < columns; j++)
                 {
                     TableCell tc = new TableCell();
                     tc.Background = Background;
@@ -251,7 +251,7 @@ namespace YATE
                 }
 
                 trg.Rows.Add(tr);
-                
+
             }
             t.RowGroups.Add(trg);
             cmdInsertBlock2(t, true);
@@ -267,8 +267,6 @@ namespace YATE
             Brush border;
             Brush back;
 
-
-
             TableRowGroup crg = null;
             int pos = 0; int cells;
 
@@ -277,14 +275,15 @@ namespace YATE
                 if (ctable.RowGroups.Count > 0)
                 {
                     crg = ctable.RowGroups[0];
+                    cells = ctable.RowGroups[0].Rows.Count;
                 }
                 else
                 {
                     crg = new TableRowGroup();
                     ctable.RowGroups.Add(crg);
+                    cells = 1;
                 }
                 pos = 0;
-                cells = 1;
                 thickness = YATEHelper.Thickness1;
                 border = YATEHelper.BlackBrush;
                 back = YATEHelper.WhiteBrush;
@@ -302,7 +301,7 @@ namespace YATE
                 }
                 else
                 {
-                    cells = 1; 
+                    cells = 1;
                     thickness = YATEHelper.Thickness1;
                     border = YATEHelper.BlackBrush;
                     back = YATEHelper.WhiteBrush;
@@ -342,19 +341,27 @@ namespace YATE
             crg.Rows.Remove(current);
         }
 
-        public void cmdTableCopyCellStyle(TableCell source,TableCell dest)
+        public void cmdTableCopyCellStyle(TableCell source, TableCell dest)
         {
             dest.Background = source.Background;
             dest.BorderThickness = source.BorderThickness;
             dest.BorderBrush = source.BorderBrush;
         }
 
+
+        private TableCell GetTableCell(TextPointer tp)
+        {
+            if (tp.Parent is TableCell) return tp.Parent as TableCell;
+            return TryFindParent<TableCell>(rtb.Selection.Start.Parent as DependencyObject);
+        }
+
+
         private void cmdTableColAdd(int shift)
         {
             Table ctable = TryFindParent<Table>(rtb.Selection.Start.Parent as DependencyObject);
             if (ctable == null) return;
 
-            TableCell cell = TryFindParent<TableCell>(rtb.Selection.Start.Parent as DependencyObject);
+            TableCell cell = GetTableCell(rtb.Selection.Start);
             TableRow row;
             TableRowGroup rowgroup = null;
 
@@ -364,21 +371,23 @@ namespace YATE
                 if (ctable.RowGroups.Count > 0)
                 {
                     rowgroup = ctable.RowGroups[0];
+                    row = rowgroup.Rows[0];
+                    cell = row.Cells[0];
                 }
                 else
                 {
                     rowgroup = new TableRowGroup();
                     ctable.RowGroups.Add(rowgroup);
+
+                    row = new TableRow();
+                    cell = new TableCell();
+
+                    cell.BorderThickness = YATEHelper.Thickness1;
+                    cell.BorderBrush = YATEHelper.BlackBrush;
+
+                    row.Cells.Add(cell);
+                    rowgroup.Rows.Add(row);
                 }
-                row = new TableRow();
-                cell = new TableCell();
-
-                cell.BorderThickness = YATEHelper.Thickness1;
-                cell.BorderBrush = YATEHelper.BlackBrush;
-
-                row.Cells.Add(cell);
-                rowgroup.Rows.Add(row);
-
             }
             else
             {
@@ -410,7 +419,7 @@ namespace YATE
 
         public void cmdTableColRemove()
         {
-            TableCell cell = TryFindParent<TableCell>(rtb.Selection.Start.Parent as DependencyObject);
+            TableCell cell = GetTableCell(rtb.Selection.Start);
             TableRow row;
             TableRowGroup rowgroup;
             if (cell == null)
@@ -439,7 +448,7 @@ namespace YATE
             }
         }
 
-        int minc = 0 ; int maxc = int.MaxValue;
+        int minc = 0; int maxc = int.MaxValue;
         int minr = 0; int maxr = int.MaxValue;
 
 
@@ -457,33 +466,25 @@ namespace YATE
 
 
 
-            TableCell find;
+            TableCell find = GetTableCell(rtb.Selection.Start);
 
 
-            if (rtb.Selection.Start.Parent is TableCell) { find = (rtb.Selection.Start.Parent as TableCell); }
-            else
-            {
-                find = TryFindParent<TableCell>(rtb.Selection.Start.Parent as DependencyObject);
-            }
-            if(find!=null)
+            if (find != null)
             {
                 TableRow findr = (find.Parent as TableRow);
                 minc = findr.Cells.IndexOf(find);
                 minr = (findr.Parent as TableRowGroup).Rows.IndexOf(findr);
             }
 
-            if (rtb.Selection.End.Parent is TableCell) { find = (rtb.Selection.End.Parent as TableCell); }
-            else
-            {
-                find = TryFindParent<TableCell>(rtb.Selection.End.Parent as DependencyObject);
-            }
+
+            find = GetTableCell(rtb.Selection.End);
             if (find != null)
             {
                 maxc = (find.Parent as TableRow).Cells.IndexOf(find);
-                int ssc= rtb.Selection.End.CompareTo(find.ContentStart);
-                if(ssc==1 && maxc>0)
+                int ssc = rtb.Selection.End.CompareTo(find.ContentStart);
+                if (ssc == 1 && maxc > 0)
                 {
-                    maxc = maxc-1;
+                    maxc = maxc - 1;
                 }
             }
 
@@ -492,10 +493,10 @@ namespace YATE
             {
                 foreach (TableRow tr in rg.Rows)
                 {
-                    for (int i= 0; i < tr.Cells.Count;i++)
+                    for (int i = 0; i < tr.Cells.Count; i++)
                     {
                         TableCell tc = tr.Cells[i];
-                        if (i >= minc &&  i <= maxc)
+                        if (i >= minc && i <= maxc)
                         {
 
                             int ss = rtb.Selection.Start.CompareTo(tc.ContentStart);
@@ -520,9 +521,9 @@ namespace YATE
             }
             return selectedCells;
 
-            }
+        }
 
-        
+
 
         public void cmdTableSetBorderColor(Brush color)
         {
@@ -535,13 +536,13 @@ namespace YATE
                 foreach (TableCell b in ltc)
                 {
                     b.BorderBrush = color;
-                   
+
                 }
                 t.CellSpacing = 0;
             }
         }
 
-        public void cmdTableSetCellColor( Brush color)
+        public void cmdTableSetCellColor(Brush color)
         {
             Table t;
             List<TableCell> ltc = GetSelectedCells(rtb.Selection, out t);
@@ -626,7 +627,7 @@ namespace YATE
             }
         }
 
-        public void cmdTableSetBorderBottom (double v, Brush color = null)
+        public void cmdTableSetBorderBottom(double v, Brush color = null)
         {
             Table t;
             List<TableCell> ltc = GetSelectedCells(rtb.Selection, out t);
@@ -652,11 +653,11 @@ namespace YATE
 
 
 
-        public void cmdTableSetBorder(Thickness border , bool AvoidDoubleBorder = true , Brush color = null)
+        public void cmdTableSetBorder(Thickness border, bool AvoidDoubleBorder = true, Brush color = null)
         {
             Table t;
-          
-            List<TableCell> ltc = GetSelectedCells(rtb.Selection,out t);
+
+            List<TableCell> ltc = GetSelectedCells(rtb.Selection, out t);
             if (t != null)
             {
                 t.BorderThickness = new Thickness(0);
@@ -681,8 +682,8 @@ namespace YATE
 
                         b.BorderThickness = new Thickness
                             (
-                              (cellp == minc || border.Right<  0.01  ? border.Left : 0.0),
-                              (rowp == minr || border.Bottom< 0.01 ? border.Top : 0.0),
+                              (cellp == minc || border.Right < 0.01 ? border.Left : 0.0),
+                              (rowp == minr || border.Bottom < 0.01 ? border.Top : 0.0),
                               border.Right,
                               border.Bottom
                             );
@@ -707,16 +708,16 @@ namespace YATE
         /// <param name="block">The block.</param>
         public void cmdInsertBlock2(Block block, bool EmptySectionAfter = false)
         {
-             this.cmdDelete();
+            this.cmdDelete();
 
             TextRange tr3 = new TextRange(rtb_Main.CaretPosition, rtb_Main.CaretPosition.GetInsertionPosition(LogicalDirection.Backward));
 
             try
             {
-            Block b = null; Section s = null;
-            TextPointer insert = tr3.Start;
-            b = TryFindParent<Block>(insert.Parent as DependencyObject);
-            s = TryFindParent<Section>(insert.Parent as DependencyObject);
+                Block b = null; Section s = null;
+                TextPointer insert = tr3.Start;
+                b = TryFindParent<Block>(insert.Parent as DependencyObject);
+                s = TryFindParent<Section>(insert.Parent as DependencyObject);
 
                 if (EmptySectionAfter)
                 {
@@ -724,25 +725,26 @@ namespace YATE
                     if (s == null)
                     {
                         if (b != null) { this.Document.Blocks.InsertAfter(b, block); this.Document.Blocks.InsertAfter(block, newItem); }
-                        else           { this.Document.Blocks.Add(block); this.Document.Blocks.Add(newItem); }
+                        else { this.Document.Blocks.Add(block); this.Document.Blocks.Add(newItem); }
                     }
                     else
                     {
                         if (b != null) { this.Document.Blocks.InsertAfter(b, block); this.Document.Blocks.InsertAfter(block, newItem); }
-                        else           { this.Document.Blocks.Add(block); this.Document.Blocks.Add(newItem); }
+                        else { this.Document.Blocks.Add(block); this.Document.Blocks.Add(newItem); }
                     }
                     rtb_Main.Selection.Select(newItem.ContentStart, newItem.ContentStart);
-                } else
+                }
+                else
                 {
                     if (s == null)
                     {
-                        if (b != null) { this.Document.Blocks.InsertAfter(b, block);   }
-                        else { this.Document.Blocks.Add(block);   }
+                        if (b != null) { this.Document.Blocks.InsertAfter(b, block); }
+                        else { this.Document.Blocks.Add(block); }
                     }
                     else
                     {
-                        if (b != null) { this.Document.Blocks.InsertAfter(b, block);  }
-                        else { this.Document.Blocks.Add(block);   }
+                        if (b != null) { this.Document.Blocks.InsertAfter(b, block); }
+                        else { this.Document.Blocks.Add(block); }
                     }
                     rtb_Main.Selection.Select(block.ContentEnd, block.ContentEnd);
                 }
@@ -760,7 +762,7 @@ namespace YATE
         /// Commands the insert block.
         /// </summary>
         /// <param name="block">The block.</param>
-        public void cmdInsertBlock(Block block, bool EmptySectionAfter=false)
+        public void cmdInsertBlock(Block block, bool EmptySectionAfter = false)
         {
             this.cmdDelete();
             MemoryStream ms = new MemoryStream();
@@ -772,16 +774,17 @@ namespace YATE
             TextRange tr3 = new TextRange(rtb_Main.CaretPosition, rtb_Main.CaretPosition.GetInsertionPosition(LogicalDirection.Backward));
 
             tr3.Load(ms, DataFormats.XamlPackage);
-            ms.Flush(); 
+            ms.Flush();
             ms.Close();
             ms.Dispose();
 
             TextPointer tp = tr3.End;
             rtb_Main.Selection.Select(tp, tp);
-           
-            if(EmptySectionAfter)
+
+            if (EmptySectionAfter)
             {
-                try {
+                try
+                {
                     Block b = null; Section s = null;
                     TextPointer insert = tr3.Start;
                     b = TryFindParent<Block>(insert.Parent as DependencyObject);
@@ -799,7 +802,8 @@ namespace YATE
                         else s.Blocks.Add(newItem);
                     }
                     rtb_Main.Selection.Select(newItem.ContentStart, newItem.ContentStart);
-                } catch(Exception)
+                }
+                catch (Exception)
                 {
 
                 }
