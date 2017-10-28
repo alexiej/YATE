@@ -36,7 +36,7 @@ namespace PdfSharp.Xps.Rendering
       if (fpage == null)
         Debug.Assert(false);
 
-      FixedPayload payload = fpage.Document.Payload;  // TODO: find better way to get FixedPayload
+      FixedPayload payload = fpage.Document.Payload;  // TODO: find better way to get FixedPayload id:39 gh:40
       //Debug.Assert(Object.Equals(payload, Context.
 
 

@@ -277,11 +277,11 @@ namespace HTMLConverter
                 }
 
                 // complete the quoted value
-                // NOTE: our recovery here is different from IE's
+                // NOTE: our recovery here is different from IE's id:293 gh:294
                 // IE keeps reading until it finds a closing quote or end of file
                 // if end of file, it treats current value as text
                 // if it finds a closing quote at any point within the text, it eats everything between the quotes
-                // TODO: Suggestion:
+                // TODO: Suggestion: id:302 gh:304
                 // however, we could stop when we encounter end of file or an angle bracket of any kind
                 // and assume there was a quote there
                 // so the attribute value may be meaningless but it is never treated as text
@@ -456,8 +456,8 @@ namespace HTMLConverter
         /// </summary>
         private void SkipWhiteSpace()
         {
-            // TODO: handle character entities while processing comments, cdata, and directives
-            // TODO: SUGGESTION: we could check if lookahead and previous characters are entities also
+            // TODO: handle character entities while processing comments, cdata, and directives id:323 gh:324
+            // TODO: SUGGESTION: we could check if lookahead and previous characters are entities also id:263 gh:264
             while (true)
             {
                 if (_nextCharacter == '<' && (_lookAheadCharacter == '?' || _lookAheadCharacter == '!'))
@@ -543,7 +543,7 @@ namespace HTMLConverter
 
         /// <summary>
         /// identifies a character as being a combining character, permitted in a name
-        /// TODO: only a placeholder for now but later to be replaced with comparisons against
+        /// TODO: only a placeholder for now but later to be replaced with comparisons against id:283 gh:284
         /// the list of combining characters in the XML documentation
         /// </summary>
         /// <param name="character">
@@ -554,13 +554,13 @@ namespace HTMLConverter
         /// </returns>
         private bool IsCombiningCharacter(char character)
         {
-            // TODO: put actual code with checks against all combining characters here
+            // TODO: put actual code with checks against all combining characters here id:294 gh:295
             return false;
         }
 
         /// <summary>
         /// identifies a character as being an extender, permitted in a name
-        /// TODO: only a placeholder for now but later to be replaced with comparisons against
+        /// TODO: only a placeholder for now but later to be replaced with comparisons against id:303 gh:302
         /// the list of extenders in the XML documentation
         /// </summary>
         /// <param name="character">
@@ -571,7 +571,7 @@ namespace HTMLConverter
         /// </returns>
         private bool IsExtender(char character)
         {
-            // TODO: put actual code with checks against all extenders here
+            // TODO: put actual code with checks against all extenders here id:324 gh:325
             return false;
         }
 
@@ -591,7 +591,7 @@ namespace HTMLConverter
             this.GetNextCharacter();
             this.GetNextCharacter();
 
-            // NOTE: 10/12/2004: modified this function to check when called if's reading CDATA or something else
+            // NOTE: 10/12/2004: modified this function to check when called if's reading CDATA or something else id:264 gh:265
             // some directives may start with a <![ and then have some data and they will just end with a ]>
             // this function is modified to stop at the sequence ]> and not ]]>
             // this means that CDATA and anything else expressed in their own set of [] within the <! [...]>
@@ -615,7 +615,7 @@ namespace HTMLConverter
 
         /// <summary>
         /// skips comments starting with '<!-' and ending with '-->' 
-        /// NOTE: 10/06/2004: processing changed, will now skip anything starting with
+        /// NOTE: 10/06/2004: processing changed, will now skip anything starting with id:284 gh:285
         /// the "<!-"  sequence and ending in "!>" or "->", because in practice many html pages do not
         /// use the full comment specifying conventions
         /// </summary>
@@ -703,7 +703,7 @@ namespace HTMLConverter
 
         /// <summary>
         /// skips processing directives starting with the characters '<?' and ending with '?>' 
-        /// NOTE: 10/14/2004: IE also ends processing directives with a />, so this function is
+        /// NOTE: 10/14/2004: IE also ends processing directives with a />, so this function is id:295 gh:296
         /// being modified to recognize that condition as well
         /// </summary>
         private void SkipProcessingDirective()

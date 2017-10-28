@@ -250,7 +250,7 @@ namespace PdfSharp.Drawing
       page.RenderContent = content;
 
 #if GDI
-      // HACK: This does not work with MediumTrust
+      // HACK: This does not work with MediumTrust id:108 gh:109
       this.gfx = Graphics.FromHwnd(IntPtr.Zero);
       this.targetContext = XGraphicTargetContext.GDI;
       //Bitmap bm = new Bitmap(10, 10);
@@ -437,7 +437,7 @@ namespace PdfSharp.Drawing
     /// </summary>
     public static XGraphics FromGraphics(Graphics graphics, XSize size)
     {
-      // TODO: Get object from cache...
+      // TODO: Get object from cache... id:47 gh:48
       return new XGraphics(graphics, size, XGraphicsUnit.Point, XPageDirection.Downwards);
     }
 
@@ -446,7 +446,7 @@ namespace PdfSharp.Drawing
     /// </summary>
     public static XGraphics FromGraphics(Graphics graphics, XSize size, XGraphicsUnit unit)
     {
-      // TODO: Get object from cache...
+      // TODO: Get object from cache... id:156 gh:157
       return new XGraphics(graphics, size, unit, XPageDirection.Downwards);
     }
 
@@ -455,7 +455,7 @@ namespace PdfSharp.Drawing
     ///// </summary>
     //public static XGraphics FromGraphics(Graphics graphics, XSize size, XPageDirection pageDirection)
     //{
-    //  // TODO: Get object from cache...
+    //  // TODO: Get object from cache... id:114 gh:115
     //  return new XGraphics(graphics, size, XGraphicsUnit.Point, pageDirection);
     //}
 
@@ -464,7 +464,7 @@ namespace PdfSharp.Drawing
     ///// </summary>
     //public static XGraphics FromGraphics(Graphics graphics, XSize size, XGraphicsUnit unit, XPageDirection pageDirection)
     //{
-    //  // TODO: Get object from cache...
+    //  // TODO: Get object from cache... id:121 gh:122
     //  return new XGraphics(graphics, size, XGraphicsUnit.Point, pageDirection);
     //}
 #endif
@@ -746,7 +746,7 @@ namespace PdfSharp.Drawing
       get { return this.pageUnit; }
       //set
       //{
-      //  // TODO: other page units
+      //  // TODO: other page units id:109 gh:110
       //  if (value != XGraphicsUnit.Point)
       //    throw new NotImplementedException("PageUnit must be XGraphicsUnit.Point in current implementation.");
       //}
@@ -761,7 +761,7 @@ namespace PdfSharp.Drawing
       get { return this.pageDirection; }
       set
       {
-        //TODO
+        //TODO id:48 gh:49
         if (value != XPageDirection.Downwards)
           throw new NotImplementedException("PageDirection must be XPageDirection.Downwards in current implementation.");
       }
@@ -776,7 +776,7 @@ namespace PdfSharp.Drawing
       get { return this.pageOrigin; }
       set
       {
-        //TODO
+        //TODO id:157 gh:158
         if (value != new XPoint())
           throw new NotImplementedException("PageOrigin cannot be modified in current implementation.");
       }
@@ -791,7 +791,7 @@ namespace PdfSharp.Drawing
       get { return this.pageSize; }
       //set
       //{
-      //  //TODO
+      //  //TODO id:115 gh:116
       //  throw new NotImplementedException("PageSize cannot be modified in current implementation.");
       //}
     }
@@ -1018,7 +1018,7 @@ namespace PdfSharp.Drawing
 
 #if GDI
     /// <summary>
-    /// Draws a Bézier spline defined by four points.
+    /// Draws a Bï¿½zier spline defined by four points.
     /// </summary>
     public void DrawBezier(XPen pen, System.Drawing.Point pt1, System.Drawing.Point pt2, System.Drawing.Point pt3, System.Drawing.Point pt4)
     {
@@ -1029,7 +1029,7 @@ namespace PdfSharp.Drawing
 
 #if WPF
     /// <summary>
-    /// Draws a Bézier spline defined by four points.
+    /// Draws a Bï¿½zier spline defined by four points.
     /// </summary>
     public void DrawBezier(XPen pen, System.Windows.Point pt1, System.Windows.Point pt2, System.Windows.Point pt3, System.Windows.Point pt4)
     {
@@ -1040,7 +1040,7 @@ namespace PdfSharp.Drawing
 
 #if GDI
     /// <summary>
-    /// Draws a Bézier spline defined by four points.
+    /// Draws a Bï¿½zier spline defined by four points.
     /// </summary>
     public void DrawBezier(XPen pen, PointF pt1, PointF pt2, PointF pt3, PointF pt4)
     {
@@ -1049,7 +1049,7 @@ namespace PdfSharp.Drawing
 #endif
 
     /// <summary>
-    /// Draws a Bézier spline defined by four points.
+    /// Draws a Bï¿½zier spline defined by four points.
     /// </summary>
     public void DrawBezier(XPen pen, XPoint pt1, XPoint pt2, XPoint pt3, XPoint pt4)
     {
@@ -1057,7 +1057,7 @@ namespace PdfSharp.Drawing
     }
 
     /// <summary>
-    /// Draws a Bézier spline defined by four points.
+    /// Draws a Bï¿½zier spline defined by four points.
     /// </summary>
     public void DrawBezier(XPen pen, double x1, double y1, double x2, double y2,
       double x3, double y3, double x4, double y4)
@@ -1099,7 +1099,7 @@ namespace PdfSharp.Drawing
 
 #if GDI
     /// <summary>
-    /// Draws a series of Bézier splines from an array of points.
+    /// Draws a series of Bï¿½zier splines from an array of points.
     /// </summary>
     public void DrawBeziers(XPen pen, System.Drawing.Point[] points)
     {
@@ -1109,7 +1109,7 @@ namespace PdfSharp.Drawing
 
 #if WPF
     /// <summary>
-    /// Draws a series of Bézier splines from an array of points.
+    /// Draws a series of Bï¿½zier splines from an array of points.
     /// </summary>
     public void DrawBeziers(XPen pen, System.Windows.Point[] points)
     {
@@ -1119,7 +1119,7 @@ namespace PdfSharp.Drawing
 
 #if GDI
     /// <summary>
-    /// Draws a series of Bézier splines from an array of points.
+    /// Draws a series of Bï¿½zier splines from an array of points.
     /// </summary>
     public void DrawBeziers(XPen pen, PointF[] points)
     {
@@ -1128,7 +1128,7 @@ namespace PdfSharp.Drawing
 #endif
 
     /// <summary>
-    /// Draws a series of Bézier splines from an array of points.
+    /// Draws a series of Bï¿½zier splines from an array of points.
     /// </summary>
     public void DrawBeziers(XPen pen, XPoint[] points)
     {
@@ -1295,7 +1295,7 @@ namespace PdfSharp.Drawing
         this.renderer.DrawCurve(pen, points, tension);
     }
 
-    // TODO:
+    // TODO: id:122 gh:124
     //public void DrawCurve(XPen pen, PointF[] points, int offset, int numberOfSegments);
     //public void DrawCurve(XPen pen, Point[] points, int offset, int numberOfSegments, double tension);
     //public void DrawCurve(XPen pen, PointF[] points, int offset, int numberOfSegments, double tension);
@@ -3240,7 +3240,7 @@ namespace PdfSharp.Drawing
                 break;
 
               case XLineAlignment.Center:
-                // TODO use CapHeight. PDFlib also uses 3/4 of ascent
+                // TODO use CapHeight. PDFlib also uses 3/4 of ascent id:110 gh:111
                 y += -formattedText.Baseline + (cyAscent * 1 / 3) + layoutRectangle.Height / 2;
                 //y += -formattedText.Baseline + (font.Size * font.Metrics.CapHeight / font.unitsPerEm / 2) + layoutRectangle.Height / 2;
                 break;
@@ -3264,7 +3264,7 @@ namespace PdfSharp.Drawing
                 break;
 
               case XLineAlignment.Center:
-                // TODO use CapHeight. PDFlib also uses 3/4 of ascent
+                // TODO use CapHeight. PDFlib also uses 3/4 of ascent id:91 gh:92
                 //y += -(cyAscent * 3 / 4) / 2 + rect.Height / 2;
                 break;
 
@@ -3280,12 +3280,12 @@ namespace PdfSharp.Drawing
 
           //if (bold && !descriptor.IsBoldFace)
           //{
-          //  // TODO: emulate bold by thicker outline
+          //  // TODO: emulate bold by thicker outline id:158 gh:159
           //}
 
           //if (italic && !descriptor.IsBoldFace)
           //{
-          //  // TODO: emulate italic by shearing transformation
+          //  // TODO: emulate italic by shearing transformation id:116 gh:117
           //}
 
           if (underline)
@@ -3324,7 +3324,7 @@ namespace PdfSharp.Drawing
     /// </summary>
     public XSize MeasureString(string text, XFont font, XStringFormat stringFormat)
     {
-      // TODO: Here comes a lot of code in the future: kerning etc...
+      // TODO: Here comes a lot of code in the future: kerning etc... id:123 gh:125
       if (text == null)
         throw new ArgumentNullException("text");
       if (font == null)
@@ -3428,7 +3428,7 @@ namespace PdfSharp.Drawing
       DrawImage(image, point.X, point.Y);
     }
 
-    //TODO trapezoid transformation
+    //TODO trapezoid transformation id:111 gh:112
     ////public void DrawImage(XImage image, Point[] destPoints);
     ////public void DrawImage(XImage image, PointF[] destPoints);
     ////public void DrawImage(XImage image, XPoint[] destPoints);
@@ -3628,12 +3628,12 @@ namespace PdfSharp.Drawing
         this.renderer.DrawImage(image, x, y, width, height);
     }
 
-    //TODO trapezoid transformation
+    //TODO trapezoid transformation id:92 gh:93
     //public void DrawImage(XImage image, Point[] destPoints, Rectangle srcRect, GraphicsUnit srcUnit);
     //public void DrawImage(XImage image, PointF[] destPoints, RectangleF srcRect, GraphicsUnit srcUnit);
     //public void DrawImage(XImage image, XPoint[] destPoints, XRect srcRect, GraphicsUnit srcUnit);
 
-    // TODO: calculate destination size
+    // TODO: calculate destination size id:167 gh:168
     //public void DrawImage(XImage image, int x, int y, Rectangle srcRect, XGraphicsUnit srcUnit)
     //public void DrawImage(XImage image, double x, double y, RectangleF srcRect, XGraphicsUnit srcUnit)
     //public void DrawImage(XImage image, double x, double y, XRect srcRect, XGraphicsUnit srcUnit)
@@ -3715,7 +3715,7 @@ namespace PdfSharp.Drawing
             //  //gfx.InterpolationMode = InterpolationMode.NearestNeighbor;
             //}
 
-            // HACK: srcRect is ignored
+            // HACK: srcRect is ignored id:117 gh:118
             double x = destRect.x;
             double y = destRect.y;
             this.dc.DrawImage(image.wpfImage, new System.Windows.Rect(destRect.x, destRect.y, destRect.width, destRect.height));
@@ -3735,7 +3735,7 @@ namespace PdfSharp.Drawing
         this.renderer.DrawImage(image, destRect, srcRect, srcUnit);
     }
 
-    //TODO?
+    //TODO ? id:124 gh:126
     //public void DrawImage(XImage image, Rectangle destRect, int srcX, int srcY, int srcWidth, int srcHeight, GraphicsUnit srcUnit);
     //public void DrawImage(XImage image, Rectangle destRect, double srcX, double srcY, double srcWidth, double srcHeight, GraphicsUnit srcUnit);
     //public void DrawImage(XImage image, Rectangle destRect, double srcX, double srcY, double srcWidth, double srcHeight, GraphicsUnit srcUnit);
@@ -4034,7 +4034,7 @@ namespace PdfSharp.Drawing
     /// </summary>
     public XGraphicsContainer BeginContainer(XRect dstrect, XRect srcrect, XGraphicsUnit unit)
     {
-      // TODO: unit
+      // TODO: unit id:112 gh:113
       if (unit != XGraphicsUnit.Point)
         throw new ArgumentException("The current implementation supports XGraphicsUnit.Point only.", "unit");
 
@@ -4669,7 +4669,7 @@ namespace PdfSharp.Drawing
 
       if (this.drawGraphics)
       {
-        // TODO: Do something if metafile?
+        // TODO: Do something if metafile? id:93 gh:94
       }
 
       if (this.renderer != null)

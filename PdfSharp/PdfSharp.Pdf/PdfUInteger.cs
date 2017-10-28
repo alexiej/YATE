@@ -116,7 +116,7 @@ namespace PdfSharp.Pdf
     /// </summary>
     public DateTime ToDateTime(IFormatProvider provider)
     {
-      // TODO:  Add PdfUInteger.ToDateTime implementation
+      // TODO: Add PdfUInteger.ToDateTime implementation id:318 gh:319
       return new DateTime();
     }
 
@@ -213,7 +213,7 @@ namespace PdfSharp.Pdf
     /// </summary>
     public object ToType(Type conversionType, IFormatProvider provider)
     {
-      // TODO:  Add PdfUInteger.ToType implementation
+      // TODO: Add PdfUInteger.ToType implementation id:258 gh:260
       return null;
     }
 

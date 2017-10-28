@@ -38,7 +38,7 @@ namespace PdfSharp.Drawing
   [Flags]
   public enum XSmoothingMode  // same values as System.Drawing.Drawing2D.SmoothingMode
   {
-    // TODO: how can this value effect PDF antializing?
+    // TODO: how can this value effect PDF antializing? id:165 gh:166
 
     /// <summary>
     /// Specifies an invalid mode.

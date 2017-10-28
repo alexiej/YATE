@@ -16,7 +16,7 @@ using PdfSharp.Fonts.OpenType;
 
 namespace PdfSharp.Xps.Rendering
 {
-  partial class PdfContentWriter  // TODO: refactor to a PdfGlyphsWriter class
+  partial class PdfContentWriter  // TODO: refactor to a PdfGlyphsWriter class id:59 gh:60
   {
     /// <summary>
     /// Writes a Glyphs to the content stream.
@@ -43,11 +43,11 @@ namespace PdfSharp.Xps.Rendering
       XMatrix textMatrix = new XMatrix();
 
       textMatrix.TranslatePrepend(glyphs.OriginX, glyphs.OriginY);
-      glyphs.OriginX = glyphs.OriginY = 0; // HACK: do not change model
+      glyphs.OriginX = glyphs.OriginY = 0; // HACK: do not change model id:25 gh:26
 
       double emSize = glyphs.FontRenderingEmSize;
       textMatrix.ScalePrepend(glyphs.FontRenderingEmSize);
-      glyphs.FontRenderingEmSize = 1; // HACK: do not change model
+      glyphs.FontRenderingEmSize = 1; // HACK: do not change model id:5 gh:6
 
 
       bool boldSimulation = (glyphs.StyleSimulations & StyleSimulations.BoldSimulation) == StyleSimulations.BoldSimulation;
@@ -108,12 +108,12 @@ namespace PdfSharp.Xps.Rendering
 
       //if (bold && !descriptor.IsBoldFace)
       //{
-      //  // TODO: emulate bold by thicker outline
+      //  // TODO: emulate bold by thicker outline id:12 gh:13
       //}
 
       //if (italic && !descriptor.IsBoldFace)
       //{
-      //  // TODO: emulate italic by shearing transformation
+      //  // TODO: emulate italic by shearing transformation id:22 gh:23
       //}
 
 #if true
@@ -197,17 +197,17 @@ namespace PdfSharp.Xps.Rendering
 
     private void WriteGlyphs_None(Glyphs glyphs, string text)
     {
-      // TODO:
+      // TODO: id:60 gh:61
     }
 
     private void WriteGlyphs_DistanceOnly(Glyphs glyphs, string text)
     {
-      // TODO:
+      // TODO: id:26 gh:27
     }
 
     private void WriteGlyphs_GlyphIndicesAndDistanceOnly(Glyphs glyphs, string text)
     {
-      // TODO:
+      // TODO: id:6 gh:7
     }
 
 

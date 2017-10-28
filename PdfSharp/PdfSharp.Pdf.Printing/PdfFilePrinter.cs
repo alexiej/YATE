@@ -153,7 +153,7 @@ namespace PdfSharp.Pdf.Printing
       if (!File.Exists(fqName))
         throw new InvalidOperationException(String.Format("The file {0} does not exist.", fqName));
 
-      // TODO: Check whether printer exists.
+      // TODO: Check whether printer exists. id:197 gh:198
 
       try
       {

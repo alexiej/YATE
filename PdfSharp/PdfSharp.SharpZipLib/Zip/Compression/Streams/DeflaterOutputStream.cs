@@ -378,7 +378,7 @@ namespace PdfSharp.SharpZipLib.Zip.Compression.Streams
 		
 		#region Encryption
 		
-		// TODO  Refactor this code.  The presence of Zip specific code in this low level class is wrong
+		// TODO Refactor this code.  The presence of Zip specific code in this low level class is wrong id:319 gh:320
 		string password = null;
 		uint[] keys     = null;
 		
@@ -412,7 +412,7 @@ namespace PdfSharp.SharpZipLib.Zip.Compression.Streams
 		/// Encrypt a block of data
 		/// </summary>
 		/// <param name="buffer">
-		/// Data to encrypt.  NOTE the original contents of the buffer are lost
+		/// Data to encrypt.  NOTE the original contents of the buffer are lost id:259 gh:254
 		/// </param>
 		/// <param name="offset">
 		/// Offset of first byte in buffer to encrypt

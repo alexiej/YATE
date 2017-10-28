@@ -56,8 +56,8 @@ namespace PdfSharp.Drawing
     /// </summary>
     public XPrivateFontCollection()
     {
-      //// HACK: Use one global PrivateFontCollection in GDI+
-      //// TODO: Make a list of it
+      //// HACK: Use one global PrivateFontCollection in GDI+ id:142 gh:143
+      //// TODO: Make a list of it id:99 gh:100
       //if (s_global != null)
       //  throw new InvalidOperationException("Because of limitations in GDI+ you can only have one instance of XPrivateFontCollection in your application.");
     }
@@ -65,8 +65,8 @@ namespace PdfSharp.Drawing
 
     //static XPrivateFontCollection()
     //{
-    //  // HACK: Use one global PrivateFontCollection in GDI+
-    //  // TODO: Make a list of it
+    //  // HACK: Use one global PrivateFontCollection in GDI+ id:174 gh:175
+    //  // TODO: Make a list of it id:164 gh:165
     //  if (global != null)
     //    throw new InvalidOperationException("Because of limitations in GDI+ you can only have one instance of XPrivateFontCollection in your application.");
     //  global = this;
@@ -174,7 +174,7 @@ namespace PdfSharp.Drawing
 
 #if GDI
     /// <summary>
-    /// HACK: to be removed.
+    /// HACK: to be removed. id:131 gh:132
     /// </summary>
     //[Obsolete("Just make QBX compile. Will be removed when Private Fonts are working.", false)]
     public void AddFont(byte[] data, string fontName, bool bold, bool italic)
@@ -211,7 +211,7 @@ namespace PdfSharp.Drawing
     /// <param name="familyName">The family name or names that comprise the new FontFamily. Multiple family names should be separated by commas.</param>
     public void Add(Uri baseUri, string familyName)
     {
-      // TODO: What means 'Multiple family names should be separated by commas.'?
+      // TODO: What means 'Multiple family names should be separated by commas.'? id:143 gh:144
       // does not work
 
       if (String.IsNullOrEmpty(familyName))

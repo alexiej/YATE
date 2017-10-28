@@ -395,7 +395,7 @@ namespace PdfSharp.Drawing
     public XRect BoundingBox
     {
       get { return this.boundingBox; }
-      set { this.boundingBox = value; }  // TODO: pdfForm = null
+      set { this.boundingBox = value; }  // TODO: pdfForm = null id:120 gh:121
     }
     XRect boundingBox;
 

@@ -156,7 +156,7 @@ namespace PdfSharp.Fonts
     //{
     //  uint checksum = CalcChecksum(fontData);
     //  string name = String.Format("??{0:X}", checksum);
-    //  FontSelector selector = new FontSelector(name); // HACK: font data distinguished only by checksum
+    //  FontSelector selector = new FontSelector(name); // HACK: font data distinguished only by checksum id:166 gh:167
     //  FontDescriptor descriptor = this.table[selector] as FontDescriptor;
     //  if (descriptor == null)
     //  {

@@ -12,7 +12,7 @@ using PdfSharp.Drawing.Pdf;
 namespace PdfSharp.Xps.Rendering
 {
   /// <summary>
-  /// TODO: Rename to XFormBuilder
+  /// TODO: Rename to XFormBuilder id:84 gh:85
   /// </summary>
   class XFormBuilder : BuilderBase
   {
@@ -56,7 +56,7 @@ namespace PdfSharp.Xps.Rendering
 
       matrix = new XMatrix(width, 0, 0, -height, 0, height);
       formWriter.WriteLiteral("q\n");
-      // TODO:WriteClip(path.Data);
+      // TODO: WriteClip(path.Data); id:74 gh:75
       //formWriter.WriteLiteral("{0:0.###} 0 0 -{1:0.###} {2:0.###} {3:0.###} cm 100 Tz {4} Do Q\n",
       //  matrix.M11, matrix.M22, matrix.OffsetX, matrix.OffsetY + brush.Viewport.Height, imageID);
       formWriter.WriteMatrix(matrix);

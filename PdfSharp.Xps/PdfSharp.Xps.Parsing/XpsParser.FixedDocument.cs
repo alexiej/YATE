@@ -47,11 +47,11 @@ namespace PdfSharp.Xps.Parsing
                       break;
 
                     case "Width":
-                      // TODO: preview width
+                      // TODO: preview width id:0 gh:1
                       break;
 
                     case "Height":
-                      // TODO: preview height
+                      // TODO: preview height id:2 gh:3
                       break;
 
                     default:

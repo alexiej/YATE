@@ -86,7 +86,7 @@ namespace PdfSharp.Drawing
 #endif
     }
 
-    //TODO public StringFormat(StringFormat format);
+    //TODO public StringFormat(StringFormat format); id:100 gh:101
     //public StringFormat(StringFormatFlags options);
     //public StringFormat(StringFormatFlags options, int language);
     //public object Clone();

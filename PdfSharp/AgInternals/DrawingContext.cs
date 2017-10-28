@@ -173,7 +173,7 @@ namespace System.Windows.Media
             break;
 
           //case XLineAlignment.Center:
-          //  // TODO use CapHeight. PDFlib also uses 3/4 of ascent
+          //  // TODO use CapHeight. PDFlib also uses 3/4 of ascent id:87 gh:88
           //  y += -formattedText.Baseline + (cyAscent * 1 / 3) + layoutRectangle.Height / 2;
           //  //y += -formattedText.Baseline + (font.Size * font.Metrics.CapHeight / font.unitsPerEm / 2) + layoutRectangle.Height / 2;
           //  break;
@@ -197,7 +197,7 @@ namespace System.Windows.Media
             break;
 
           case XLineAlignment.Center:
-            // TODO use CapHeight. PDFlib also uses 3/4 of ascent
+            // TODO use CapHeight. PDFlib also uses 3/4 of ascent id:77 gh:78
             //y += -(cyAscent * 3 / 4) / 2 + rect.Height / 2;
             break;
 
@@ -213,12 +213,12 @@ namespace System.Windows.Media
 
       //if (bold && !descriptor.IsBoldFace)
       //{
-      //  // TODO: emulate bold by thicker outline
+      //  // TODO: emulate bold by thicker outline id:42 gh:43
       //}
 
       //if (italic && !descriptor.IsBoldFace)
       //{
-      //  // TODO: emulate italic by shearing transformation
+      //  // TODO: emulate italic by shearing transformation id:71 gh:72
       //}
 
       //if (underline)

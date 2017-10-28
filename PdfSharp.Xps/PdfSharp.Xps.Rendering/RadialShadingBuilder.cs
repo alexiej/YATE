@@ -79,12 +79,12 @@ namespace PdfSharp.Xps.Rendering
       //  BX /Sh0 sh EX Q
       //  Q
       //endstream
-      XRect bbox = new XRect(-600,-700, 1200, 1520); // HACK
+      XRect bbox = new XRect(-600,-700, 1200, 1520); // HACK id:18 gh:19
       XMatrix matrix = transform;
       //matrix.Prepend(brush.Transform.Matrix);
 
       double xStep = 600;
-      double yStep = 1520; // HACK
+      double yStep = 1520; // HACK id:37 gh:38
 
       PdfShadingPattern pattern = Context.PdfDocument.Internals.CreateIndirectObject<PdfShadingPattern>();
       pattern.Elements.SetInteger(PdfTilingPattern.Keys.PatternType, 1);  // Tiling
@@ -132,10 +132,10 @@ namespace PdfSharp.Xps.Rendering
       int shadingCount = 1;
       if (brush.SpreadMethod != SpreadMethod.Pad)
       {
-        // TODO: Calculate number of required shadings
+        // TODO: Calculate number of required shadings id:66 gh:67
         shadingCount = Convert.ToInt32(Math.Max(boundingBox.width / (2 * brush.RadiusX), boundingBox.height / (2 * brush.RadiusY)) + 1);
 
-        // HACK: Rule of thumb, better than nothing
+        // HACK: Rule of thumb, better than nothing id:32 gh:33
         shadingCount *= 2;
       }
       PdfShading[] shadings = new PdfShading[shadingCount];
@@ -280,7 +280,7 @@ namespace PdfSharp.Xps.Rendering
     {
       PdfFormXObject pdfForm = Context.PdfDocument.Internals.CreateIndirectObject<PdfFormXObject>();
 
-      // HACK
+      // HACK id:83 gh:84
       pdfForm.Elements.SetRectangle(PdfFormXObject.Keys.BBox, new PdfRectangle(0, 640, 480, 0));
 
       // Transparency group of the form
@@ -377,7 +377,7 @@ namespace PdfSharp.Xps.Rendering
     {
       Debug.Assert(brush.GradientStops.HasTransparency);
 
-      XRect viewBox = new XRect(0, 0, 360, 480); // HACK
+      XRect viewBox = new XRect(0, 0, 360, 480); // HACK id:73 gh:74
       //XForm xform = new XForm(Context.PdfDocument, viewBox);
 
       PdfFormXObject form = Context.PdfDocument.Internals.CreateIndirectObject<PdfFormXObject>();
@@ -512,7 +512,7 @@ namespace PdfSharp.Xps.Rendering
 #endif
       shading.Elements.SetInteger(PdfShading.Keys.ShadingType, 2); // Axial shading
       shading.Elements.SetBoolean(PdfShading.Keys.AntiAlias, false);
-      // TODO: BBox full page
+      // TODO: BBox full page id:38 gh:39
       //shading.Elements.SetValue(PdfShading.Keys.BBox, new PdfLiteral("[0 0 480 640]"));
       shading.Elements.SetName(PdfShading.Keys.ColorSpace, "/DeviceGray");
 

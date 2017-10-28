@@ -82,8 +82,8 @@ namespace PdfSharp.Drawing.Layout
         this.cyAscent = lineSpace * font.cellAscent / font.cellSpace;
         this.cyDescent = lineSpace * font.cellDescent / font.cellSpace;
 
-        // HACK in XTextFormatter
-        this.spaceWidth = gfx.MeasureString("x x", value).width;
+        // HACK in XTextFormatter id:72 gh:73
+        this.spaceWidth = gfx.MeasureString("xï¿½x", value).width;
         this.spaceWidth -= gfx.MeasureString("xx", value).width;
       }
     }
@@ -377,7 +377,7 @@ namespace PdfSharp.Drawing.Layout
       /// </summary>
       public bool Stop;
     }
-    // TODO:
+    // TODO: id:54 gh:55
     // - more XStringFormat variations
     // - calculate bounding box
     // - left and right indent

@@ -529,7 +529,7 @@ namespace PdfSharp.Drawing
     }
 
     /// <summary>
-    /// Temporary HACK for XPS to PDF converter.
+    /// Temporary HACK for XPS to PDF converter. id:155 gh:156
     /// </summary>
     internal bool IsVertical
     {

@@ -170,8 +170,8 @@ namespace PdfSharp.Pdf.IO
           break;
 
         // Acrobat 6 Professional proudly presents: The Null object!
-        // Even with a one-digit object number an indirect reference «x 0 R» to this object is
-        // one character larger than the direct use of «null». Probable this is the reason why
+        // Even with a one-digit object number an indirect reference ï¿½x 0 Rï¿½ to this object is
+        // one character larger than the direct use of ï¿½nullï¿½. Probable this is the reason why
         // it is true that Acrobat Web Capture 6.0 creates this object, but obviously never 
         // creates a reference to it!
         case Symbol.Null:
@@ -268,7 +268,7 @@ namespace PdfSharp.Pdf.IO
 
     //public PdfObject ReadObject(PdfObject obj, bool includeReferences)
 
-    // HACK solve problem more general
+    // HACK solve problem more general id:242 gh:243
     int GetStreamLength(PdfDictionary dict)
     {
       if (dict.Elements["/F"] != null)
@@ -747,7 +747,7 @@ namespace PdfSharp.Pdf.IO
       // Is it an xref stream?
       if (symbol == Symbol.Integer)
         throw new PdfReaderException(PSSR.CannotHandleXRefStreams);
-      // TODO: It is very high on the todo list, but still undone
+      // TODO: It is very high on the todo list, but still undone id:247 gh:248
       Debug.Assert(symbol == Symbol.XRef);
       while (true)
       {
@@ -852,7 +852,7 @@ namespace PdfSharp.Pdf.IO
     //    /// </summary>
     //    public static Parser CreateParser(PdfDocument document, Type pdfObjectType)
     //    {
-    //      // TODO: ParserFactory
+    //      // TODO: ParserFactory id:231 gh:232
     //      object[] attribs = null; //pdfObjectType.GetCustomAttributes(typeof(PdfObjectInfoAttribute), false);
     //      if (attribs.Length == 1)
     //      {

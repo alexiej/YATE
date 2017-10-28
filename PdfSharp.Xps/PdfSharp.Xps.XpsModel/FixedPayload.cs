@@ -26,7 +26,7 @@ namespace PdfSharp.Xps.XpsModel
       this.resMngr = new ResourceManager(this);
       this.document = document;
 
-      // HACK: find fdseq
+      // HACK: find fdseq id:40 gh:41
       string fdseqString = null;
       foreach (ZipPackagePart part in XpsDocument.Parts)
       {
@@ -103,7 +103,7 @@ namespace PdfSharp.Xps.XpsModel
       //ZipPackagePart part = Package.GetPart(new Uri(uriString, UriKind.Relative)) as ZipPackagePart;
       byte[] fontData = GetPartAsBytes(uriString);
 
-      // HACK: Is checking for odttf enough?
+      // HACK: Is checking for odttf enough? id:69 gh:70
       if (uriString.EndsWith("odttf", true, CultureInfo.InvariantCulture))
       {
         Guid guid = new Guid(IOPath.GetFileNameWithoutExtension(uriString));

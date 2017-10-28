@@ -43,7 +43,7 @@ using PdfSharp.Pdf.Internal;
 
 namespace PdfSharp.Drawing.Pdf
 {
-  // TODO: update the following text
+  // TODO: update the following text id:89 gh:90
   //
   // In PDF the current transformation matrix (CTM) can only be modified, but not set. The XGraphics
   // object allows to set the transformation matrix, which leads to a problem. In PDF the only way
@@ -191,7 +191,7 @@ namespace PdfSharp.Drawing.Pdf
               string pattern = pdf.ToString();
 
               // BUG: drice2@ageone.de reported a realizing problem
-              // HACK: I romove the if clause
+              // HACK: I romove the if clause id:79 gh:80
               //if (this.realizedDashPattern != pattern)
               {
                 this.realizedDashPattern = pattern;

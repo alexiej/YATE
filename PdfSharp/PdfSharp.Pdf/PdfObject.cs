@@ -137,7 +137,7 @@ namespace PdfSharp.Pdf
     {
       PdfObjectID objectID = new PdfObjectID(objectNumber, generationNumber);
 
-      // TODO: check imported
+      // TODO: check imported id:273 gh:274
       if (this.iref == null)
         this.iref = this.document.irefTable[objectID];
       if (this.iref == null)

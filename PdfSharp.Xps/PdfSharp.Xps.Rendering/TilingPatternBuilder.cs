@@ -57,7 +57,7 @@ namespace PdfSharp.Xps.Rendering
             }
 #else
       double c = 1;
-      XMatrix matrix = new XMatrix(1 * c, 0, 0, 1 * c, brush.Viewport.X * c, brush.Viewport.Y * c); // HACK: 480
+      XMatrix matrix = new XMatrix(1 * c, 0, 0, 1 * c, brush.Viewport.X * c, brush.Viewport.Y * c); // HACK: 480 id:67 gh:68
       XMatrix t = transform;
       //t.Invert();
       t.Prepend(matrix);
@@ -217,7 +217,7 @@ namespace PdfSharp.Xps.Rendering
             //height *= scaleY;
             matrix = new XMatrix(width, 0, 0, -height, 0, height);
             writer.WriteLiteral("q\n");
-            // TODO:WriteClip(path.Data);
+            // TODO: WriteClip(path.Data); id:49 gh:50
             //formWriter.WriteLiteral("{0:0.###} 0 0 -{1:0.###} {2:0.###} {3:0.###} cm 100 Tz {4} Do Q\n",
             //  matrix.M11, matrix.M22, matrix.OffsetX, matrix.OffsetY + brush.Viewport.Height, imageID);
             writer.WriteMatrix(matrix);

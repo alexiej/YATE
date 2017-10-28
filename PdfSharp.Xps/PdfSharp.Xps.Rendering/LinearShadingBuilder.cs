@@ -75,7 +75,7 @@ namespace PdfSharp.Xps.Rendering
       shading.Elements.SetBoolean(PdfShading.Keys.AntiAlias, false);
       shading.Elements[PdfShading.Keys.Function] = function;
       shading.Elements.SetInteger(PdfShading.Keys.ShadingType, 2); // Axial shading
-      shading.Elements.SetName(PdfShading.Keys.ColorSpace, "/DeviceRGB"); // TODO: respect ColorMode
+      shading.Elements.SetName(PdfShading.Keys.ColorSpace, "/DeviceRGB"); // TODO: respect ColorMode id:10 gh:11
 
       double x1 = brush.StartPoint.X;
       double y1 = brush.StartPoint.Y;
@@ -92,7 +92,7 @@ namespace PdfSharp.Xps.Rendering
 #if DEBUG
         // Note from PDF reference: The background color is applied only when the shading is used as part of
         // a shading pattern, not when it is painted directly with the sh operator.
-        shading.Elements[PdfShading.Keys.Background] = new PdfLiteral("[0 1 0]"); // TODO: respect ColorMode
+        shading.Elements[PdfShading.Keys.Background] = new PdfLiteral("[0 1 0]"); // TODO: respect ColorMode id:20 gh:21
 #else
         // Best we can currently do
         shading.Elements[PdfShading.Keys.Extend] = new PdfLiteral("[true true]");
@@ -132,7 +132,7 @@ namespace PdfSharp.Xps.Rendering
     {
       PdfFormXObject pdfForm = Context.PdfDocument.Internals.CreateIndirectObject<PdfFormXObject>();
 
-      // HACK
+      // HACK id:58 gh:59
       pdfForm.Elements.SetRectangle(PdfFormXObject.Keys.BBox, new PdfRectangle(0, 640, 480, 0));
 
       // Transparency group of the form
@@ -229,7 +229,7 @@ namespace PdfSharp.Xps.Rendering
     {
       Debug.Assert(brush.GradientStops.HasTransparency);
 
-      XRect viewBox = new XRect(0, 0, 360, 480); // HACK
+      XRect viewBox = new XRect(0, 0, 360, 480); // HACK id:24 gh:25
       //XForm xform = new XForm(Context.PdfDocument, viewBox);
 
       PdfFormXObject form = Context.PdfDocument.Internals.CreateIndirectObject<PdfFormXObject>();
@@ -348,7 +348,7 @@ namespace PdfSharp.Xps.Rendering
     {
       Debug.Assert(brush.GradientStops.HasTransparency);
 
-      XRect viewBox = new XRect(0, 0, 360, 480); // HACK
+      XRect viewBox = new XRect(0, 0, 360, 480); // HACK id:4 gh:5
       //XForm xform = new XForm(Context.PdfDocument, viewBox);
 
       PdfFormXObject form = Context.PdfDocument.Internals.CreateIndirectObject<PdfFormXObject>();
@@ -483,7 +483,7 @@ namespace PdfSharp.Xps.Rendering
 #endif
       shading.Elements.SetInteger(PdfShading.Keys.ShadingType, 2); // Axial shading
       shading.Elements.SetBoolean(PdfShading.Keys.AntiAlias, false);
-      // TODO: BBox full page
+      // TODO: BBox full page id:11 gh:12
       //shading.Elements.SetValue(PdfShading.Keys.BBox, new PdfLiteral("[0 0 480 640]"));
       shading.Elements.SetName(PdfShading.Keys.ColorSpace, "/DeviceGray");
 
@@ -531,7 +531,7 @@ namespace PdfSharp.Xps.Rendering
 #endif
       shading.Elements.SetInteger(PdfShading.Keys.ShadingType, 2); // Axial shading
       shading.Elements.SetBoolean(PdfShading.Keys.AntiAlias, false);
-      // TODO: BBox full page
+      // TODO: BBox full page id:21 gh:22
       //shading.Elements.SetValue(PdfShading.Keys.BBox, new PdfLiteral("[0 0 480 640]"));
       shading.Elements.SetName(PdfShading.Keys.ColorSpace, "/DeviceGray");
 

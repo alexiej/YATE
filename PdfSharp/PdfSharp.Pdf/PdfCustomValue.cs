@@ -63,7 +63,7 @@ namespace PdfSharp.Pdf
     internal PdfCustomValue(PdfDictionary dict)
       : base(dict)
     {
-      // TODO: uncompress stream
+      // TODO: uncompress stream id:215 gh:216
     }
 
     /// <summary>

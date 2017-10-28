@@ -179,7 +179,7 @@ namespace PdfSharp.Pdf.Internal
                 break;
 
               default: 
-                pdf.Append(PdfEncoders.InvalidChar); // TODO
+                pdf.Append(PdfEncoders.InvalidChar); // TODO id:196 gh:197
                 break;
             }
           }
@@ -447,7 +447,7 @@ namespace PdfSharp.Pdf.Internal
         }
         else
         {
-          // TODO non hex literals... not sure how to treat linefeeds, '(', '\' etc.
+          // TODO non hex literals... not sure how to treat linefeeds, '(', '\' etc. id:309 gh:310
           hex = true;
           goto Hex;
         }
@@ -456,11 +456,11 @@ namespace PdfSharp.Pdf.Internal
     }
 
     /// <summary>
-    /// Converts WinAnsi to DocEncode characters. Incomplete, just maps € and some other characters.
+    /// Converts WinAnsi to DocEncode characters. Incomplete, just maps ï¿½ and some other characters.
     /// </summary>
     static byte[] docencode_______ = new byte[256]
     {
-      // TODO: 
+      // TODO: id:249 gh:250
       0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
       0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
       0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
@@ -495,7 +495,7 @@ namespace PdfSharp.Pdf.Internal
     //      char ch = (char)bytes[idx];
     //      if (ch > 255)
     //      {
-    //        //TODO unicode?
+    //        //TODO unicode? id:269 gh:270
     //        encoded.Append(PdfEncoders.InvalidChar);
     //        //encoded.Append(ch);
     //        continue;
@@ -522,7 +522,7 @@ namespace PdfSharp.Pdf.Internal
     //            break;
     //
     //          default: 
-    //            encoded.Append(PdfEncoders.InvalidChar); // TODO
+    //            encoded.Append(PdfEncoders.InvalidChar); // TODO id:214 gh:215
     //            break;
     //        }
     //      }

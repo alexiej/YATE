@@ -126,7 +126,7 @@ namespace PdfSharp.Pdf.Advanced
       Elements.SetInteger(Keys.XHeight, this.descriptor.DesignUnitsToPdf(this.descriptor.XHeight));
     }
 
-    //HACK OpenTypeDescriptor descriptor
+    //HACK OpenTypeDescriptor descriptor id:103 gh:104
     internal OpenTypeDescriptor descriptor;
 
     //    public string DefaultName
@@ -205,7 +205,7 @@ namespace PdfSharp.Pdf.Advanced
     //      return true;
     //    }
 
-    // HACK FlagsFromDescriptor(OpenTypeDescriptor descriptor)
+    // HACK FlagsFromDescriptor(OpenTypeDescriptor descriptor) id:178 gh:179
     PdfFontDescriptorFlags FlagsFromDescriptor(OpenTypeDescriptor descriptor)
     {
       PdfFontDescriptorFlags flags = 0;
@@ -271,7 +271,7 @@ namespace PdfSharp.Pdf.Advanced
       public const string Flags = "/Flags";
 
       /// <summary>
-      /// (Required, except for Type 3 fonts) A rectangle (see Section 3.8.4, “Rectangles”),
+      /// (Required, except for Type 3 fonts) A rectangle (see Section 3.8.4, ï¿½Rectanglesï¿½),
       /// expressed in the glyph coordinate system, specifying the font bounding box. This 
       /// is the smallest rectangle enclosing the shape that would result if all of the 
       /// glyphs of the font were placed with their origins coincident and then filled.
@@ -281,8 +281,8 @@ namespace PdfSharp.Pdf.Advanced
 
       /// <summary>
       /// (Required) The angle, expressed in degrees counterclockwise from the vertical, of
-      /// the dominant vertical strokes of the font. (For example, the 9-o’clock position is 90 
-      /// degrees, and the 3-o’clock position is –90 degrees.) The value is negative for fonts 
+      /// the dominant vertical strokes of the font. (For example, the 9-oï¿½clock position is 90 
+      /// degrees, and the 3-oï¿½clock position is ï¿½90 degrees.) The value is negative for fonts 
       /// that slope to the right, as almost all italic fonts do.
       /// </summary>
       [KeyInfo(KeyType.Real | KeyType.Required)]
@@ -317,7 +317,7 @@ namespace PdfSharp.Pdf.Advanced
       public const string CapHeight = "/CapHeight";
 
       /// <summary>
-      /// (Optional) The font’s x height: the vertical coordinate of the top of flat nonascending
+      /// (Optional) The fontï¿½s x height: the vertical coordinate of the top of flat nonascending
       /// lowercase letters (like the letter x), measured from the baseline, in fonts that have 
       /// Latin characters. Default value: 0.
       /// </summary>
@@ -352,7 +352,7 @@ namespace PdfSharp.Pdf.Advanced
 
       /// <summary>
       /// (Optional) The width to use for character codes whose widths are not specified in a 
-      /// font dictionary’s Widths array. This has a predictable effect only if all such codes 
+      /// font dictionaryï¿½s Widths array. This has a predictable effect only if all such codes 
       /// map to glyphs whose actual widths are the same as the value of the MissingWidth entry.
       /// Default value: 0.
       /// </summary>
@@ -380,7 +380,7 @@ namespace PdfSharp.Pdf.Advanced
 
       /// <summary>
       /// (Optional; meaningful only in Type 1 fonts; PDF 1.1) A string listing the character
-      /// names defined in a font subset. The names in this string must be in PDF syntax—that is,
+      /// names defined in a font subset. The names in this string must be in PDF syntaxï¿½that is,
       /// each name preceded by a slash (/). The names can appear in any order. The name .notdef
       /// should be omitted; it is assumed to exist in the font subset. If this entry is absent,
       /// the only indication of a font subset is the subset tag in the FontName entry.

@@ -168,7 +168,7 @@ namespace PdfSharp.Pdf.Advanced
       /// </summary>
       public Selector(XForm form)
       {
-        // HACK: just use full path to identify
+        // HACK: just use full path to identify id:233 gh:234
         this.path = form.path.ToLower(CultureInfo.InvariantCulture);
       }
 

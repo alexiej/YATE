@@ -36,7 +36,7 @@ namespace PdfSharp.Drawing.BarCodes
   /// <summary>
   /// Internal base class for several bar code types.
   /// </summary>
-  public abstract class ThickThinBarCode : BarCode  // TODO: The name is not optimal
+  public abstract class ThickThinBarCode : BarCode  // TODO: The name is not optimal id:78 gh:79
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ThickThinBarCode"/> class.
@@ -51,7 +51,7 @@ namespace PdfSharp.Drawing.BarCodes
       base.InitRendering(info);
       CalcThinBarWidth(info);
       info.BarHeight = Size.Height;
-      // HACK in ThickThinBarCode
+      // HACK in ThickThinBarCode id:43 gh:44
       if (this.textLocation != TextLocation.None)
         info.BarHeight *= 4.0 / 5;
 

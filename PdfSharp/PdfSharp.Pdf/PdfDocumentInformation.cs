@@ -127,7 +127,7 @@ namespace PdfSharp.Pdf
       set { Elements.SetDateTime(Keys.ModDate, value); }
     }
 
-    // TODO CustomProperties and meta data
+    // TODO CustomProperties and meta data id:217 gh:218
 
     /// <summary>
     /// Predefined keys of this dictionary.
@@ -135,7 +135,7 @@ namespace PdfSharp.Pdf
     internal sealed class Keys : KeysBase
     {
       /// <summary>
-      /// (Optional; PDF 1.1) The document’s title.
+      /// (Optional; PDF 1.1) The documentï¿½s title.
       /// </summary>
       [KeyInfo(KeyType.String | KeyType.Optional)]
       public const string Title = "/Title";

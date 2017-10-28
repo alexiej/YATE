@@ -449,7 +449,7 @@ namespace PdfSharp.Drawing
         {
           return true;
         }
-        // TODO: Exif: find JFIF header
+        // TODO: Exif: find JFIF header id:126 gh:128
         if (imageBits[0] == 0xff &&
             imageBits[1] == 0xd8 &&
             imageBits[2] == 0xff &&

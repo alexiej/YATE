@@ -214,7 +214,7 @@ namespace PdfSharp.Pdf.Advanced
     }
     PdfResourceMap xObjects;
 
-    // TODO: make own class
+    // TODO: make own class id:181 gh:182
     internal PdfResourceMap ExtGStates
     {
       get
@@ -226,7 +226,7 @@ namespace PdfSharp.Pdf.Advanced
     }
     PdfResourceMap extGStates;
 
-    // TODO: make own class
+    // TODO: make own class id:237 gh:238
     internal PdfResourceMap ColorSpaces
     {
       get
@@ -238,7 +238,7 @@ namespace PdfSharp.Pdf.Advanced
     }
     PdfResourceMap colorSpaces;
 
-    // TODO: make own class
+    // TODO: make own class id:190 gh:191
     internal PdfResourceMap Patterns
     {
       get
@@ -250,7 +250,7 @@ namespace PdfSharp.Pdf.Advanced
     }
     PdfResourceMap patterns;
 
-    // TODO: make own class
+    // TODO: make own class id:226 gh:227
     internal PdfResourceMap Shadings
     {
       get
@@ -262,7 +262,7 @@ namespace PdfSharp.Pdf.Advanced
     }
     PdfResourceMap shadings;
 
-    // TODO: make own class
+    // TODO: make own class id:152 gh:153
     internal PdfResourceMap Properties
     {
       get
@@ -364,7 +364,7 @@ namespace PdfSharp.Pdf.Advanced
     /// </summary>
     internal bool ExistsResourceNames(string name)
     {
-      // TODO: more precise: is this page imported and is PageOptions != Replace
+      // TODO: more precise: is this page imported and is PageOptions != Replace id:182 gh:183
       // BUG: 
       //if (!this.Owner.IsImported)
       //  return false;

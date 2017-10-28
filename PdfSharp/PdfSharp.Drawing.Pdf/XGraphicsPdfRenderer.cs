@@ -131,7 +131,7 @@ namespace PdfSharp.Drawing.Pdf
       if (!this.gfx.transform.IsIdentity)
         throw new NotImplementedException("Transform must be identity to clear the canvas.");
 
-      // TODO: this is implementation is bogus. Reset transformation to identity an then fill
+      // TODO: this is implementation is bogus. Reset transformation to identity an then fill id:44 gh:45
       XBrush brush = new XSolidBrush(color);
       DrawRectangle(null, brush, 0, 0, Size.Width, Size.Height);
     }
@@ -459,7 +459,7 @@ namespace PdfSharp.Drawing.Pdf
             break;
 
           case XLineAlignment.Center:
-            // TODO use CapHeight. PDFlib also uses 3/4 of ascent
+            // TODO use CapHeight. PDFlib also uses 3/4 of ascent id:153 gh:154
             y += (cyAscent * 3 / 4) / 2 + rect.Height / 2;
             break;
 
@@ -481,7 +481,7 @@ namespace PdfSharp.Drawing.Pdf
             break;
 
           case XLineAlignment.Center:
-            // TODO use CapHeight. PDFlib also uses 3/4 of ascent
+            // TODO use CapHeight. PDFlib also uses 3/4 of ascent id:55 gh:56
             y += -(cyAscent * 3 / 4) / 2 + rect.Height / 2;
             break;
 
@@ -503,12 +503,12 @@ namespace PdfSharp.Drawing.Pdf
 
       if (bold && !descriptor.IsBoldFace)
       {
-        // TODO: emulate bold by thicker outline
+        // TODO: emulate bold by thicker outline id:90 gh:91
       }
 
       if (italic && !descriptor.IsBoldFace)
       {
-        // TODO: emulate italic by shearing transformation
+        // TODO: emulate italic by shearing transformation id:106 gh:107
       }
 
       if (font.Unicode)
@@ -640,7 +640,7 @@ namespace PdfSharp.Drawing.Pdf
       }
     }
 
-    // TODO: incomplete - srcRect not used
+    // TODO: incomplete - srcRect not used id:45 gh:46
     public void DrawImage(XImage image, XRect destRect, XRect srcRect, XGraphicsUnit srcUnit)
     {
       double x = destRect.X;
@@ -798,7 +798,7 @@ namespace PdfSharp.Drawing.Pdf
       // Ensure that the graphics state stack level is at least 2, because otherwise an error
       // occurs when someone set the clip region before something was drawn.
       if (this.gfxState.Level < GraphicsStackLevelWorldSpace)
-        RealizeTransform();  // TODO: refactor this function
+        RealizeTransform();  // TODO: refactor this function id:154 gh:155
 
       if (combineMode == XCombineMode.Replace)
       {
@@ -870,7 +870,7 @@ namespace PdfSharp.Drawing.Pdf
     public void WriteComment(string comment)
     {
       comment.Replace("\n", "\n% ");
-      // TODO: Some more checks necessary?
+      // TODO: Some more checks necessary? id:56 gh:57
       Append("% " + comment + "\n");
     }
 
@@ -1336,7 +1336,7 @@ namespace PdfSharp.Drawing.Pdf
       if (this.gfxState.Level == GraphicsStackLevelInitial)
       {
         // Flip page horizontaly and mirror text.
-        // TODO: Is PageOriging and PageScale (== Viewport) useful? Or just public DefaultViewMatrix (like Presentation Manager has had)
+        // TODO: Is PageOriging and PageScale (== Viewport) useful? Or just public DefaultViewMatrix (like Presentation Manager has had) id:119 gh:120
         this.defaultViewMatrix = new XMatrix();  //XMatrix.Identity;
         if (this.gfx.PageDirection == XPageDirection.Downwards)
         {
@@ -1362,7 +1362,7 @@ namespace PdfSharp.Drawing.Pdf
               trimOffset = new XPoint(this.page.TrimMargins.Left.Point, this.page.TrimMargins.Top.Point);
             }
 
-            if (this.page != null && this.page.Elements.GetInteger("/Rotate") == 90)  // HACK for InDesign flyer
+            if (this.page != null && this.page.Elements.GetInteger("/Rotate") == 90)  // HACK for InDesign flyer id:107 gh:108
             {
               defaultViewMatrix.RotatePrepend(90);
               defaultViewMatrix.ScalePrepend(1, -1);

@@ -332,7 +332,7 @@ namespace PdfSharp.Drawing
 
 #if GDI
     /// <summary>
-    /// Adds a cubic Bézier curve to the current figure.
+    /// Adds a cubic Bï¿½zier curve to the current figure.
     /// </summary>
     public void AddBezier(System.Drawing.Point pt1, System.Drawing.Point pt2, System.Drawing.Point pt3, System.Drawing.Point pt4)
     {
@@ -342,7 +342,7 @@ namespace PdfSharp.Drawing
 
 #if WPF
     /// <summary>
-    /// Adds a cubic Bézier curve to the current figure.
+    /// Adds a cubic Bï¿½zier curve to the current figure.
     /// </summary>
     public void AddBezier(System.Windows.Point pt1, System.Windows.Point pt2, System.Windows.Point pt3, System.Windows.Point pt4)
     {
@@ -352,7 +352,7 @@ namespace PdfSharp.Drawing
 
 #if GDI
     /// <summary>
-    /// Adds a cubic Bézier curve to the current figure.
+    /// Adds a cubic Bï¿½zier curve to the current figure.
     /// </summary>
     public void AddBezier(PointF pt1, PointF pt2, PointF pt3, PointF pt4)
     {
@@ -361,7 +361,7 @@ namespace PdfSharp.Drawing
 #endif
 
     /// <summary>
-    /// Adds a cubic Bézier curve to the current figure.
+    /// Adds a cubic Bï¿½zier curve to the current figure.
     /// </summary>
     public void AddBezier(XPoint pt1, XPoint pt2, XPoint pt3, XPoint pt4)
     {
@@ -369,7 +369,7 @@ namespace PdfSharp.Drawing
     }
 
     /// <summary>
-    /// Adds a cubic Bézier curve to the current figure.
+    /// Adds a cubic Bï¿½zier curve to the current figure.
     /// </summary>
     public void AddBezier(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
     {
@@ -377,7 +377,7 @@ namespace PdfSharp.Drawing
     }
 
     /// <summary>
-    /// Adds a cubic Bézier curve to the current figure.
+    /// Adds a cubic Bï¿½zier curve to the current figure.
     /// </summary>
     public void AddBezier(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
     {
@@ -422,7 +422,7 @@ namespace PdfSharp.Drawing
 
 #if GDI
     /// <summary>
-    /// Adds a sequence of connected cubic Bézier curves to the current figure.
+    /// Adds a sequence of connected cubic Bï¿½zier curves to the current figure.
     /// </summary>
     public void AddBeziers(System.Drawing.Point[] points)
     {
@@ -432,7 +432,7 @@ namespace PdfSharp.Drawing
 
 #if WPF
     /// <summary>
-    /// Adds a sequence of connected cubic Bézier curves to the current figure.
+    /// Adds a sequence of connected cubic Bï¿½zier curves to the current figure.
     /// </summary>
     public void AddBeziers(System.Windows.Point[] points)
     {
@@ -442,7 +442,7 @@ namespace PdfSharp.Drawing
 
 #if GDI
     /// <summary>
-    /// Adds a sequence of connected cubic Bézier curves to the current figure.
+    /// Adds a sequence of connected cubic Bï¿½zier curves to the current figure.
     /// </summary>
     public void AddBeziers(PointF[] points)
     {
@@ -451,7 +451,7 @@ namespace PdfSharp.Drawing
 #endif
 
     /// <summary>
-    /// Adds a sequence of connected cubic Bézier curves to the current figure.
+    /// Adds a sequence of connected cubic Bï¿½zier curves to the current figure.
     /// </summary>
     public void AddBeziers(XPoint[] points)
     {
@@ -1087,7 +1087,7 @@ namespace PdfSharp.Drawing
     /// </summary>
     public void AddPolygon(System.Windows.Point[] points)
     {
-      // TODO: fill mode unclear here
+      // TODO: fill mode unclear here id:168 gh:169
       StartFigure();
 #if !SILVERLIGHT
       this.pathGeometry.AddGeometry(GeometryHelper.CreatePolygonGeometry(points, XFillMode.Alternate, true));
@@ -1476,7 +1476,7 @@ namespace PdfSharp.Drawing
           break;
 
         case XLineAlignment.Center:
-          // TODO use CapHeight. PDFlib also uses 3/4 of ascent
+          // TODO use CapHeight. PDFlib also uses 3/4 of ascent id:118 gh:119
           y += -formattedText.Baseline + (cyAscent * 2 / 4) + layoutRect.Height / 2;
           break;
 
@@ -1499,7 +1499,7 @@ namespace PdfSharp.Drawing
       //      break;
 
       //    case XLineAlignment.Center:
-      //      // TODO use CapHeight. PDFlib also uses 3/4 of ascent
+      //      // TODO use CapHeight. PDFlib also uses 3/4 of ascent id:125 gh:127
       //      //y += -(cyAscent * 3 / 4) / 2 + rect.Height / 2;
       //      break;
 
@@ -1515,12 +1515,12 @@ namespace PdfSharp.Drawing
 
       //if (bold && !descriptor.IsBoldFace)
       //{
-      //  // TODO: emulate bold by thicker outline
+      //  // TODO: emulate bold by thicker outline id:137 gh:138
       //}
 
       //if (italic && !descriptor.IsBoldFace)
       //{
-      //  // TODO: emulate italic by shearing transformation
+      //  // TODO: emulate italic by shearing transformation id:94 gh:95
       //}
 
       if (underline)
@@ -1550,7 +1550,7 @@ namespace PdfSharp.Drawing
 
     // ----- CloseAllFigures ----------------------------------------------------------------------
 
-    // TODO? CloseAllFigures
+    // TODO ? CloseAllFigures id:169 gh:170
     //public void CloseAllFigures();
 
     // --------------------------------------------------------------------------------------------
@@ -1661,7 +1661,7 @@ namespace PdfSharp.Drawing
 #if WPF
 #if !SILVERLIGHT
       this.pathGeometry = this.pathGeometry.GetFlattenedPathGeometry();
-      // TODO: matrix handling not yet tested
+      // TODO: matrix handling not yet tested id:159 gh:160
       if (!matrix.IsIdentity)
         this.pathGeometry.Transform = new MatrixTransform(matrix.ToWpfMatrix());
 #else

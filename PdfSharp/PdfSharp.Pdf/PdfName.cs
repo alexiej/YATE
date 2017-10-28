@@ -147,7 +147,7 @@ namespace PdfSharp.Pdf
     /// </summary>
     internal override void WriteObject(PdfWriter writer)
     {
-      // TODO: what if unicode character are part of the name? 
+      // TODO: what if unicode character are part of the name?  id:253 gh:256
       writer.Write(this);
     }
 

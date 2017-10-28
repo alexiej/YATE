@@ -17,7 +17,7 @@ using System.IO;
 using System.Text; // StringBuilder
 
 // important TODOS: 
-// TODO 1. Start tags: The ParseXmlElement function has been modified to be called after both the 
+// TODO 1. Start tags: The ParseXmlElement function has been modified to be called after both the  id:304 gh:305
 // angle bracket < and element name have been read, instead of just the < bracket and some valid name character, 
 // previously the case. This change was made so that elements with optional closing tags could read a new
 // element's start tag and decide whether they were required to close. However, there is a question of whether to
@@ -27,12 +27,12 @@ using System.Text; // StringBuilder
 // about optional closing tags, etc. UPDATED: 10/13/2004: I am updating this to read the whole start tag of something 
 // that is not an HTML, treat it as empty, and add it to the tree. That way the converter will know it's there, but
 // it will hvae no content. We could also partially recover by trying to look up and match names if they are similar
-// TODO 2. Invalid element names: However, it might make sense to give the lexical analyzer the ability to identify
+// TODO 2. Invalid element names: However, it might make sense to give the lexical analyzer the ability to identify id:325 gh:326
 // a valid html element name and not return something as a start tag otherwise. For example, if we type <good>, should
 // the lexical analyzer return that it has found the start of an element when this is not the case in HTML? But this will
 // require implementing a lookahead token in the lexical analyzer so that it can treat an invalid element name as text. One 
 // character of lookahead will not be enough.
-// TODO 3. Attributes: The attribute recovery is poor when reading attribute values in quotes - if no closing quotes are found,
+// TODO 3. Attributes: The attribute recovery is poor when reading attribute values in quotes - if no closing quotes are found, id:265 gh:266
 // the lexical analyzer just keeps reading and if it eventually reaches the end of file, it would have just skipped everything.
 // There are a couple of ways to deal with this: 1) stop reading attributes when we encounter a '>' character - this doesn't allow
 // the '>' character to be used in attribute values, but it can still be used as an entity. 2) Maintain a HTML-specific list
@@ -40,15 +40,15 @@ using System.Text; // StringBuilder
 // element we use them regardless of the quotes, this way we could just ignore something invalid. One more option: 3) Read ahead
 // in the quoted value and if we find an end of file, we can return to where we were and process as text. However this requires
 // a lot of lookahead and a resettable reader.
-// TODO 4: elements with optional closing tags: For elements with optional closing tags, we always close the element if we find
+// TODO 4: elements with optional closing tags: For elements with optional closing tags, we always close the element if we find id:285 gh:286
 // that one of it's ancestors has closed. This condition may be too broad and we should develop a better heuristic. We should also
 // improve the heuristics for closing certain elements when the next element starts
-// TODO 5. Nesting: Support for unbalanced nesting, e.g. <b> <i> </b> </i>: this is not presently supported. To support it we may need
+// TODO 5. Nesting: Support for unbalanced nesting, e.g. <b> <i> </b> </i>: this is not presently supported. To support it we may need id:296 gh:297
 // to maintain two xml elements, one the element that represents what has already been read and another represents what we are presently reading.
 // Then if we encounter an unbalanced nesting tag we could close the element that was supposed to close, save the current element
 // and store it in the list of already-read content, and then open a new element to which all tags that are currently open
 // can be applied. Is there a better way to do this? Should we do it at all?
-// TODO 6. Elements with optional starting tags: there are 4 such elements in the HTML 4 specification - html, tbody, body and head.
+// TODO 6. Elements with optional starting tags: there are 4 such elements in the HTML 4 specification - html, tbody, body and head. id:305 gh:306
 // The current recovery doesn;t do anything for any of these elements except the html element, because it's not critical - head
 // and body elementscan be contained within html element, and tbody is contained within table. To extend this for XHTML 
 // extensions, and to recover in case other elements are missing start tags, we would need to insert an extra recursive call
@@ -63,7 +63,7 @@ using System.Text; // StringBuilder
 // text,  then we can support only one missing start tag, since the extra call will read the next start tag and make a recursive
 // call without checking the context. This is a conceptual problem, and the check should be made just before a recursive call,
 // with the choice being whether we should supply an element name as argument, or leave it as NULL and read from the input
-// TODO 7: Context: Is it appropriate to keep track of context here? For example, should we only expect td, tr elements when
+// TODO 7: Context: Is it appropriate to keep track of context here? For example, should we only expect td, tr elements when id:326 gh:327
 // reading a table and ignore them otherwise? This may be too much of a load on the parser, I think it's better if the converter
 // deals with it
 
@@ -185,7 +185,7 @@ namespace HTMLConverter
             {
                 return "ERROR: Urecognized html header";
             }
-            // TODO: We assume that indices represented by strictly 10 zeros ("0123456789".Length),
+            // TODO: We assume that indices represented by strictly 10 zeros ("0123456789".Length), id:266 gh:267
             // which could be wrong assumption. We need to implement more flrxible parsing here
             startHtmlIndex = Int32.Parse(htmlDataString.Substring(startHtmlIndex + "StartHTML:".Length, "0123456789".Length));
             if (startHtmlIndex < 0 || startHtmlIndex > htmlDataString.Length)
@@ -198,7 +198,7 @@ namespace HTMLConverter
             {
                 return "ERROR: Urecognized html header";
             }
-            // TODO: We assume that indices represented by strictly 10 zeros ("0123456789".Length),
+            // TODO: We assume that indices represented by strictly 10 zeros ("0123456789".Length), id:286 gh:287
             // which could be wrong assumption. We need to implement more flrxible parsing here
             endHtmlIndex = Int32.Parse(htmlDataString.Substring(endHtmlIndex + "EndHTML:".Length, "0123456789".Length));
             if (endHtmlIndex > htmlDataString.Length)
@@ -429,7 +429,7 @@ namespace HTMLConverter
 
                 if (htmlParent != null)
                 {
-                    // NOTE:
+                    // NOTE: id:297 gh:298
                     // Actually we never expect null - it would mean two top-level P or LI (without a parent).
                     // In such weird case we will loose all paragraphs except the first one...
                     htmlParent.AppendChild(htmlElement);

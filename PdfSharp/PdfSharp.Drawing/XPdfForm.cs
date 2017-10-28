@@ -104,7 +104,7 @@ namespace PdfSharp.Drawing
     /// </summary>
     public static new XPdfForm FromFile(string path)
     {
-      // TODO: Same file should return same object (that's why the function is static).
+      // TODO: Same file should return same object (that's why the function is static). id:141 gh:142
       return new XPdfForm(path);
     }
 
@@ -160,7 +160,7 @@ namespace PdfSharp.Drawing
     /// refer to this document. A reuse of this object doesn't fail, because the underlying PDF document
     /// is re-imported if necessary.
     /// </summary>
-    // TODO: NYI: Dispose
+    // TODO: NYI: Dispose id:98 gh:99
     protected override void Dispose(bool disposing)
     {
       if (!this.disposed)

@@ -2,7 +2,7 @@
 //
 // Authors:
 //   Stefan Lange (mailto:Stefan.Lange@pdfsharp.com)
-//   Thomas Hövel (mailto:Thomas.Hoevel@pdfsharp.com)
+//   Thomas Hï¿½vel (mailto:Thomas.Hoevel@pdfsharp.com)
 //
 // Copyright (c) 2005-2009 empira Software GmbH, Cologne (Germany)
 //
@@ -64,7 +64,7 @@ namespace PdfSharp.Pdf.Advanced
 
       this.image = image;
 
-      ////// TODO: identify multiple used images. If the image already exists use the same XRef.
+      ////// TODO: identify multiple used images. If the image already exists use the same XRef. id:148 gh:149
       ////this.defaultName = PdfImageTable.NextImageName;
 
       switch (this.image.Format.Guid.ToString("B").ToUpper())
@@ -79,8 +79,8 @@ namespace PdfSharp.Pdf.Advanced
         case "{B96B3CB0-0728-11D3-9D7B-0000F81EF32E}":  //XImageFormat.Gif
         case "{B96B3CB1-0728-11D3-9D7B-0000F81EF32E}":  //XImageFormat.Tiff
         case "{B96B3CB5-0728-11D3-9D7B-0000F81EF32E}":  //XImageFormat.Icon
-          // TODO: possible optimization for PNG (do not decompress/recompress)???
-          // TODO: try Jpeg for size optimization???
+          // TODO: possible optimization for PNG (do not decompress/recompress)??? id:105 gh:106
+          // TODO: try Jpeg for size optimization??? id:234 gh:235
           InitializeNonJpeg();
           break;
 
@@ -172,7 +172,7 @@ namespace PdfSharp.Pdf.Advanced
 #if GDI
       if ((image.gdiImage.Flags & ((int)ImageFlags.ColorSpaceCmyk | (int)ImageFlags.ColorSpaceYcck)) != 0)
       {
-        // TODO: Test with CMYK JPEG files
+        // TODO: Test with CMYK JPEG files id:187 gh:188
         // THHO: I only found ImageFlags.ColorSpaceYcck JPEG files ...
         Elements[Keys.ColorSpace] = new PdfName("/DeviceCMYK");
         if ((image.gdiImage.Flags & (int)ImageFlags.ColorSpaceYcck) != 0)
@@ -199,7 +199,7 @@ namespace PdfSharp.Pdf.Advanced
       bool isGrey = pixelFormat == "Gray8";
       if (isCmyk)
       {
-        // TODO: Test with CMYK JPEG files
+        // TODO: Test with CMYK JPEG files id:223 gh:224
         // THHO: I only found ImageFlags.ColorSpaceYcck JPEG files ...
         Elements[Keys.ColorSpace] = new PdfName("/DeviceCMYK");
         Elements["/Decode"] = new PdfLiteral("[1 0 1 0 1 0 1 0]");  // Invert colors? Why??
@@ -258,7 +258,7 @@ namespace PdfSharp.Pdf.Advanced
       }
 #endif
 #if WPF // && !GDI
-      // WPFTHHO: Bitte prüfen, siehe System.Windows.Media.PixelFormats
+      // WPFTHHO: Bitte prï¿½fen, siehe System.Windows.Media.PixelFormats
       //bool hasMask = false;
 #if !SILVERLIGHT
       string format = image.wpfImage.Format.ToString();
@@ -347,7 +347,7 @@ namespace PdfSharp.Pdf.Advanced
 #endif
 #if WPF
 #if !SILVERLIGHT
-      // WPFTHHO: Bitte prüfen
+      // WPFTHHO: Bitte prï¿½fen
       BmpBitmapEncoder encoder = new BmpBitmapEncoder();
       encoder.Frames.Add(BitmapFrame.Create(image.wpfImage));
       encoder.Save(memory);
@@ -367,7 +367,7 @@ namespace PdfSharp.Pdf.Advanced
         int height = image.PixelHeight;
         int width = image.PixelWidth;
 
-        // TODO: we could define structures for
+        // TODO: we could define structures for id:149 gh:150
         //   BITMAPFILEHEADER
         //   { BITMAPINFO }
         //   BITMAPINFOHEADER
@@ -494,7 +494,7 @@ namespace PdfSharp.Pdf.Advanced
         Elements[Keys.Width] = new PdfInteger(width);
         Elements[Keys.Height] = new PdfInteger(height);
         Elements[Keys.BitsPerComponent] = new PdfInteger(8);
-        // TODO: CMYK
+        // TODO: CMYK id:179 gh:180
         Elements[Keys.ColorSpace] = new PdfName("/DeviceRGB");
         if (image.Interpolate)
           Elements[Keys.Interpolate] = PdfBoolean.True;
@@ -680,7 +680,7 @@ namespace PdfSharp.Pdf.Advanced
 
         if (bits == 1)
         {
-          // TODO: flag/option?
+          // TODO: flag/option? id:235 gh:236
           // We try Group 3 1D and Group 4 (2D) encoding here and keep the smaller byte array.
           //byte[] temp = new byte[imageData.Length];
           //int ccittSize = DoFaxEncoding(ref temp, imageBits, (uint)bytesFileOffset, (uint)width, (uint)height);
@@ -744,12 +744,12 @@ namespace PdfSharp.Pdf.Advanced
                   int n = imageBits[bytesFileOffset + bytesOffsetRead];
                   if (bits == 8)
                   {
-                    // TODO???: segmentedColorMask == true => bad mask NYI
+                    // TODO ???: segmentedColorMask == true => bad mask NYI id:188 gh:189
                     mask.AddPel((n >= firstMaskColor) && (n <= lastMaskColor));
                   }
                   else if (bits == 4)
                   {
-                    // TODO???: segmentedColorMask == true => bad mask NYI
+                    // TODO ???: segmentedColorMask == true => bad mask NYI id:224 gh:225
                     int n1 = (n & 0xf0) / 16;
                     int n2 = (n & 0x0f);
                     mask.AddPel((n1 >= firstMaskColor) && (n1 <= lastMaskColor));
@@ -757,7 +757,7 @@ namespace PdfSharp.Pdf.Advanced
                   }
                   else if (bits == 1)
                   {
-                    // TODO???: segmentedColorMask == true => bad mask NYI
+                    // TODO ???: segmentedColorMask == true => bad mask NYI id:150 gh:151
                     for (int bit = 1; bit <= 8; ++bit)
                     {
                       int n1 = (n & 0x80) / 128;
@@ -875,7 +875,7 @@ namespace PdfSharp.Pdf.Advanced
         Elements[Keys.Width] = new PdfInteger(width);
         Elements[Keys.Height] = new PdfInteger(height);
         Elements[Keys.BitsPerComponent] = new PdfInteger(bits);
-        // TODO: CMYK
+        // TODO: CMYK id:180 gh:181
 
         // CCITT encoding: we need color palette for isBitonal == 0
         // FlateDecode: we need color palette for isBitonal <= 0 unless we have grayscales
@@ -935,8 +935,8 @@ namespace PdfSharp.Pdf.Advanced
       /// (Required for images, except those that use the JPXDecode filter; not allowed for image masks)
       /// The color space in which image samples are specified; it can be any type of color space except
       /// Pattern. If the image uses the JPXDecode filter, this entry is optional:
-      /// • If ColorSpace is present, any color space specifications in the JPEG2000 data are ignored.
-      /// • If ColorSpace is absent, the color space specifications in the JPEG2000 data are used.
+      /// ï¿½ If ColorSpace is present, any color space specifications in the JPEG2000 data are ignored.
+      /// ï¿½ If ColorSpace is absent, the color space specifications in the JPEG2000 data are used.
       ///   The Decode array is also ignored unless ImageMask is true.
       /// </summary>
       [KeyInfo(KeyType.NameOrArray | KeyType.Required)]
@@ -986,10 +986,10 @@ namespace PdfSharp.Pdf.Advanced
 
       /// <summary>
       /// (Optional) An array of numbers describing how to map image samples into the range of values
-      /// appropriate for the image’s color space. If ImageMask is true, the array must be either
+      /// appropriate for the imageï¿½s color space. If ImageMask is true, the array must be either
       /// [0 1] or [1 0]; otherwise, its length must be twice the number of color components required 
       /// by ColorSpace. If the image uses the JPXDecode filter and ImageMask is false, Decode is ignored.
-      /// Default value: see “Decode Arrays”.
+      /// Default value: see ï¿½Decode Arraysï¿½.
       /// </summary>
       [KeyInfo(KeyType.Array | KeyType.Optional)]
       public const string Decode = "/Decode";
@@ -1014,8 +1014,8 @@ namespace PdfSharp.Pdf.Advanced
       /// source of mask shape or mask opacity values in the transparent imaging model. The alpha 
       /// source parameter in the graphics state determines whether the mask values are interpreted as
       /// shape or opacity. If present, this entry overrides the current soft mask in the graphics state,
-      /// as well as the image’s Mask entry, if any. (However, the other transparency related graphics 
-      /// state parameters — blend mode and alpha constant — remain in effect.) If SMask is absent, the 
+      /// as well as the imageï¿½s Mask entry, if any. (However, the other transparency related graphics 
+      /// state parameters ï¿½ blend mode and alpha constant ï¿½ remain in effect.) If SMask is absent, the 
       /// image has no associated soft mask (although the current soft mask in the graphics state may
       /// still apply).
       /// </summary>
@@ -1026,10 +1026,10 @@ namespace PdfSharp.Pdf.Advanced
       /// (Optional for images that use the JPXDecode filter, meaningless otherwise; PDF 1.5)
       /// A code specifying how soft-mask information encoded with image samples should be used:
       /// 0 If present, encoded soft-mask image information should be ignored.
-      /// 1 The image’s data stream includes encoded soft-mask values. An application can create
+      /// 1 The imageï¿½s data stream includes encoded soft-mask values. An application can create
       ///   a soft-mask image from the information to be used as a source of mask shape or mask 
       ///   opacity in the transparency imaging model.
-      /// 2 The image’s data stream includes color channels that have been preblended with a 
+      /// 2 The imageï¿½s data stream includes color channels that have been preblended with a 
       ///   background; the image data also includes an opacity channel. An application can create
       ///   a soft-mask image with a Matte entry from the opacity channel information to be used as
       ///   a source of mask shape or mask opacity in the transparency model. If this entry has a 
@@ -1048,13 +1048,13 @@ namespace PdfSharp.Pdf.Advanced
 
       /// <summary>
       /// (Required if the image is a structural content item; PDF 1.3) The integer key of the 
-      /// image’s entry in the structural parent tree.
+      /// imageï¿½s entry in the structural parent tree.
       /// </summary>
       [KeyInfo(KeyType.Integer | KeyType.Required)]
       public const string StructParent = "/StructParent";
 
       /// <summary>
-      /// (Optional; PDF 1.3; indirect reference preferred) The digital identifier of the image’s
+      /// (Optional; PDF 1.3; indirect reference preferred) The digital identifier of the imageï¿½s
       /// parent Web Capture content set.
       /// </summary>
       [KeyInfo(KeyType.String | KeyType.Optional)]

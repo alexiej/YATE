@@ -50,7 +50,7 @@ namespace PdfSharp.Pdf
   /// <summary>
   /// Represents a PDF rectangle value, that is internally an array with 4 real values.
   /// </summary>
-  // TODO: Can the format be expressed less verbose?
+  // TODO: Can the format be expressed less verbose? id:317 gh:318
   [DebuggerDisplay("X1={X1.ToString(\"0.####\",System.Globalization.CultureInfo.InvariantCulture)}, X2={X2.ToString(\"0.####\",System.Globalization.CultureInfo.InvariantCulture)}, Y1={Y1.ToString(\"0.####\",System.Globalization.CultureInfo.InvariantCulture)}, Y2={Y2.ToString(\"0.####\",System.Globalization.CultureInfo.InvariantCulture)}")]
   public sealed class PdfRectangle : PdfItem
   {
@@ -366,7 +366,7 @@ namespace PdfSharp.Pdf
     }
 
     /// <summary>
-    /// Returns the rectangle as a string in the form «[x1 y1 x2 y2]».
+    /// Returns the rectangle as a string in the form ï¿½[x1 y1 x2 y2]ï¿½.
     /// </summary>
     public override string ToString()
     {

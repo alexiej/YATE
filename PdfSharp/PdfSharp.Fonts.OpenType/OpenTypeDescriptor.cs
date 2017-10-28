@@ -181,7 +181,7 @@ namespace PdfSharp.Fonts.OpenType
           "os2.usWinDescent={0}, hhea.descender={1}, os2.sTypoDescender={2}", fontData.os2.usWinDescent, fontData.hhea.descender, fontData.os2.sTypoDescender));
 #endif
         // Force sign from hhea.descender
-        // TODO:
+        // TODO: id:176 gh:177
         this.descender = Math.Abs(this.descender) * Math.Sign(fontData.hhea.descender);
       }
       else

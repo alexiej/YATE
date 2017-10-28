@@ -735,7 +735,7 @@ namespace PdfSharp.Pdf.Advanced
     /// <returns>The MSB aligned bits from the buffer.</returns>
     internal byte PeekByte(out uint bits)
     {
-      // TODO: try to make this faster!
+      // TODO: try to make this faster! id:186 gh:187
       if (bitsInBuffer == 8)
       {
         bits = 8;
@@ -814,7 +814,7 @@ namespace PdfSharp.Pdf.Advanced
     internal void WriteBits(uint value, uint bits)
     {
 #if true
-    // TODO: Try to make this faster!
+    // TODO: Try to make this faster! id:136 gh:137
 
     // If we have to write more bits than fit into the buffer, we fill
     // the buffer and call the same routine recursively for the rest.

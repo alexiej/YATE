@@ -230,7 +230,7 @@ namespace PdfSharp.Pdf.Advanced
 
     /// <summary>
     /// A collection of information that uniquely identifies a particular PDF font.
-    /// ... more docu... TODO
+    /// ... more docu... TODO id:185 gh:186
     /// Two PDF fonts are equal if and only if their font selector objects are equal.
     /// </summary>
     public class FontSelector

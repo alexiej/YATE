@@ -308,9 +308,9 @@ namespace PdfSharp.Pdf
       }
     }
 
-    // TODO: PdfAnnotations
-    // TODO: PdfActions
-    // TODO: PdfPageTransition
+    // TODO: PdfAnnotations id:274 gh:275
+    // TODO: PdfActions id:219 gh:220
+    // TODO: PdfPageTransition id:202 gh:203
 
     /// <summary>
     /// The content stream currently used by an XGraphics object for rendering.
@@ -350,7 +350,7 @@ namespace PdfSharp.Pdf
                   array.Document = Owner;
                 }
 //#warning THHO4STLA: verursacht Exception "Object type transformation must not be done with direct objects" in "protected PdfObject(PdfObject obj)"
-                // TODO THHO4STLA: verursacht Exception "Object type transformation must not be done with direct objects" in "protected PdfObject(PdfObject obj)"
+                // TODO THHO4STLA: verursacht Exception "Object type transformation must not be done with direct objects" in "protected PdfObject(PdfObject obj)" id:315 gh:316
                 this.contents = new PdfContents(array);
               }
               else
@@ -560,9 +560,9 @@ namespace PdfSharp.Pdf
 
     internal override void WriteObject(PdfWriter writer)
     {
-      // HACK: temporarily flip media box if Landscape
+      // HACK: temporarily flip media box if Landscape id:255 gh:253
       PdfRectangle mediaBox = MediaBox;
-      // TODO: Take /Rotate into account
+      // TODO: Take /Rotate into account id:275 gh:276
       if (orientation == PageOrientation.Landscape)
         MediaBox = new PdfRectangle(mediaBox.X1, mediaBox.Y1, mediaBox.Y2, mediaBox.X2);
 //#warning THHO4STLA: warum nicht new PdfRectangle(mediaBox.Y1, mediaBox.X1, mediaBox.Y2, mediaBox.X2)? - siehe auch Orientation
@@ -570,7 +570,7 @@ namespace PdfSharp.Pdf
 
 #if true
       // Add transparency group to prevent rendering problems of Adobe viewer
-      this.transparencyUsed = true; // TODO: check XObjects
+      this.transparencyUsed = true; // TODO: check XObjects id:220 gh:221
       if (this.transparencyUsed && !Elements.ContainsKey(Keys.Group))
       {
         PdfDictionary group = new PdfDictionary();
@@ -606,7 +606,7 @@ namespace PdfSharp.Pdf
     /// </summary>
     internal static void InheritValues(PdfDictionary page, InheritedValues values)
     {
-      // HACK: I'M ABSOLUTELY NOT SURE WHETHER THIS CODE COVERS ALL CASES.
+      // HACK: I'M ABSOLUTELY NOT SURE WHETHER THIS CODE COVERS ALL CASES. id:203 gh:204
       if (values.Resources != null)
       {
         PdfDictionary resources;
@@ -730,7 +730,7 @@ namespace PdfSharp.Pdf
 
       /// <summary>
       /// (Required if PieceInfo is present; optional otherwise; PDF 1.3) The date and time
-      /// when the page’s contents were most recently modified. If a page-piece dictionary
+      /// when the pageï¿½s contents were most recently modified. If a page-piece dictionary
       /// (PieceInfo) is present, the modification date is used to ascertain which of the 
       /// application data dictionaries that it contains correspond to the current content
       /// of the page.
@@ -756,8 +756,8 @@ namespace PdfSharp.Pdf
 
       /// <summary>
       /// (Optional; PDF 1.3) A rectangle, expressed in default user space units, defining the
-      /// extent of the page’s meaningful content (including potential white space) as intended
-      /// by the page’s creator. Default value: the value of CropBox.
+      /// extent of the pageï¿½s meaningful content (including potential white space) as intended
+      /// by the pageï¿½s creator. Default value: the value of CropBox.
       /// </summary>
       [KeyInfo("1.3", KeyType.Rectangle | KeyType.Optional)]
       public const string ArtBox = "/ArtBox";
@@ -778,21 +778,21 @@ namespace PdfSharp.Pdf
       /// in order, to form a single stream. This allows PDF producers to create image objects and
       /// other resources as they occur, even though they interrupt the content stream. The division
       /// between streams may occur only at the boundaries between lexical tokens but is unrelated
-      /// to the page’s logical content or organization. Applications that consume or produce PDF 
+      /// to the pageï¿½s logical content or organization. Applications that consume or produce PDF 
       /// files are not required to preserve the existing structure of the Contents array.
       /// </summary>
       [KeyInfo(KeyType.Array | KeyType.Stream | KeyType.Optional)]
       public const string Contents = "/Contents";
 
       /// <summary>
-      /// (Optional; PDF 1.4) A group attributes dictionary specifying the attributes of the page’s 
+      /// (Optional; PDF 1.4) A group attributes dictionary specifying the attributes of the pageï¿½s 
       /// page group for use in the transparent imaging model.
       /// </summary>
       [KeyInfo("1.4", KeyType.Dictionary | KeyType.Optional)]
       public const string Group = "/Group";
 
       /// <summary>
-      /// (Optional) A stream object defining the page’s thumbnail image.
+      /// (Optional) A stream object defining the pageï¿½s thumbnail image.
       /// </summary>
       [KeyInfo(KeyType.Stream | KeyType.Optional)]
       public const string Thumb = "/Thumb";
@@ -806,7 +806,7 @@ namespace PdfSharp.Pdf
       public const string B = "/B";
 
       /// <summary>
-      /// (Optional; PDF 1.1) The page’s display duration (also called its advance timing): the 
+      /// (Optional; PDF 1.1) The pageï¿½s display duration (also called its advance timing): the 
       /// maximum length of time, in seconds, that the page is displayed during presentations before
       /// the viewer application automatically advances to the next page. By default, the viewer does 
       /// not advance automatically.
@@ -849,20 +849,20 @@ namespace PdfSharp.Pdf
 
       /// <summary>
       /// (Required if the page contains structural content items; PDF 1.3)
-      /// The integer key of the page’s entry in the structural parent tree.
+      /// The integer key of the pageï¿½s entry in the structural parent tree.
       /// </summary>
       [KeyInfo(KeyType.Integer | KeyType.Optional)]
       public const string StructParents = "/StructParents";
 
       /// <summary>
       /// (Optional; PDF 1.3; indirect reference preferred) The digital identifier of
-      /// the page’s parent Web Capture content set.
+      /// the pageï¿½s parent Web Capture content set.
       /// </summary>
       [KeyInfo("1.3", KeyType.String | KeyType.Optional)]
       public const string ID = "/ID";
 
       /// <summary>
-      /// (Optional; PDF 1.3) The page’s preferred zoom (magnification) factor: the factor 
+      /// (Optional; PDF 1.3) The pageï¿½s preferred zoom (magnification) factor: the factor 
       /// by which it should be scaled to achieve the natural display magnification.
       /// </summary>
       [KeyInfo("1.3", KeyType.Real | KeyType.Optional)]
