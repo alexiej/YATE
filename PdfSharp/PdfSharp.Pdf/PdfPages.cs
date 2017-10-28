@@ -138,7 +138,7 @@ namespace PdfSharp.Pdf
           if (ReferenceEquals(this[idx], page))
             throw new InvalidOperationException(PSSR.MultiplePageInsert);
         }
-        // TODO: check this case
+        // TODO: check this case id:316 gh:317
         Owner.irefTable.Add(page);
         PagesArray.Elements.Insert(index, page.Reference);
         Elements.SetInteger(PdfPages.Keys.Count, PagesArray.Elements.Count);
@@ -235,7 +235,7 @@ namespace PdfSharp.Pdf
       // Deep copy annotations.
       CloneElement(page, importPage, PdfPage.Keys.Annots, true);
 #endif
-      // TODO more elements?
+      // TODO more elements? id:256 gh:258
       return page;
     }
 
@@ -346,7 +346,7 @@ namespace PdfSharp.Pdf
     /// </summary>
     PdfDictionary[] GetKids(PdfReference iref, PdfPage.InheritedValues values, PdfDictionary parent)
     {
-      // TODO: inherit inheritable keys...
+      // TODO: inherit inheritable keys... id:276 gh:277
       PdfDictionary kid = (PdfDictionary)iref.Value;
 
       if (kid.Elements.GetName(Keys.Type) == "/Page")
@@ -381,9 +381,9 @@ namespace PdfSharp.Pdf
     /// </summary>
     internal override void PrepareForSave()
     {
-      // TODO: Close all open content streams
+      // TODO: Close all open content streams id:221 gh:222
 
-      // TODO: Create the page tree.
+      // TODO: Create the page tree. id:204 gh:205
       // Arrays have a limit of 8192 entries, but I successfully tested documents
       // with 50000 pages and no page tree.
       // ==> wait for bug report.

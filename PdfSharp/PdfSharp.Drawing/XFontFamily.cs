@@ -67,7 +67,7 @@ namespace PdfSharp.Drawing
     internal XFontFamily(System.Windows.Media.FontFamily family)
     {
       this.name = family.Source;
-      // HACK
+      // HACK id:113 gh:114
       int idxHash = this.name.LastIndexOf('#');
       if (idxHash > 0)
         this.name = this.name.Substring(idxHash + 1);

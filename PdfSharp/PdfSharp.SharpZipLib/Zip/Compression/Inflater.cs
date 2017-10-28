@@ -59,7 +59,7 @@ namespace PdfSharp.SharpZipLib.Zip.Compression
   /// <ul>
   /// <li>needsInput() returns true because the input buffer is empty.
   /// You have to provide more input with <code>setInput()</code>.
-  /// NOTE: needsInput() also returns true when, the stream is finished.
+  /// NOTE: needsInput() also returns true when, the stream is finished. id:289 gh:290
   /// </li>
   /// <li>needsDictionary() returns true, you have to provide a preset
   ///    dictionary with <code>setDictionary()</code>.</li>
@@ -767,7 +767,7 @@ namespace PdfSharp.SharpZipLib.Zip.Compression
     /// <summary>
     /// Returns true, if the input buffer is empty.
     /// You should then call setInput(). 
-    /// NOTE: This method also returns true when the stream is finished.
+    /// NOTE: This method also returns true when the stream is finished. id:206 gh:207
     /// </summary>
     public bool IsNeedingInput
     {

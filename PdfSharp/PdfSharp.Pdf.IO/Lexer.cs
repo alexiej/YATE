@@ -115,7 +115,7 @@ namespace PdfSharp.Pdf.IO
         //  }
         //  break;
 
-        case '+': //TODO is it so easy?
+        case '+': //TODO is it so easy? id:240 gh:241
         case '-':
           return this.symbol = ScanNumber();
 
@@ -175,7 +175,7 @@ namespace PdfSharp.Pdf.IO
     public byte[] ReadStream(int length)
     {
       int pos = 0;
-      // Skip new line behind «stream»
+      // Skip new line behind ï¿½streamï¿½
       if (this.currChar == Chars.CR)
       {
         if (this.nextChar == Chars.LF)
@@ -215,7 +215,7 @@ namespace PdfSharp.Pdf.IO
 
       this.token = new StringBuilder();
       while (AppendAndScanNextChar() != Chars.LF) ;
-      // TODO: not correct
+      // TODO: not correct id:245 gh:246
       if (this.token.ToString().StartsWith("%%EOF"))
         return Symbol.Eof;
       return this.symbol = Symbol.Comment;
@@ -242,7 +242,7 @@ namespace PdfSharp.Pdf.IO
           hex[0] = this.currChar;
           hex[1] = this.nextChar;
           ScanNextChar();
-          // TODO Check syntax
+          // TODO Check syntax id:229 gh:230
           ch = (char)(ushort)int.Parse(new string(hex), NumberStyles.AllowHexSpecifier);
           this.currChar = ch;
         }
@@ -371,7 +371,7 @@ namespace PdfSharp.Pdf.IO
         // ? What about \# escape sequences
 
         // BUG: The code is not correct. I got a file containing the following sting:
-        // (þÿñùãfØÚ\rÞF`:7.2.5 Acceptable daily intake \(ADI\) and other guideline levels)
+        // (ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½\rï¿½F`:7.2.5 Acceptable daily intake \(ADI\) and other guideline levels)
         // It starts as unicode but ends as Ascii. No idea how to parse.
 #if true
         //List<byte> bytes = new List<byte>();
@@ -455,7 +455,7 @@ namespace PdfSharp.Pdf.IO
                     }
                     else
                     {
-                      //TODO
+                      //TODO id:210 gh:211
                       Debug.Assert(false, "Not implemented; unknown escape character.");
                     }
                     break;
@@ -463,7 +463,7 @@ namespace PdfSharp.Pdf.IO
                 break;
               }
 
-            // TODO ???
+            // TODO ??? id:193 gh:194
             //case '#':
             //  Debug.Assert(false, "Not yet implemented");
             //  break;
@@ -515,7 +515,7 @@ namespace PdfSharp.Pdf.IO
 
             case '\\':
               {
-                // TODO: not sure that this is correct...
+                // TODO: not sure that this is correct... id:241 gh:242
                 ch = ScanNextChar();
                 switch (ch)
                 {
@@ -575,7 +575,7 @@ namespace PdfSharp.Pdf.IO
                     }
                     else
                     {
-                      //TODO
+                      //TODO id:246 gh:247
                       Debug.Assert(false, "Not implemented; unknown escape character.");
                     }
                     break;
@@ -583,7 +583,7 @@ namespace PdfSharp.Pdf.IO
                 break;
               }
 
-            // TODO ???
+            // TODO ??? id:230 gh:231
             //case '#':
             //  Debug.Assert(false, "Not yet implemented");
             //  break;
@@ -686,7 +686,7 @@ namespace PdfSharp.Pdf.IO
                     }
                     else
                     {
-                      //TODO
+                      //TODO id:211 gh:212
                       Debug.Assert(false, "Not implemented; unknown escape character.");
                     }
                     break;
@@ -694,7 +694,7 @@ namespace PdfSharp.Pdf.IO
                 break;
               }
 
-            // TODO ???
+            // TODO ??? id:194 gh:195
             //case '#':
             //  Debug.Assert(false, "Not yet implemented");
             //  break;

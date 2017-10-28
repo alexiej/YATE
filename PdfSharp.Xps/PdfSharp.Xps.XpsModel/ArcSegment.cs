@@ -22,7 +22,7 @@ namespace PdfSharp.Xps.XpsModel
       System.Windows.Media.PathGeometry geo = new System.Windows.Media.PathGeometry();
       System.Windows.Rect bounds = geo.Bounds;
 
-      // TODO: incorrect result, just a hack
+      // TODO: incorrect result, just a hack id:68 gh:69
       XRect rect = new XRect(Point.X - Size.Width, Point.Y - Size.Height, 2 * Size.Width, 2 * Size.Height);
       return rect;
     }

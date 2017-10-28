@@ -229,7 +229,7 @@ namespace PdfSharp.Pdf.Content
         if (ch > ' ')
           switch (ch)
           {
-            // TODO: is this all?
+            // TODO: is this all? id:192 gh:193
             case '/':
             case '<':
             case '>':
@@ -415,7 +415,7 @@ namespace PdfSharp.Pdf.Content
         WriteRaw(" >>\nstream\n");
 
       if (omitStream)
-        WriteRaw("  «...stream content omitted...»\n");  // useful for debugging only
+        WriteRaw("  ï¿½...stream content omitted...ï¿½\n");  // useful for debugging only
       else
       {
         byte[] bytes = value.Stream.Value;

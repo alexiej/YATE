@@ -61,7 +61,7 @@ namespace PdfSharp.Pdf.AcroForms
     public string Text
     {
       get { return Elements.GetString(Keys.V); }
-      set { Elements.SetString(Keys.V, value); RenderAppearance(); } //HACK in PdfTextField
+      set { Elements.SetString(Keys.V, value); RenderAppearance(); } //HACK in PdfTextField id:183 gh:184
     }
 
     /// <summary>
@@ -179,7 +179,7 @@ namespace PdfSharp.Pdf.AcroForms
     public new class Keys : PdfAcroField.Keys
     {
       /// <summary>
-      /// (Optional; inheritable) The maximum length of the field’s text, in characters.
+      /// (Optional; inheritable) The maximum length of the fieldï¿½s text, in characters.
       /// </summary>
       [KeyInfo(KeyType.Integer | KeyType.Optional)]
       public const string MaxLen = "/MaxLen";

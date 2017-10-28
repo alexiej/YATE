@@ -93,11 +93,11 @@ namespace PdfSharp.Pdf.Advanced
       /// </summary>
       public ImageSelector(XImage image)
       {
-        // HACK: implement a way to identify images when they are reused
+        // HACK: implement a way to identify images when they are reused id:236 gh:237
         if (image.path == null)
           image.path = Guid.NewGuid().ToString();
 
-        // HACK: just use full path to identify
+        // HACK: just use full path to identify id:189 gh:190
         this.path = image.path.ToLower(CultureInfo.InvariantCulture);
       }
 

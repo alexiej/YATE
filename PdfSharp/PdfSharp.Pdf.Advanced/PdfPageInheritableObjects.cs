@@ -47,7 +47,7 @@ namespace PdfSharp.Pdf.Advanced
     {
     }
 
-    // TODO Inheritable Resources not yet supported
+    // TODO Inheritable Resources not yet supported id:151 gh:152
 
     /// <summary>
     /// 

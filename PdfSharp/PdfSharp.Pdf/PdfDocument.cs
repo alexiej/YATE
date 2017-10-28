@@ -206,7 +206,7 @@ namespace PdfSharp.Pdf
     {
       //get {return this.state == DocumentState.Created || this.state == DocumentState.Modifyable;}
       // THHO4STLA: TODO: correct implementation
-      get { return openMode == PdfDocumentOpenMode.Modify; } // TODO: correct implementation
+      get { return openMode == PdfDocumentOpenMode.Modify; } // TODO: correct implementation id:312 gh:313
     }
 
     /// <summary>
@@ -256,7 +256,7 @@ namespace PdfSharp.Pdf
       if (!CanModify)
         throw new InvalidOperationException(PSSR.CannotModify);
 
-      // TODO: more diagnostic checks
+      // TODO: more diagnostic checks id:252 gh:255
       string message = "";
       if (!CanSave(ref message))
         throw new PdfSharpException(message);
@@ -460,7 +460,7 @@ namespace PdfSharp.Pdf
       {
         if (!CanModify)
           throw new InvalidOperationException(PSSR.CannotModify);
-        if (value < 12 || value > 17) // TODO not really implemented
+        if (value < 12 || value > 17) // TODO not really implemented id:272 gh:273
           throw new ArgumentException(PSSR.InvalidVersionNumber, "value");
         this.version = value;
       }

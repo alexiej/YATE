@@ -183,7 +183,7 @@ namespace PdfSharp.Pdf
     {
       get { return this.opened2; }
       set { this.opened2 = value; }
-      // TODO: adjust openCount of ascendant...
+      // TODO: adjust openCount of ascendant... id:218 gh:219
 #if false
       set 
       {
@@ -256,7 +256,7 @@ namespace PdfSharp.Pdf
           Elements[Keys.First] = this.outlines[0].Reference;
           Elements[Keys.Last] = this.outlines[this.outlines.Count - 1].Reference;
 
-          // TODO: /Count - the meaning is not completely clear to me
+          // TODO: /Count - the meaning is not completely clear to me id:201 gh:202
           if (this.openCount > 0)
             Elements[Keys.Count] = new PdfInteger(this.openCount);
         }
@@ -285,7 +285,7 @@ namespace PdfSharp.Pdf
             Elements[Keys.First] = this.outlines[0].Reference;
             Elements[Keys.Last] = this.outlines[this.outlines.Count - 1].Reference;
           }
-          // TODO: /Count - the meaning is not completely clear to me
+          // TODO: /Count - the meaning is not completely clear to me id:314 gh:315
           if (this.openCount > 0)
             Elements[Keys.Count] = new PdfInteger((this.opened2 ? 1 : -1) * this.openCount);
 
@@ -367,7 +367,7 @@ namespace PdfSharp.Pdf
         if (!Object.ReferenceEquals(Owner, outline.DestinationPage.Owner))
           throw new ArgumentException("Destination page must belong to this document.");
 
-        // TODO check the parent problems...
+        // TODO check the parent problems... id:254 gh:257
         outline.Document = Owner;
         outline.parent = this.parent;
 
@@ -542,14 +542,14 @@ namespace PdfSharp.Pdf
 
       /// <summary>
       /// (Required if the item has any descendants; must be an indirect reference)
-      ///  The first of this item’s immediate children in the outline hierarchy.
+      ///  The first of this itemï¿½s immediate children in the outline hierarchy.
       /// </summary>
       [KeyInfo(KeyType.Dictionary | KeyType.Required)]
       public const string First = "/First";
 
       /// <summary>
       /// (Required if the item has any descendants; must be an indirect reference)
-      /// The last of this item’s immediate children in the outline hierarchy.
+      /// The last of this itemï¿½s immediate children in the outline hierarchy.
       /// </summary>
       [KeyInfo(KeyType.Dictionary | KeyType.Required)]
       public const string Last = "/Last";
@@ -590,7 +590,7 @@ namespace PdfSharp.Pdf
 
       /// <summary>
       /// (Optional; PDF 1.4) An array of three numbers in the range 0.0 to 1.0, representing the 
-      /// components in the DeviceRGB color space of the color to be used for the outline entry’s text.
+      /// components in the DeviceRGB color space of the color to be used for the outline entryï¿½s text.
       /// Default value: [0.0 0.0 0.0].
       /// </summary>
       [KeyInfo(KeyType.Array | KeyType.Optional)]
@@ -598,7 +598,7 @@ namespace PdfSharp.Pdf
 
       /// <summary>
       /// (Optional; PDF 1.4) A set of flags specifying style characteristics for displaying the outline
-      /// item’s text. Default value: 0.
+      /// itemï¿½s text. Default value: 0.
       /// </summary>
       [KeyInfo(KeyType.Integer | KeyType.Optional)]
       public const string F = "/F";

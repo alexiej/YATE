@@ -192,7 +192,7 @@ namespace PdfSharp.Pdf
       PdfName[] keys = Elements.KeyNames;
 
 #if DEBUG
-      // TODO: automatically set length
+      // TODO: automatically set length id:198 gh:199
       if (this.stream != null)
         Debug.Assert(Elements.ContainsKey(PdfStream.Keys.Length), "Dictionary has a stream but no length is set.");
 #endif
@@ -225,7 +225,7 @@ namespace PdfSharp.Pdf
         throw new ArgumentNullException("key");
       PdfItem item = Elements[key];
 #if DEBUG
-      // TODO: simplify PDFsharp
+      // TODO: simplify PDFsharp id:311 gh:312
       if (item is PdfObject && ((PdfObject)item).IsIndirect)
       {
         // Replace an indirect object by its Reference
@@ -846,7 +846,7 @@ namespace PdfSharp.Pdf
       /// <summary>
       /// Returns the type of the object to be created as value of the specified key.
       /// </summary>
-      Type GetValueType(string key)  // TODO: move to PdfObject
+      Type GetValueType(string key)  // TODO: move to PdfObject id:251 gh:252
       {
         Type type = null;
         DictionaryMeta meta = this.owner.Meta;
@@ -856,10 +856,10 @@ namespace PdfSharp.Pdf
           if (kd != null)
             type = kd.GetValueType();
           else
-            Debug.WriteLine("Warning: Key not desciptor table: " + key);  // TODO: check what this means...
+            Debug.WriteLine("Warning: Key not desciptor table: " + key);  // TODO: check what this means... id:271 gh:272
         }
         else
-          Debug.WriteLine("Warning: No meta provided for type: " + this.owner.GetType().Name);  // TODO: check what this means...
+          Debug.WriteLine("Warning: No meta provided for type: " + this.owner.GetType().Name);  // TODO: check what this means... id:216 gh:217
         return type;
       }
 
@@ -935,7 +935,7 @@ namespace PdfSharp.Pdf
         Debug.Assert((value is PdfObject && ((PdfObject)value).Reference == null) | !(value is PdfObject),
           "You try to set an indirect object directly into a dictionary.");
 
-        // HACK?
+        // HACK ? id:199 gh:200
         this.elements[key] = value;
       }
 

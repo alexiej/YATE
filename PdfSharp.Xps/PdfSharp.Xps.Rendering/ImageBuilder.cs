@@ -33,7 +33,7 @@ namespace PdfSharp.Xps.Rendering
       if (fpage == null)
         Debug.Assert(false);
 
-      FixedPayload payload = fpage.Document.Payload;  // TODO: find better way to get FixedPayload
+      FixedPayload payload = fpage.Document.Payload;  // TODO: find better way to get FixedPayload id:3 gh:4
       //Debug.Assert(Object.Equals(payload, Context.
 
       // Get the font object.

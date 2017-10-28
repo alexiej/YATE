@@ -151,7 +151,7 @@ namespace HTMLConverter
                         else
                         {
                             // Element is not tbody or tr. Ignore it.
-                            // TODO: add processing for thead, tfoot elements and recovery for td elements
+                            // TODO: add processing for thead, tfoot elements and recovery for td elements id:260 gh:261
                             htmlChildNode = htmlChildNode.NextSibling;
                         }
                     }
@@ -214,7 +214,7 @@ namespace HTMLConverter
                     GetElementProperties(htmlChildNode as XmlElement, currentProperties, trElementCurrentProperties, stylesheet);
                     ApplyLocalProperties(tr, trElementCurrentProperties,/*isBlock*/true);
 
-                    // TODO: apply local properties to tr element
+                    // TODO: apply local properties to tr element id:280 gh:281
                     AddTableCellsToTableRow(tr, htmlChildNode.FirstChild, trElementCurrentProperties, columnStarts, activeRowSpans, stylesheet);
 
                     if (tr.Cells.Count > 0)
@@ -251,7 +251,7 @@ namespace HTMLConverter
                 else
                 {
                     // Not a tr or td  element. Ignore it.
-                    // TODO: consider better recovery here
+                    // TODO: consider better recovery here id:291 gh:292
                     htmlChildNode = htmlChildNode.NextSibling;
                 }
             }
@@ -350,7 +350,7 @@ namespace HTMLConverter
                 else
                 {
                     // Not td element. Ignore it.
-                    // TODO: Consider better recovery
+                    // TODO: Consider better recovery id:300 gh:301
                     htmlChildNode = htmlChildNode.NextSibling;
                 }
             }
@@ -455,7 +455,7 @@ namespace HTMLConverter
                 {
                     if (htmlChildNode.LocalName.ToLower() == "colgroup")
                     {
-                        // TODO: add column width information to this function as a parameter and process it
+                        // TODO: add column width information to this function as a parameter and process it id:321 gh:322
                         AddTableColumnGroup(current, (XmlElement)htmlChildNode, currentProperties, stylesheet);
                     }
                     else if (htmlChildNode.LocalName.ToLower() == "col")
@@ -487,7 +487,7 @@ namespace HTMLConverter
         {
             Hashtable currentProperties = new Hashtable();
             GetElementProperties((XmlElement)htmlColgroupElement, inheritedProperties, currentProperties, stylesheet);
-            // TODO: process local properties for colgroup
+            // TODO: process local properties for colgroup id:261 gh:262
 
             // Process children of colgroup. Colgroup may contain only col elements.
             for (XmlNode htmlNode = htmlColgroupElement.FirstChild; htmlNode != null; htmlNode = htmlNode.NextSibling)
@@ -520,7 +520,7 @@ namespace HTMLConverter
             TableColumn tcol = new TableColumn();
 
             //  ApplyLocalProperties(tcol, currentProperties,/*isBlock*/true);
-            // TODO: process local properties for TableColumn element
+            // TODO: process local properties for TableColumn element id:281 gh:282
 
             // Col is an empty element, with no subtree 
             //  xamlTableElement.AppendChild(xamlTableColumnElement);
@@ -655,7 +655,7 @@ namespace HTMLConverter
                         break;
                     case "td":
                         // Incorrect formatting, too deep to analyze at this level. Return null.
-                        // TODO: implement analysis at this level, possibly by creating a new tr
+                        // TODO: implement analysis at this level, possibly by creating a new tr id:292 gh:293
                         columnWidthsAvailable = false; // interrupt the analisys
                         break;
                     default:

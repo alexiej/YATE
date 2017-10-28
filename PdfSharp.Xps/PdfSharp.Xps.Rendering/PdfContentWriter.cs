@@ -83,7 +83,7 @@ namespace PdfSharp.Xps.Rendering
         }
         DocumentRenderingContext context;
 
-        internal void CreateDefaultTransparencyGroup() // HACK
+        internal void CreateDefaultTransparencyGroup() // HACK id:13 gh:14
         {
             if (this.page != null)
                 this.page.transparencyUsed = true;
@@ -235,12 +235,12 @@ namespace PdfSharp.Xps.Rendering
 
       //if (bold && !descriptor.IsBoldFace)
       //{
-      //  // TODO: emulate bold by thicker outline
+      //  // TODO: emulate bold by thicker outline id:23 gh:24
       //}
 
       //if (italic && !descriptor.IsBoldFace)
       //{
-      //  // TODO: emulate italic by shearing transformation
+      //  // TODO: emulate italic by shearing transformation id:61 gh:62
       //}
 
       string s2 = "";
@@ -310,17 +310,17 @@ namespace PdfSharp.Xps.Rendering
 
     private void WriteGlyphs_None(Glyphs glyphs, string text)
     {
-      // TODO:
+      // TODO: id:27 gh:28
     }
 
     private void WriteGlyphs_DistanceOnly(Glyphs glyphs, string text)
     {
-      // TODO:
+      // TODO: id:7 gh:8
     }
 
     private void WriteGlyphs_GlyphIndicesAndDistanceOnly(Glyphs glyphs, string text)
     {
-      // TODO:
+      // TODO: id:14 gh:15
     }
 
     private void WriteGlyphs_ClusterMapping(Glyphs glyphs, string text)
@@ -407,7 +407,7 @@ namespace PdfSharp.Xps.Rendering
                 }
                 else if ((lgBrush = path.Fill as LinearGradientBrush) != null)
                 {
-                    // TODO: For better visual compatibility use a Shading Pattern if Opacity is not 1 and
+                    // TODO: For better visual compatibility use a Shading Pattern if Opacity is not 1 and id:33 gh:34
                     // the Stroke Style is not solid. Acrobat 8 ignores this case.
 
                     PdfExtGState xgState = Context.PdfDocument.Internals.CreateIndirectObject<PdfExtGState>();
@@ -448,7 +448,7 @@ namespace PdfSharp.Xps.Rendering
                     PdfExtGState xgState = Context.PdfDocument.Internals.CreateIndirectObject<PdfExtGState>();
                     xgState.SetDefault1();
 
-                    double avGradientOpacity = rgBrush.GradientStops.GetAverageAlpha(); // HACK
+                    double avGradientOpacity = rgBrush.GradientStops.GetAverageAlpha(); // HACK id:62 gh:63
                     double opacity = Opacity * rgBrush.Opacity * avGradientOpacity;
                     if (opacity < 1)
                     {
@@ -589,7 +589,7 @@ namespace PdfSharp.Xps.Rendering
             VisualBrush vBrush;
             ImageBrush iBrush;
 
-            //if (path.Stroke != null && this.renderMode == RenderMode.Default) // HACK
+            //if (path.Stroke != null && this.renderMode == RenderMode.Default) // HACK id:28 gh:29
 
             if ((sBrush = path.Stroke as SolidColorBrush) != null)
             {
@@ -622,7 +622,7 @@ namespace PdfSharp.Xps.Rendering
                 // Q
                 if (lgBrush.GradientStops.HasTransparency)
                 {
-                    // TODO: Create Form
+                    // TODO: Create Form id:8 gh:9
                     PdfShadingPattern pattern = LinearShadingBuilder.BuildPatternFromLinearGradientBrush(Context, lgBrush, Transform);
                     string paName = Resources.AddPattern(pattern);
                     WriteLiteral("/Pattern CS " + paName + " SCN\n");
@@ -647,7 +647,7 @@ namespace PdfSharp.Xps.Rendering
             }
             else if ((rgBrush = path.Stroke as RadialGradientBrush) != null)
             {
-                // HACK
+                // HACK id:15 gh:16
                 WriteLiteral("/DeviceRGB CS 0 1 0 RG\n");
                 WriteLiteral("q {0:0.###} w", path.StrokeThickness);
                 WriteGeometry(path.Data);
@@ -655,7 +655,7 @@ namespace PdfSharp.Xps.Rendering
             }
             else if ((iBrush = path.Stroke as ImageBrush) != null)
             {
-                // HACK
+                // HACK id:34 gh:35
                 WriteLiteral("/DeviceRGB CS 0 1 0 RG\n");
                 WriteLiteral("q {0:0.###} w", path.StrokeThickness);
                 WriteGeometry(path.Data);
@@ -663,7 +663,7 @@ namespace PdfSharp.Xps.Rendering
             }
             else if ((vBrush = path.Stroke as VisualBrush) != null)
             {
-                // HACK
+                // HACK id:63 gh:64
                 WriteLiteral("/DeviceRGB CS 0 1 0 RG\n");
                 WriteLiteral("q {0:0.###} w", path.StrokeThickness);
                 WriteGeometry(path.Data);
@@ -689,7 +689,7 @@ namespace PdfSharp.Xps.Rendering
             if (polyLineSegment.Points.Count != 1)
                 return false;
 
-            // TODO: Create a new path that draws the line
+            // TODO: Create a new path that draws the line id:29 gh:30
             path.GetType();
 
             return false;
@@ -795,7 +795,7 @@ namespace PdfSharp.Xps.Rendering
                 //  trimOffset = new XPoint(this.page.TrimMargins.Left.Point, this.page.TrimMargins.Top.Point);
                 //}
 
-                //if (this.page != null && this.page.Elements.GetInteger("/Rotate") == 90)  // HACK for InDesign flyer
+                //if (this.page != null && this.page.Elements.GetInteger("/Rotate") == 90)  // HACK for InDesign flyer id:80 gh:81
                 //{
                 //  defaultViewMatrix.RotatePrepend(90);
                 //  defaultViewMatrix.ScalePrepend(1, -1);
@@ -952,7 +952,7 @@ namespace PdfSharp.Xps.Rendering
         {
 #if DEBUG_
       // WPF uses zero lengh rounded line to draw circles. These circles PDF renders without antializing (Acrobat 8.1)
-      // TODO: Bug in Acrobat or rendering issue?
+      // TODO: Bug in Acrobat or rendering issue? id:16 gh:17
       if (seg.Points.Count == 1)
       {
         if (seg.Points[0] == this.currentPoint)
@@ -1010,7 +1010,7 @@ namespace PdfSharp.Xps.Rendering
                 WriteSegment(lseg);
             }
 #else
-      // TODO: Convert quadratic Bezier curve in cubic Bézier curve
+      // TODO: Convert quadratic Bezier curve in cubic Bézier curve id:35 gh:36
       PolyLineSegment lseg = WpfUtils.FlattenSegment(this.currentPoint, seg);
       WriteSegment(lseg);
 #endif
@@ -1162,7 +1162,7 @@ namespace PdfSharp.Xps.Rendering
 
         public void WriteOpacityMask(Brush brush)
         {
-            // TODO
+            // TODO id:64 gh:65
         }
 
         /// <summary>

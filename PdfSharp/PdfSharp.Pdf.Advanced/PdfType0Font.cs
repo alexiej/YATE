@@ -144,7 +144,7 @@ namespace PdfSharp.Pdf.Advanced
         //}
 
       // CID fonts are always embedded
-      if (!BaseFont.Contains("+"))  // HACK in PdfType0Font
+      if (!BaseFont.Contains("+"))  // HACK in PdfType0Font id:191 gh:192
         BaseFont = PdfFont.CreateEmbeddedFontSubsetName(BaseFont);
 
       this.fontDescriptor.FontName = BaseFont;
@@ -191,7 +191,7 @@ namespace PdfSharp.Pdf.Advanced
         for (int idx = 0; idx < count; idx++)
           glyphWidths[idx] = descriptor.GlyphIndexToPdfWidth(glyphIndices[idx]);
 
-        //TODO: optimize order of indices
+        //TODO: optimize order of indices id:227 gh:228
 
         for (int idx = 0; idx < count; idx++)
           w.AppendFormat("{0}[{1}]", glyphIndices[idx], glyphWidths[idx]);
@@ -226,7 +226,7 @@ namespace PdfSharp.Pdf.Advanced
           glyphWidths[idx] = descriptor.GlyphIndexToPdfWidth(glyphIndex);
         }
 
-        //TODO: optimize order of indices
+        //TODO: optimize order of indices id:208 gh:209
 
         for (int idx = 0; idx < count; idx++)
           w.AppendFormat("{0}[{1}]", glyphIndices[idx], glyphWidths[idx]);
@@ -263,9 +263,9 @@ namespace PdfSharp.Pdf.Advanced
       /// dictionary. The conventions described here ensure maximum compatibility
       /// with existing Acrobat products.
       /// If the descendant is a Type 0 CIDFont, this name should be the concatenation
-      /// of the CIDFont’s BaseFont name, a hyphen, and the CMap name given in the
+      /// of the CIDFontï¿½s BaseFont name, a hyphen, and the CMap name given in the
       /// Encoding entry (or the CMapName entry in the CMap). If the descendant is a
-      /// Type 2 CIDFont, this name should be the same as the CIDFont’s BaseFont name.
+      /// Type 2 CIDFont, this name should be the same as the CIDFontï¿½s BaseFont name.
       /// </summary>
       [KeyInfo(KeyType.Name | KeyType.Required)]
       public new const string BaseFont = "/BaseFont";

@@ -391,27 +391,27 @@ namespace HTMLConverter
             _htmlElementsClosingDD = new ArrayList();
             _htmlElementsClosingDD.Add("dd");
             _htmlElementsClosingDD.Add("dt");
-            // TODO: dd may end in other cases as well - if a new "p" starts, etc.
-            // TODO: these are the basic "legal" cases but there may be more recovery
+            // TODO: dd may end in other cases as well - if a new "p" starts, etc. id:306 gh:307
+            // TODO: these are the basic "legal" cases but there may be more recovery id:327 gh:328
 
             _htmlElementsClosingDT = new ArrayList();
             _htmlElementsClosingDD.Add("dd");
             _htmlElementsClosingDD.Add("dt");
-            // TODO: dd may end in other cases as well - if a new "p" starts, etc.
-            // TODO: these are the basic "legal" cases but there may be more recovery
+            // TODO: dd may end in other cases as well - if a new "p" starts, etc. id:267 gh:268
+            // TODO: these are the basic "legal" cases but there may be more recovery id:287 gh:288
 
             _htmlElementsClosingLI = new ArrayList();
             _htmlElementsClosingLI.Add("li");
-            // TODO: more complex recovery
+            // TODO: more complex recovery id:298 gh:299
 
             _htmlElementsClosingTbody = new ArrayList();
             _htmlElementsClosingTbody.Add("tbody");
             _htmlElementsClosingTbody.Add("thead");
             _htmlElementsClosingTbody.Add("tfoot");
-            // TODO: more complex recovery
+            // TODO: more complex recovery id:307 gh:308
 
             _htmlElementsClosingTR = new ArrayList();
-            // NOTE: tr should not really close on a new thead
+            // NOTE: tr should not really close on a new thead id:328 gh:329
             // because if there are rows before a thead, it is assumed to be in tbody, whose start tag is optional
             // and thead can't come after tbody
             // however, if we do encounter this, it's probably best to end the row and ignore the thead or treat
@@ -420,7 +420,7 @@ namespace HTMLConverter
             _htmlElementsClosingTR.Add("tfoot");
             _htmlElementsClosingTR.Add("tbody");
             _htmlElementsClosingTR.Add("tr");
-            // TODO: more complex recovery
+            // TODO: more complex recovery id:268 gh:269
 
             _htmlElementsClosingTD = new ArrayList();
             _htmlElementsClosingTD.Add("td");
@@ -429,7 +429,7 @@ namespace HTMLConverter
             _htmlElementsClosingTD.Add("tbody");
             _htmlElementsClosingTD.Add("tfoot");
             _htmlElementsClosingTD.Add("thead");
-            // TODO: more complex recovery
+            // TODO: more complex recovery id:288 gh:289
 
             _htmlElementsClosingTH = new ArrayList();
             _htmlElementsClosingTH.Add("td");
@@ -438,19 +438,19 @@ namespace HTMLConverter
             _htmlElementsClosingTH.Add("tbody");
             _htmlElementsClosingTH.Add("tfoot");
             _htmlElementsClosingTH.Add("thead");
-            // TODO: more complex recovery
+            // TODO: more complex recovery id:299 gh:300
 
             _htmlElementsClosingThead = new ArrayList();
             _htmlElementsClosingThead.Add("tbody");
             _htmlElementsClosingThead.Add("tfoot");
-            // TODO: more complex recovery
+            // TODO: more complex recovery id:308 gh:309
 
             _htmlElementsClosingTfoot = new ArrayList();
             _htmlElementsClosingTfoot.Add("tbody");
             // although thead comes before tfoot, we add it because if it is found the tfoot should close
             // and some recovery processing be done on the thead
             _htmlElementsClosingTfoot.Add("thead");
-            // TODO: more complex recovery
+            // TODO: more complex recovery id:329 gh:330
         }
 
         /// <summary>

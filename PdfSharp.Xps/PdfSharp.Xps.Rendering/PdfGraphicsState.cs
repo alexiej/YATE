@@ -233,7 +233,7 @@ namespace PdfSharp.Xps.Rendering
             //        string pattern = pdf.ToString();
 
             //        // BUG: drice2@ageone.de reported a realizing problem
-            //        // HACK: I romove the if clause
+            //        // HACK: I romove the if clause id:30 gh:31
             //        //if (this.realizedDashPattern != pattern)
             //        {
             //          this.realizedDashPattern = pattern;
@@ -279,7 +279,7 @@ namespace PdfSharp.Xps.Rendering
         {
             if (this.realizedLineCap != (int)path.StrokeStartLineCap)
             {
-                // HACK: Set Triangle to Square
+                // HACK: Set Triangle to Square id:81 gh:82
                 int[] pdfValue = { 0, 1, 2, 2 };  // Flat, Round, Square, Triangle,
                 //int[] pdfValue = { 1, 1, 1, 1 };  // Flat, Round, Square, Triangle,
 
@@ -296,7 +296,7 @@ namespace PdfSharp.Xps.Rendering
                 this.writer.WriteLiteral("{0} j\n", value);
                 this.realizedLineJoin = value;
 
-                // TODO: Check implementation in PDFsharp PDF renderer!
+                // TODO: Check implementation in PDFsharp PDF renderer! id:17 gh:18
                 if (path.StrokeLineJoin == LineJoin.Miter)
                 {
                     if (this.realizedMiterLimit != path.StrokeMiterLimit && path.StrokeMiterLimit != 0)
@@ -368,7 +368,7 @@ namespace PdfSharp.Xps.Rendering
           //      string pattern = pdf.ToString();
 
           //      // BUG: drice2@ageone.de reported a realizing problem
-          //      // HACK: I romove the if clause
+          //      // HACK: I romove the if clause id:36 gh:37
           //      //if (this.realizedDashPattern != pattern)
           //      {
           //        this.realizedDashPattern = pattern;
@@ -387,7 +387,7 @@ namespace PdfSharp.Xps.Rendering
                         pdf.Append(PdfEncoders.ToString(dashArray[idx] * path.StrokeThickness));
                     }
 
-                    // TODO: ??
+                    // TODO: ?? id:65 gh:66
                     // Make an even number of values look like in GDI+  
                     if (count > 0 && count % 2 == 1)
                     {
@@ -398,7 +398,7 @@ namespace PdfSharp.Xps.Rendering
                     string pattern = pdf.ToString();
 
                     //// BUG: drice2@ageone.de reported a realizing problem
-                    //// HACK: I romove the if clause
+                    //// HACK: I romove the if clause id:31 gh:32
                     ////if (this.realizedDashPattern != pattern)
                     //{
                     //  this.realizedDashPattern = pattern;
@@ -528,7 +528,7 @@ namespace PdfSharp.Xps.Rendering
 
         //void RealizeLinearGradientBrush(LinearGradientBrush brush)
         //{
-        //  // HACK
+        //  // HACK id:82 gh:83
         //  int count = brush.GradientStops.Count;
         //  int idx = count / 2;
         //  RealizeFillHack(brush.GradientStops[idx].Color);

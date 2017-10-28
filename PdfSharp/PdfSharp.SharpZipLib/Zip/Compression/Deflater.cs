@@ -299,7 +299,7 @@ namespace PdfSharp.SharpZipLib.Zip.Compression
     /// <summary>
     /// Returns true, if the input buffer is empty.
     /// You should then call setInput(). 
-    /// NOTE: This method can also return true when the stream
+    /// NOTE: This method can also return true when the stream id:278 gh:279
     /// was finished.
     /// </summary>
     public bool IsNeedingInput

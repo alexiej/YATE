@@ -96,8 +96,8 @@ namespace PdfSharp.Drawing
     /// <summary>
     /// Fixes a bug that XMatrixTypes.Identity is not handled correctly in some cases.
     /// </summary>
-    // HACK: Fixes a bug that XMatrixTypes.Identity is not handled correctly in some cases.
-    // TODO: Eliminate this function.
+    // HACK: Fixes a bug that XMatrixTypes.Identity is not handled correctly in some cases. id:170 gh:171
+    // TODO: Eliminate this function. id:160 gh:161
     void InitIdentity()
     {
       Debug.Assert(this.type == XMatrixTypes.Identity);
@@ -203,7 +203,7 @@ namespace PdfSharp.Drawing
     /// </summary>
     public void Multiply(XMatrix matrix, XMatrixOrder order)
     {
-      // HACK in Multiply
+      // HACK in Multiply id:127 gh:129
       if (this.type == XMatrixTypes.Identity)
         InitIdentity();
 
@@ -263,7 +263,7 @@ namespace PdfSharp.Drawing
     /// <summary>
     /// Appends a translation of the specified offsets to this matrix.
     /// </summary>
-    public void TranslateAppend(double offsetX, double offsetY) // TODO: will become default
+    public void TranslateAppend(double offsetX, double offsetY) // TODO: will become default id:139 gh:140
     {
       if (this.type == XMatrixTypes.Identity)
       {
@@ -295,7 +295,7 @@ namespace PdfSharp.Drawing
     /// </summary>
     public void Translate(double offsetX, double offsetY, XMatrixOrder order)
     {
-      // HACK in Translate
+      // HACK in Translate id:96 gh:97
       if (this.type == XMatrixTypes.Identity)
         InitIdentity();
 
@@ -325,7 +325,7 @@ namespace PdfSharp.Drawing
     /// <summary>
     /// Appends the specified scale vector to this matrix.
     /// </summary>
-    public void ScaleAppend(double scaleX, double scaleY)  // TODO: will become default
+    public void ScaleAppend(double scaleX, double scaleY)  // TODO: will become default id:171 gh:172
     {
       this *= CreateScaling(scaleX, scaleY);
     }
@@ -343,7 +343,7 @@ namespace PdfSharp.Drawing
     /// </summary>
     public void Scale(double scaleX, double scaleY, XMatrixOrder order)
     {
-      // HACK in Scale
+      // HACK in Scale id:161 gh:162
       if (this.type == XMatrixTypes.Identity)
         InitIdentity();
 
@@ -413,7 +413,7 @@ namespace PdfSharp.Drawing
     /// <summary>
     /// Apppends the specified scale about the specified point of this matrix.
     /// </summary>
-    public void ScaleAtAppend(double scaleX, double scaleY, double centerX, double centerY) // TODO: will become default
+    public void ScaleAtAppend(double scaleX, double scaleY, double centerX, double centerY) // TODO: will become default id:128 gh:123
     {
       this *= CreateScaling(scaleX, scaleY, centerX, centerY);
     }
@@ -440,7 +440,7 @@ namespace PdfSharp.Drawing
     /// <summary>
     /// Appends a rotation of the specified angle to this matrix.
     /// </summary>
-    public void RotateAppend(double angle) // TODO: will become default Rotate
+    public void RotateAppend(double angle) // TODO: will become default Rotate id:140 gh:141
     {
       angle = angle % 360.0;
       this *= CreateRotationRadians(angle * 0.017453292519943295);
@@ -460,7 +460,7 @@ namespace PdfSharp.Drawing
     /// </summary>
     public void Rotate(double angle, XMatrixOrder order)
     {
-      // HACK in Rotate
+      // HACK in Rotate id:97 gh:98
       if (this.type == XMatrixTypes.Identity)
         InitIdentity();
 
@@ -510,7 +510,7 @@ namespace PdfSharp.Drawing
     /// <summary>
     /// Appends a rotation of the specified angle at the specified point to this matrix.
     /// </summary>
-    public void RotateAtAppend(double angle, double centerX, double centerY)  // TODO: will become default
+    public void RotateAtAppend(double angle, double centerX, double centerY)  // TODO: will become default id:172 gh:173
     {
       angle = angle % 360.0;
       this *= CreateRotationRadians(angle * 0.017453292519943295, centerX, centerY);
@@ -586,7 +586,7 @@ namespace PdfSharp.Drawing
     /// <summary>
     /// Appends a skew of the specified degrees in the x and y dimensions to this matrix.
     /// </summary>
-    public void ShearAppend(double shearX, double shearY) // TODO: will become default
+    public void ShearAppend(double shearX, double shearY) // TODO: will become default id:162 gh:163
     {
       Shear(shearX, shearY, XMatrixOrder.Append);
     }
@@ -604,7 +604,7 @@ namespace PdfSharp.Drawing
     /// </summary>
     public void Shear(double shearX, double shearY, XMatrixOrder order)
     {
-      // HACK in Shear
+      // HACK in Shear id:129 gh:130
       if (this.type == XMatrixTypes.Identity)
         InitIdentity();
 

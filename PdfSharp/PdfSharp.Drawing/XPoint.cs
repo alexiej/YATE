@@ -164,7 +164,7 @@ namespace PdfSharp.Drawing
     {
       if (value == null)
         throw new ArgumentNullException("value");
-      // TODO: Reflect reliabel implementation from Avalon
+      // TODO: Reflect reliabel implementation from Avalon id:173 gh:174
       // TODOWPF
       string[] values = value.Split(' ');
       int count = values.Length;
@@ -275,7 +275,7 @@ namespace PdfSharp.Drawing
     /// <summary>
     /// Adds a point and a size.
     /// </summary>
-    public static XPoint operator +(XPoint point, XSize size) // TODO: make obsolete
+    public static XPoint operator +(XPoint point, XSize size) // TODO: make obsolete id:163 gh:164
     {
       return new XPoint(point.x + size.width, point.y + size.height);
     }
@@ -316,7 +316,7 @@ namespace PdfSharp.Drawing
     /// Subtracts a size from a point.
     /// </summary>
     [Obsolete("Use XVector instead of XSize as second parameter.")]
-    public static XPoint operator -(XPoint point, XSize size) // TODO: make obsolete
+    public static XPoint operator -(XPoint point, XSize size) // TODO: make obsolete id:130 gh:131
     {
       return new XPoint(point.x - size.width, point.y - size.height);
     }

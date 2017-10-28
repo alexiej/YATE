@@ -510,7 +510,7 @@ namespace PdfSharp.SharpZipLib.Zip.Compression.Streams
 
     #region Encryption stuff
 
-    // TODO  Refactor this code.  The presence of Zip specific code in this low level class is wrong
+    // TODO Refactor this code.  The presence of Zip specific code in this low level class is wrong id:279 gh:280
 
     /// <summary>
     /// A buffer used for decrypting data.  Used to hold Zip crypto header.

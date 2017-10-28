@@ -140,11 +140,11 @@ namespace PdfSharp.Xps.XpsModel
       }
       else
       {
-        // TODO
+        // TODO id:50 gh:51
         if (value.StartsWith("{StaticResource"))
         {
           DevHelper.NotImplemented("Color StaticResource: " + value);
-          // HACK: just continue
+          // HACK: just continue id:85 gh:86
           return Color.FromArgb(255, 0, 128, 0);
         }
         else if (value.StartsWith("sc#"))
@@ -169,7 +169,7 @@ namespace PdfSharp.Xps.XpsModel
         else if (value.StartsWith("ContextColor"))
         {
           DevHelper.NotImplemented("Color profile: " + value);
-          // HACK: just continue
+          // HACK: just continue id:75 gh:76
           return Color.FromArgb(255, 0, 128, 0);
         }
         else

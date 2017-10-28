@@ -423,7 +423,7 @@ namespace PdfSharp.Drawing
       XUnit unit;
       value = value.Trim();
 
-      // HACK for Germans...
+      // HACK for Germans... id:175 gh:176
       value = value.Replace(',', '.');
 
       int count = value.Length;

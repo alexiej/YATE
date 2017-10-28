@@ -224,10 +224,10 @@ namespace PdfSharp.Pdf
     /// </summary>
     internal int Compact()
     {
-      // TODO: remove PdfBooleanObject, PdfIntegerObject etc.
+      // TODO: remove PdfBooleanObject, PdfIntegerObject etc. id:257 gh:259
       int removed = this.objectTable.Count;
       //CheckConsistence();
-      // TODO: Is this really so easy?
+      // TODO: Is this really so easy? id:277 gh:278
       PdfReference[] irefs = TransitiveClosure(this.document.trailer);
 
 #if DEBUG_

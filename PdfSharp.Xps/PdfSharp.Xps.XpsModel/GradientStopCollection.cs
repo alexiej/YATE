@@ -28,7 +28,7 @@ namespace PdfSharp.Xps.XpsModel
     }
 
     /// <summary>
-    /// HACK: Gets the average alpha value.
+    /// HACK: Gets the average alpha value. id:51 gh:52
     /// </summary>
     public double GetAverageAlpha()
     {

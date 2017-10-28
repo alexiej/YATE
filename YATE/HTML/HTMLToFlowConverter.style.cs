@@ -338,7 +338,7 @@ namespace HTMLConverter
                         paddingLeft = (double)propertyEnumerator.Value;
                         break;
 
-                    // NOTE: css names for elementary border styles have side indications in the middle (top/bottom/left/right)
+                    // NOTE: css names for elementary border styles have side indications in the middle (top/bottom/left/right) id:320 gh:321
                     // In our internal notation we intentionally put them at the end - to unify processing in ParseCssRectangleProperty method
                     case "border-color-top":
                         borderColorSet = true;

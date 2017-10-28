@@ -118,7 +118,7 @@ namespace HTMLConverter
                 {
                     // Non-html element. skip it
                     // Isn't it too agressive? What if this is just an error in html tag name?
-                    // TODO: Consider skipping just a wparrer in recursing into the element tree,
+                    // TODO: Consider skipping just a wparrer in recursing into the element tree, id:290 gh:291
                     // which may produce some garbage though coming from xml fragments.
                     // return htmlElement;
                     return null;
@@ -186,7 +186,7 @@ namespace HTMLConverter
                     case "td":
                     case "th":
                         // Table stuff without table wrapper
-                        // TODO: add special-case processing here for elements that should be within tables when the
+                        // TODO: add special-case processing here for elements that should be within tables when the id:207 gh:208
                         // parent element is NOT a table. If the parent element is a table they can be processed normally.
                         // we need to compare against the parent element here, we can't just break on a switch
                         goto default; // Thus we will skip this element as unknown, but still recurse into it.

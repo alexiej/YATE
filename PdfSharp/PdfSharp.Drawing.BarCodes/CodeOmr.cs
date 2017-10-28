@@ -74,7 +74,7 @@ namespace PdfSharp.Drawing.BarCodes
       uint value;
       uint.TryParse(this.text, out value);
 #if true
-      // HACK: Project Wallenwein: set LK
+      // HACK: Project Wallenwein: set LK id:88 gh:89
       value |= 1;
       this.synchronizeCode = true;
 #endif

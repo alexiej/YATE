@@ -31,7 +31,7 @@ using System;
 
 namespace PdfSharp.Drawing.BarCodes
 {
-  // TODO: Mere with PDFsharp strings table
+  // TODO: Mere with PDFsharp strings table id:53 gh:54
   /// <summary>
   /// String resources for the empira barcode renderer.
   /// </summary>

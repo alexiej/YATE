@@ -85,7 +85,7 @@ namespace PdfSharp.Pdf.Internal
     /// </summary>
     public static bool IsAnsi1252Char(char ch)
     {
-      if (ch < '\u00FF') // HACK? 
+      if (ch < '\u00FF') // HACK ?  id:248 gh:249
         return true;
       switch (ch)
       {

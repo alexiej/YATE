@@ -93,7 +93,7 @@ namespace PdfSharp.Pdf.Advanced
       if (form.IsTemplate)
       {
         Debug.Assert(importedObjectTable == null);
-        // TODO more initialization here???
+        // TODO more initialization here??? id:135 gh:136
         return;
       }
       Debug.Assert(importedObjectTable != null);
@@ -214,7 +214,7 @@ namespace PdfSharp.Pdf.Advanced
       }
       else
       {
-        // TODO: Have to adjust bounding box? (I think not, but I'm not sure -> wait for problem)
+        // TODO: Have to adjust bounding box? (I think not, but I'm not sure -> wait for problem) id:147 gh:148
         this.Elements["/BBox"] = rect;
 
         // Rotate the image such that it is upright
@@ -311,7 +311,7 @@ namespace PdfSharp.Pdf.Advanced
     /// </summary>
     void FixUpObject_old(PdfImportedObjectTable iot, PdfObject value)
     {
-      // TODO: merge with PdfXObject.FixUpObject
+      // TODO: merge with PdfXObject.FixUpObject id:104 gh:105
       PdfDictionary dict;
       PdfArray array;
       if ((dict = value as PdfDictionary) != null)
@@ -435,7 +435,7 @@ namespace PdfSharp.Pdf.Advanced
       /// <summary>
       /// (Required) An array of four numbers in the form coordinate system, giving the 
       /// coordinates of the left, bottom, right, and top edges, respectively, of the 
-      /// form XObject’s bounding box. These boundaries are used to clip the form XObject
+      /// form XObjectï¿½s bounding box. These boundaries are used to clip the form XObject
       /// and to determine its size for caching.
       /// </summary>
       [KeyInfo(KeyType.Rectangle | KeyType.Required)]
@@ -459,7 +459,7 @@ namespace PdfSharp.Pdf.Advanced
       /// <summary>
       /// (Optional; PDF 1.4) A group attributes dictionary indicating that the contents
       /// of the form XObject are to be treated as a group and specifying the attributes
-      /// of that group (see Section 4.9.2, “Group XObjects”).
+      /// of that group (see Section 4.9.2, ï¿½Group XObjectsï¿½).
       /// Note: If a Ref entry (see below) is present, the group attributes also apply to the
       /// external page imported by that entry, which allows such an imported page to be
       /// treated as a group without further modification.

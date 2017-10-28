@@ -100,7 +100,7 @@ namespace HTMLConverter
                                 ParseCssColor(styleValue, ref nextIndex, localProperties, "background-color");
                                 break;
                             case "background":
-                                // TODO: need to parse composite background property
+                                // TODO: need to parse composite background property id:301 gh:303
                                // ParseCssBackground(styleValue, ref nextIndex, localProperties);
                                 ParseCssColor(styleValue, ref nextIndex, localProperties, "background-color");
                                 break;
@@ -155,7 +155,7 @@ namespace HTMLConverter
                                 //  Parse css border style
                                 break;
 
-                            // NOTE: css names for elementary border styles have side indications in the middle (top/bottom/left/right)
+                            // NOTE: css names for elementary border styles have side indications in the middle (top/bottom/left/right) id:322 gh:323
                             // In our internal notation we intentionally put them at the end - to unify processing in ParseCssRectangleProperty method
                             case "border-top-style":
                             case "border-right-style":
@@ -1071,7 +1071,7 @@ namespace HTMLConverter
                         }
                         else
                         {
-                            // TODO: Process unrecognized list style value
+                            // TODO: Process unrecognized list style value id:262 gh:263
                             break;
                         }
                     }
@@ -1091,7 +1091,7 @@ namespace HTMLConverter
 
         private static string ParseCssListStyleImage(string styleValue, ref int nextIndex)
         {
-            // TODO: Implement URL parsing for images
+            // TODO: Implement URL parsing for images id:282 gh:283
             return null;
         }
 

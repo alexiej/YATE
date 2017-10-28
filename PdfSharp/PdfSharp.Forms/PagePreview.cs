@@ -57,7 +57,7 @@ using PdfSharp.Pdf;
 
 namespace PdfSharp.Forms
 {
-  /* TODOs
+  /* TODO s id:133 gh:134
    * 
    *  o Call render event only once. -> introduce an UpdatePage() function
    * 
@@ -528,7 +528,7 @@ namespace PdfSharp.Forms
         break;
 
         case Zoom.TextFit:
-        // TODO: 'public Rectangle TextBox' property
+        // TODO: 'public Rectangle TextBox' property id:145 gh:146
         goto BestFit;
         //this.zoomPercent = LongFromReal (25400.0 / (_cxUsedPage + 0) * 
         //                            (rcWnd.CX () - 2 * cxScrollbar) / xdpiScreen) - 3;

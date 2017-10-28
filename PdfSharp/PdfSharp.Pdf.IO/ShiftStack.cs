@@ -43,7 +43,7 @@ namespace PdfSharp.Pdf.IO
   /// </summary>
   internal class ShiftStack
   {
-    // TODO: make Lexer.PeekChars(20) and scan for 'R' to detect indirect references
+    // TODO: make Lexer.PeekChars(20) and scan for 'R' to detect indirect references id:195 gh:196
 
     public ShiftStack()
     {

@@ -142,7 +142,7 @@ namespace PdfSharp.Xps.XpsModel
 
     internal static XmlTextReader GetPartAsXmlReader(ZipPackage package, string uriString)
     {
-      // HACK: just make it work...
+      // HACK: just make it work... id:86 gh:87
       if (!uriString.StartsWith("/"))
         uriString = "/" + uriString;
 
@@ -176,11 +176,11 @@ namespace PdfSharp.Xps.XpsModel
       {
         //target = PackUriHelper.ResolvePartUri(package.t.GetRelationship Uri("/documents2/3/Pages", UriKind.RelativeOrAbsolute), target);
         //PackagePartCollection coll = package.GetParts();
-        // HACK: introduce a "CurrentPart"
+        // HACK: introduce a "CurrentPart" id:76 gh:77
         target = PackUriHelper.ResolvePartUri(new Uri("/documents/1/Pages/1.page", UriKind.RelativeOrAbsolute), target);
       }
 #else
-      // HACK: just make it go...
+      // HACK: just make it go... id:41 gh:42
       if (!uriString.StartsWith("/"))
         uriString = "/" + uriString;
 

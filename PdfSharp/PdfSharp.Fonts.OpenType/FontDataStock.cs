@@ -38,7 +38,7 @@ namespace PdfSharp.Fonts.OpenType
   /// <summary>
   /// Global table of TrueType font faces.
   /// </summary>
-  class FontDataStock  // TODO: rename
+  class FontDataStock  // TODO: rename id:132 gh:133
   {
     FontDataStock()
     {
@@ -84,7 +84,7 @@ namespace PdfSharp.Fonts.OpenType
 
     //internal FontData FindFont(XTypefaceHack typeface)
     //{
-    //  // HACK: 
+    //  // HACK: id:144 gh:145
     //  if (this.fontDataTable.Count > 1)
     //    return this.lastEntry;
     //  return null;

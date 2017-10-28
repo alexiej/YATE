@@ -52,7 +52,7 @@ namespace PdfSharp.Xps
     /// </summary>
     /// <param name="pdfDocument">The PDF document.</param>
     /// <param name="xpsDocumentPath">The XPS document path.</param>
-    public XpsConverter(PdfDocument pdfDocument, string xpsDocumentPath)  // TODO: a constructor with an Uri
+    public XpsConverter(PdfDocument pdfDocument, string xpsDocumentPath)  // TODO: a constructor with an Uri id:70 gh:71
     {
       if (pdfDocument == null)
         throw new ArgumentNullException("pdfDocument");
@@ -77,7 +77,7 @@ namespace PdfSharp.Xps
     DocumentRenderingContext context;
 
     /// <summary>
-    /// HACK
+    /// HACK id:52 gh:53
     /// </summary>
     public PdfPage CreatePage(int xpsPageIndex)
     {
